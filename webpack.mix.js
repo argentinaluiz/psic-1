@@ -11,5 +11,6 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+ //Dois pacotes, um para a parte administrativa e outra para a parte dos usuários
+mix.js('resources/assets/admin/js/admin.js', 'public/js')
+   .sass('resources/assets/admin/sass/admin.scss', 'public/css');

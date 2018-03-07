@@ -31,13 +31,13 @@
             var stateId = $(this).val();
             if(stateId){
                 $.ajax({
-                url: 'state/'+encodeURI(stateId),
+                url: '/painel/state/'+stateId,
                 type: "GET",
                 dataType: "json",
                 success:function(data) {
                     $('select[name="city_id"]').empty();
                     $.each(data, function(key, value) {
-                        $('select[name="city_id"]').append('<option value=' + value.id + '>' + value.city + '</option>');
+                        $('select[name="city_id"]').append('<option value=' + stateId + '>' + value.name + '</option>');
                     });
                 }
             });
