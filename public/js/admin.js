@@ -212,22 +212,21 @@ module.exports = __webpack_require__(17);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 __webpack_require__(4);
 
-//window.Vue = require('vue');
+window.Vue = __webpack_require__(7);
+//import Vue from 'vue';
 
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('example-component', __webpack_require__(11));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('class-patient', __webpack_require__(14));
+Vue.component('example-component', __webpack_require__(11));
+Vue.component('class-patient', __webpack_require__(14));
 
 if (document.getElementById("wrapper")) {
-    new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
+    new Vue({
         el: '#wrapper'
     });
 }
+
+//
 
 /***/ }),
 /* 4 */
@@ -24330,12 +24329,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 /* 16 */
@@ -24352,21 +24353,24 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
-            _c("div", { staticClass: "panel-heading" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    I'm an example component!\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("div", [
+      _c("div", { staticClass: "form-group" }, [
+        _c("label", { staticClass: "control-label" }, [
+          _vm._v("Selecionar paciente")
+        ]),
+        _vm._v(" "),
+        _c("select", {
+          staticClass: "form-control",
+          attrs: { name: "patients" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("table", { staticClass: "table table-bordered" }, [
+        _c("thead", [
+          _c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Nome")])])
+        ]),
+        _vm._v(" "),
+        _c("tbody")
       ])
     ])
   }

@@ -12,5 +12,5 @@
 
 @section('content')
     <!-- Componente Vue.js -->
-    <class-pacient></class-pacient>
+    <class-patient class-information="{{$class_information->id}}"></class-patient>
 @endsection
