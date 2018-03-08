@@ -51,7 +51,7 @@ class UserProfileController extends Controller
         }
 
         $data = $form->getFieldValues();
-        dd($data);
+       // dd($data);
         $user->profile->address?$user->profile->update($data):$user->profile()->create($data);
 
         session()->flash('message', 'Perfil alterado com sucesso.');
