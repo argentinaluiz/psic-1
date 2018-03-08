@@ -20,6 +20,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('number');
             $table->string('complement')->nullable();
             $table->string('neighborhood');
+            $table->integer('state_id');
             $table->integer('city_id')->unsigned()->default(0);
             $table->foreign('city_id')->references('id')->on('cities');
             $table->integer('user_id')->unsigned();

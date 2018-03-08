@@ -26,7 +26,7 @@ class UserProfileForm extends Form
                 'rules' => 'max:255'
             ])
 
-            ->add('state', 'entity', [
+            ->add('state_id', 'entity', [
                 'label' => 'Estado', 
                 'class' => '\App\Models\Painel\State', // Entity that holds data
                 'property' => 'name', // Value that will be used as a label for each choice option, default: name 

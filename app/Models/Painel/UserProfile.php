@@ -12,6 +12,7 @@ class UserProfile extends Model
         'cep',
         'number',
         'complement',
+        'state_id',
         'city_id',
         'neighborhood'
     ];

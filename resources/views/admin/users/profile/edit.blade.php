@@ -27,7 +27,7 @@
 
 @section('extra-js')
     <script type="text/javascript">
-        $('select[name=state]').change(function () {
+        $('select[name=state_id]').change(function () {
             var stateId = $(this).val();
             if(stateId){
                 $.ajax({
