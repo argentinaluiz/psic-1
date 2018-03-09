@@ -14,3 +14,12 @@ let mix = require('laravel-mix');
  //Dois pacotes, um para a parte administrativa e outra para a parte dos usuários
 mix.js('resources/assets/admin/js/admin.js', 'public/js')
    .sass('resources/assets/admin/sass/admin.scss', 'public/css');
+
+/*mix.styles([
+    'public/css/font-awesome.css',
+    'public/css/bootstrap.min.css',
+    'public/css/plugins/toastr/toastr.min.css',
+    'public/css/animate.css',
+    'public/css/style.css'
+],  'public/css/all.css'); 
+*/

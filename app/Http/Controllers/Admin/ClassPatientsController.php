@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ClassPatientRequest;
 use App\Models\Painel\ClassInformation;
-use App\Models\Painel\Student;
+use App\Models\Painel\Patient;
 
 class ClassPatientsController extends Controller
 {
@@ -15,9 +15,13 @@ class ClassPatientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClassInformation $class_information)
+    public function index(Request $request, ClassInformation $class_information)
     {
-        return view('admin.class_informations.class_patient', compact('class_information'));
+        if(!$request->ajax()) {
+            return view('admin.class_informations.class_patient', compact('class_information'));
+        }else{
+            return $class_information->patients()->get();
+        }
     }
 
     /**

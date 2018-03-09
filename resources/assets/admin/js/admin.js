@@ -8,8 +8,7 @@ Vue.component('class-patient', require('./components/class_information/ClassPati
 
 if(document.getElementById("wrapper")){
     new Vue({
-    el: '#wrapper',
+    el: '#wrapper', 
     });
 }
 
-//

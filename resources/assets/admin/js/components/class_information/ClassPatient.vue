@@ -13,7 +13,10 @@
             </tr>
             </thead>
             <tbody>
-           
+                <tr v-for="patient in patients">
+                    <td>Excluir</td>
+                    <td>{{patient.user.name}}</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -21,8 +24,19 @@
 
 
 <script>
+    import ADMIN_CONFIG from '../../services/adminConfig';
+    import store from '../../store/store';
     export default {
-        
+        props: ['classInformation'], //para passar o id da Classe
+        computed: {
+            patients(){
+                return store.state.classPatient.patients;
+            }
+        },
+        mounted(){
+            store.dispatch('classPatient/query', this.classInformation);
+            
+        }
     }
 </script>
 
