@@ -24,16 +24,14 @@ mix.styles([
     'resources/assets/admin/css/style.css'
 ],  'public/css/admin.css'); 
 
-/*mix.scripts([
+mix.scripts([
     'resources/assets/admin/js/plugins/metisMenu/jquery.metisMenu.js',
     'resources/assets/admin/js/plugins/slimscroll/jquery.slimscroll.min.js',
     'resources/assets/admin/js/plugins/pace/pace.min.js',
-    'resources/assets/admin/js/atendimento.js'
-],'public/js/admin.js');
+],'public/js/plugins.js');
 
 mix.copy('resources/assets/admin/js/appCart.js','public/js/appCart.js');
-mix.copy('resources/assets/admin/js/admin.js','public/js/admin.js');
-*/
+mix.copy('resources/assets/admin/js/atendimento.js','public/js/atendimento.js');
 
 /*Copiar um arquivo do node_modules para a pasta public
     mix.copy('node_modules/font-awesome/fonts','public/fonts')

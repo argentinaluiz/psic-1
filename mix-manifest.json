@@ -1,3 +1,6 @@
 {
-    "/public/css/admin.css": "/public/css/admin.css"
+    "/public/css/admin.css": "/public/css/admin.css",
+    "/public/js/plugins.js": "/public/js/plugins.js",
+    "/public/js/appCart.js": "/public/js/appCart.js",
+    "/public/js/atendimento.js": "/public/js/atendimento.js"
 }

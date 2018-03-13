@@ -238,12 +238,10 @@
     </div>
 
     <!-- Plugins -->
-    <script src="{{ asset('js/plugins/metisMenu/jquery.metisMenu.js') }} "></script>
-    <script src="{{ asset('js/plugins/slimscroll/jquery.slimscroll.min.js') }} "></script>
+    <script src="{{ asset('js/plugins.js') }} "></script>
 
     <!-- Custom and plugin javascript -->
    	<script src="{{ asset('js/atendimento.js') }} "></script>
-    <script src="{{ asset('js/plugins/pace/pace.min.js') }} "></script>
 	
    	@stack('extra-js')
 </body>
