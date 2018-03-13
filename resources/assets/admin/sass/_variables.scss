@@ -10,11 +10,39 @@ $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
 // Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+$brand-primary: #1c84c6;
+$brand-info: #23c6c8;
+$brand-success: #1ab394;
+$brand-warning: #f8ac59;
+$brand-danger: #ed5565;
+
+/* Colors */
+$color_default: #00397D;
+$color_primary: #1c84c6;
+$color_success: #1ab394;
+$color_info: #23c6c8;
+$color_warning: #f8ac59;
+$color_warning_light: #f8ac59;
+$color_danger: #ed5565;
+$color_white: #fff;
+$color_white_light: #e7eaec;
+$color_gray: #5E5E5E;
+$color_gray_light: #DDDDDD;
+$color_navy_light: #3dc7ab;
+$color_pink: #f532e5;
+$color_purple: #7266ba;
+$color_black: #000;
+$color_black_light: #262626;
+$color_link: #cacaca;
+$color_inverse: #262626;
+$color_disable: #8B91A0;
+
+@mixin NewButton($color,$colorText,$colorBorder){
+	border: 1px solid $colorBorder;
+	color: $colorText;
+	background-color: $color;
+	&:hover, &:active, &:focus {background-color: darken($color, 10%);}
+}
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";

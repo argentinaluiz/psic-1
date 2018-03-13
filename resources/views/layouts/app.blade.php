@@ -11,22 +11,16 @@
     <title>Psicanalysis - @yield('pag_title')</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+       
+    <script src="{{ asset('js/admin.js') }} "></script>
 
-    <!-- Toastr style -->
-    <link href="{{ asset('css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    
-    <!-- Script -->
-    <script src="{{ asset('js/admin.js') }}"></script>
-    
     <style type="text/css">
         @media print{.hidden-print {display: none;} }
     </style>
-    @yield('extra-css')
+
+	@stack('extra-css')
+
 </head>
 <body>
     <div id="wrapper">
@@ -250,7 +244,7 @@
     <!-- Custom and plugin javascript -->
    	<script src="{{ asset('js/atendimento.js') }} "></script>
     <script src="{{ asset('js/plugins/pace/pace.min.js') }} "></script>
-
-   @yield('extra-js')
+	
+   	@stack('extra-js')
 </body>
 </html>
