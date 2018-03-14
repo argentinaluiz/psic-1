@@ -12,8 +12,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-       
-    <script src="{{ asset('js/admin.js') }} "></script>
 
     <style type="text/css">
         @media print{.hidden-print {display: none;} }
@@ -236,6 +234,8 @@
             @include('partials.footer-painel')
         </div>
     </div>
+	<!-- Script -->
+	<script src="{{ asset('js/admin.js') }} "></script>
 
     <!-- Plugins -->
     <script src="{{ asset('js/plugins.js') }} "></script>
