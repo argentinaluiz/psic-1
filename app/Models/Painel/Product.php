@@ -56,7 +56,7 @@ class Product extends Model implements TableInterface
 
     public function users()
     {
-        return $this->belongsToMany(App\Models\User::class);
+        return $this->belongsToMany(\App\User::class);
     }
 
     public function imagens()
