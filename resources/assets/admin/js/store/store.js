@@ -1,3 +1,4 @@
+//Administra todos os modules de armazém
 import Vuex from 'vuex';
 import classPatient from './class_patient';
 //import classTeaching from './class_teaching';

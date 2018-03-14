@@ -96,8 +96,6 @@ $(document).ready(function () {
         return false;
     });
 
-
-
     // Minimalize menu
     $('.navbar-minimalize').on('click', function () {
         $("body").toggleClass("mini-navbar");

@@ -1,3 +1,4 @@
+//trabalhar o vuex voltado para módulos
 import 'vue-resource';
 import Vue from 'vue';
 import ADMIN_CONFIG from '../services/adminConfig';
@@ -22,7 +23,7 @@ const actions = {
 };
 
 const module = {
-    namespaced: true,
+    namespaced: true, // consegue acessar o state, um dispatch() para disparar uma ação, fazer commit etc. 
     state,mutations,actions
 };
 
