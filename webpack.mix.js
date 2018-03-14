@@ -16,6 +16,11 @@ let mix = require('laravel-mix');
    .sass('resources/assets/admin/sass/admin.scss', 'public/css');
 */
 
+// Parte Site - não esquecer de fazer
+
+
+
+// Parte Administrativa
 mix.styles([
     'resources/assets/admin/css/font-awesome.min.css',
     'resources/assets/admin/css/bootstrap.min.css',
@@ -32,6 +37,14 @@ mix.scripts([
 
 mix.copy('resources/assets/admin/js/appCart.js','public/js/appCart.js');
 mix.copy('resources/assets/admin/js/atendimento.js','public/js/atendimento.js');
+
+//Carrega o brownser automaticamente, veirificando se há um novo arquivo na pasta public. Serve também como proxy, e acessa a porta 3000
+mix.browserSync('localhost:8000');
+
+
+
+
+
 
 /*Copiar um arquivo do node_modules para a pasta public
     mix.copy('node_modules/font-awesome/fonts','public/fonts')
