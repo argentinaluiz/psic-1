@@ -28,13 +28,6 @@ class UserProfileController extends Controller
         return view('admin.users.profile.edit', compact('form'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \SON\Models\UserProfile  $userProfile
-     * @return \Illuminate\Http\Response
-     */
     public function update(User $user)
     {
         if(Gate::denies('users-edit')){

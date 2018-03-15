@@ -19,8 +19,8 @@ class Patient extends Model
     public function toArray() 
     {
         $data = parent::toArray();
-        $this->user->makeHidden('userable_type','userable_id');//acrescentar os dados do usuário
-        $data['user'] = $this->user;
+        $this->user->makeHidden('userable_type','userable_id');
+        $data['user'] = $this->user; //acrescentar os dados do usuário
         return $data;
     }
 }
