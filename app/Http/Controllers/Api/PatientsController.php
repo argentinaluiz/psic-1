@@ -15,8 +15,7 @@ class PatientsController extends Controller
             [] :
             //o método whereHas já faz o join automaticamente. Passo o nome do relacionamento (model: user). Na query uso o nome da tabela (users)
             Patient::whereHas('user', function ($query) use ($search) {
-                $query->where('users.name', 'LIKE', "%{$search}%");
+                $query->where('users.name', 'LIKE', "%{$search}%");//para uma busca genérica, vc passa entre porcentagem %
             })->take(10)->get();
-
     }
 }

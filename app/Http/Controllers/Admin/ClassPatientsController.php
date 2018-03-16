@@ -24,26 +24,17 @@ class ClassPatientsController extends Controller
         }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(ClassPatientRequest $request,ClassInformation $class_information)
     {
-        //
+        $patient = Patient::find($request->get('patient_id'));
+        $class_information->patients()->save($patient);
+        return $patient;
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(ClassInformation $class_information, Patient $patient)
     {
-        //
+        $class_information->patients()->detach([$patient->id]);
+        return response()->json([],204); //status code - no content, ou seja, informa que a operação requisitada aconteceu com sucesso, mas não têm nenhum conteúdo para ser mostrado
     }
 }

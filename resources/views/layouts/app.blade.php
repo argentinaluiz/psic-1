@@ -12,10 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-
-    <style type="text/css">
-        @media print{.hidden-print {display: none;} }
-    </style>
+	<link href="{{ asset('css/themeStyle.css') }}" rel="stylesheet">
 
 	@stack('extra-css')
 

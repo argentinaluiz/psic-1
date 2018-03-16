@@ -27,7 +27,7 @@ const mutations = {
 
 const actions = {
     query(context,classInformationId){
-        return Vue.http.get('${ADMIN_CONFIG.ADMIN_URL}/class_informations/${classInformationId}/patients')
+        return Vue.http.get(`${ADMIN_CONFIG.ADMIN_URL}/class_informations/${classInformationId}/patients`)
             .then(response => {
                 context.commit('set',response.data);
             })

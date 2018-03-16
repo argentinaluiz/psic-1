@@ -202,3 +202,15 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::resource('class_informations', 'ClassInformationsController');
 
   });
+
+Route::prefix('admin')->group(function () {
+    Auth::routes();
+    Route::group([
+        'namespace' => 'Api\\',
+        'as' => 'admin.api.',
+        'middleware' => ['auth', 'can:admin'],
+        'prefix' => 'api'
+    ], function (){
+        Route::name('patients.index')->get('patients','PatientsController@index');
+    });
+});

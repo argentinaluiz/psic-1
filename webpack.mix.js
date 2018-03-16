@@ -11,23 +11,21 @@ let mix = require('laravel-mix');
  |
  */
 
- //Dois pacotes, um para a parte administrativa e outra para a parte dos usuários
-/*mix.js('resources/assets/admin/js/admin.js', 'public/js')
-   .sass('resources/assets/admin/sass/admin.scss', 'public/css');
-*/
-
 // Parte Site - não esquecer de fazer
 
 
 
 // Parte Administrativa
+
+mix.js('resources/assets/admin/js/admin.js', 'public/js')
+    .sass('resources/assets/admin/sass/admin.scss', 'public/css');
 mix.styles([
     'resources/assets/admin/css/font-awesome.min.css',
     'resources/assets/admin/css/bootstrap.min.css',
     'resources/assets/admin/css/plugins/toastr/toastr.min.css',
     'resources/assets/admin/css/animate.css',
     'resources/assets/admin/css/style.css'
-],  'public/css/admin.css'); 
+],  'public/css/themeStyle.css'); 
 
 mix.scripts([
     'resources/assets/admin/js/plugins/metisMenu/jquery.metisMenu.js',

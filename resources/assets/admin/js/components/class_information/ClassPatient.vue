@@ -15,7 +15,7 @@
             <tbody>
                 <tr v-for="patient in patients">
                     <td>
-                        <button type="button" class="btn btn-default" @click="destroy(patient)">
+                        <button type="button" class="btn btn-sm btn-link" @click="destroy(patient)">
                             <span class="glyphicon glyphicon-trash"></span> Excluir
                         </button>
                     </td>
@@ -43,7 +43,7 @@
             store.dispatch('classPatient/query', this.classInformation); //passo o módulo e depois a ação que desejo chamar
             $("select[name=patients]").select2({
                 ajax: {
-                    url: '${ADMIN_CONFIG.API_URL}/patients',
+                    url: `${ADMIN_CONFIG.API_URL}/patients`,
                     dataType: 'json',
                     delay: 250,
                     data(params){
@@ -68,12 +68,12 @@
                         patientId: event.params.data.id,
                         classInformationId: self.classInformation
                     }).then(() => {
-                    new PNotify({
-                        title: 'Aviso',
-                        text: 'Paciente adicionado com sucesso!',
-                        styling: 'brighttheme',
-                        type: 'success'
-                    });
+                        new PNotify({
+                            title: 'Aviso',
+                            text: 'Paciente adicionado com sucesso!',
+                            styling: 'brighttheme',
+                            type: 'success'
+                        });
                     });
                 })
             },
@@ -81,9 +81,16 @@
                 destroy(patient){
                     if(confirm('Deseja remover este paciente?')){
                         store.dispatch('classPatient/destroy', {
-                            patientId: student.id,
+                            patientId: patient.id,
                             classInformationId: this.classInformation
-                        })
+                        }).then(() => {
+                        new PNotify({
+                            title: 'Aviso',
+                            text: 'Paciente deletado com sucesso!',
+                            styling: 'brighttheme',
+                            type: 'success'
+                        });
+                    });
                     }
                 }
             }
