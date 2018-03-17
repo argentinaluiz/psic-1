@@ -17,6 +17,10 @@ class SubjectsController extends Controller
      */
     public function index()
     {
+        if(Gate::denies('subjects-view')){
+            abort(403,"Não autorizado!");
+        }
+
         $totalSubjects = Subject::count();
         $subjects = Subject::paginate(10);
         return view('admin.subjects.index',compact('subjects', 'totalSubjects'));
@@ -29,6 +33,10 @@ class SubjectsController extends Controller
      */
     public function create()
     {
+        if(Gate::denies('subjects-create')){
+            abort(403,"Não autorizado!");
+        }
+
         $form = \FormBuilder::create(SubjectForm::class, [
             'url' => route('subjects.store'),
             'method' => 'POST'
@@ -44,6 +52,10 @@ class SubjectsController extends Controller
      */
     public function store(Request $request)
     {
+        if(Gate::denies('subjects-create')){
+            abort(403,"Não autorizado!");
+        }
+
         /** @var Form $form */
         $form = \FormBuilder::create(SubjectForm::class);
 
@@ -68,6 +80,10 @@ class SubjectsController extends Controller
      */
     public function show(Subject $subject)
     {
+        if(Gate::denies('subjects-view')){
+            abort(403,"Não autorizado!");
+        }
+
         return view('admin.subjects.show', compact('subject'));
     }
 
@@ -79,6 +95,10 @@ class SubjectsController extends Controller
      */
     public function edit(Subject $subject)
     {
+        if(Gate::denies('subjects-edit')){
+            abort(403,"Não autorizado!");
+        }
+
         $form = \FormBuilder::create(SubjectForm::class, [
             'url' => route('subjects.update',['subject' => $subject->id]),
             'method' => 'PUT',
@@ -96,6 +116,10 @@ class SubjectsController extends Controller
      */
     public function update(Subject $subject)
     {
+        if(Gate::denies('subjects-edit')){
+            abort(403,"Não autorizado!");
+        }
+
         /** @var Form $form */
         $form = \FormBuilder::create(SubjectForm::class);
 
@@ -120,6 +144,10 @@ class SubjectsController extends Controller
      */
     public function destroy(Subject $subject)
     {
+        if(Gate::denies('subjects-delete')){
+            abort(403,"Não autorizado!");
+        }
+
         $subject->delete();
         session()->flash('message','Patologia excluída com sucesso');
         return redirect()->route('subjects.index');

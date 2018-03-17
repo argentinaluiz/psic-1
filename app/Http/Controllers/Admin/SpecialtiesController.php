@@ -33,6 +33,10 @@ class SpecialtiesController extends Controller
      */
     public function create()
     {
+        if(Gate::denies('specialties-create')){
+            abort(403,"Não autorizado!");
+        }
+
         $form = \FormBuilder::create(SpecialtyForm::class, [
             'url' => route('specialties.store'),
             'method' => 'POST'
@@ -48,6 +52,10 @@ class SpecialtiesController extends Controller
      */
     public function store(Request $request)
     {
+        if(Gate::denies('specialties-create')){
+            abort(403,"Não autorizado!");
+        }
+
         /** @var Form $form */
         $form = \FormBuilder::create(SpecialtyForm::class);
 
@@ -72,6 +80,10 @@ class SpecialtiesController extends Controller
      */
     public function show(Specialty $specialty)
     {
+        if(Gate::denies('specialties-view')){
+            abort(403,"Não autorizado!");
+        }
+
         return view('admin.specialties.show', compact('specialty'));
     }
 
@@ -83,6 +95,10 @@ class SpecialtiesController extends Controller
      */
     public function edit(Specialty $specialty)
     {
+        if(Gate::denies('specialties-edit')){
+            abort(403,"Não autorizado!");
+        }
+
         $form = \FormBuilder::create(SpecialtyForm::class, [
             'url' => route('specialties.update',['specialty' => $specialty->id]),
             'method' => 'PUT',
@@ -100,6 +116,10 @@ class SpecialtiesController extends Controller
      */
     public function update(Specialty $specialty)
     {
+        if(Gate::denies('specialties-edit')){
+            abort(403,"Não autorizado!");
+        }
+
         /** @var Form $form */
         $form = \FormBuilder::create(SpecialtyForm::class);
 
@@ -124,6 +144,10 @@ class SpecialtiesController extends Controller
      */
     public function destroy(Specialty $specialty)
     {
+        if(Gate::denies('specialties-delete')){
+            abort(403,"Não autorizado!");
+        }
+
         $specialty->delete();
         session()->flash('message','Especialidade excluída com sucesso');
         return redirect()->route('specialties.index');
