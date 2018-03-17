@@ -200,7 +200,7 @@ class PermissionsTableSeeder extends Seeder
             'description' =>'Deletar Documento'
         ]);
 
-         $categories1 = Permission::firstOrCreate([
+        $categories1 = Permission::firstOrCreate([
             'name' =>'categories-view',
             'description' =>'Acesso a lista de Documentos'
         ]);
@@ -216,7 +216,40 @@ class PermissionsTableSeeder extends Seeder
             'name' =>'categories-delete',
             'description' =>'Deletar Documento'
         ]);
+        
+        $specialties1 = Permission::firstOrCreate([
+            'name' =>'specialties-view',
+            'description' =>'Acesso a lista de Especialidades'
+        ]);
+        $specialties2 = Permission::firstOrCreate([
+            'name' =>'specialties-create',
+            'description' =>'Adicionar Especialidade'
+        ]);
+        $specialties3 = Permission::firstOrCreate([
+            'name' =>'specialties-edit',
+            'description' =>'Editar Especialidade'
+        ]);
+        $specialties4 = Permission::firstOrCreate([
+            'name' =>'specialties-delete',
+            'description' =>'Deletar Especialidade'
+        ]);
 
+        $subjects1 = Permission::firstOrCreate([
+            'name' =>'subjects-view',
+            'description' =>'Acesso a lista de Patologias'
+        ]);
+        $subjects2 = Permission::firstOrCreate([
+            'name' =>'subjects-create',
+            'description' =>'Adicionar Patologia'
+        ]);
+        $subjects3 = Permission::firstOrCreate([
+            'name' =>'subjects-edit',
+            'description' =>'Editar Patologia'
+        ]);
+        $subjects4 = Permission::firstOrCreate([
+            'name' =>'subjects-delete',
+            'description' =>'Deletar Patologia'
+        ]);
 
     }
 }

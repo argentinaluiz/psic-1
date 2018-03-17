@@ -17,6 +17,10 @@ class SpecialtiesController extends Controller
      */
     public function index()
     {
+        if(Gate::denies('specialties-view')){
+            abort(403,"Não autorizado!");
+        }
+
         $totalSpecialties = Specialty::count();
         $specialties = Specialty::paginate(10);
         return view('admin.specialties.index',compact('specialties', 'totalSpecialties'));

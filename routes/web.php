@@ -192,7 +192,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::delete('roles/permission/{role}/{permission}', ['as'=>'roles.permission.destroy','uses'=>'RoleController@permissionDestroy']);
   
     Route::resource('permissions', 'PermissionController');
-
+    
+    Route::resource('subjects', 'SubjectsController');
     Route::resource('specialties', 'SpecialtiesController');
     Route::group(['prefix' => 'class_informations/{class_information}', 'as' => 'class_informations.'],
             function () {
@@ -212,5 +213,7 @@ Route::prefix('admin')->group(function () {
         'prefix' => 'api'
     ], function (){
         Route::name('patients.index')->get('patients','PatientsController@index');
+        Route::name('subjects.index')->get('subjects', 'SubjectsController@index');
+        Route::name('psychoanalyst.index')->get('psychoanalysts', 'PsychoanalystsController@index');
     });
 });

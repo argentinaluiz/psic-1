@@ -16,7 +16,6 @@ let mix = require('laravel-mix');
 
 
 // Parte Administrativa
-
 mix.js('resources/assets/admin/js/admin.js', 'public/js')
     .sass('resources/assets/admin/sass/admin.scss', 'public/css');
 mix.styles([
