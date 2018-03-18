@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Gate;
 use Kris\LaravelFormBuilder\Form;
 use App\Forms\SpecialtyForm;
 use App\Models\Painel\Specialty;

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -21138,7 +21138,7 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(11).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(13).setImmediate))
 
 /***/ }),
 /* 2 */
@@ -21202,6 +21202,138 @@ module.exports = g;
 
 /***/ }),
 /* 5 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ClassPatient; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClassMeeting; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__adminConfig__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
+
+
+
+
+//Caminho para configurar um header que será passado na requisição
+__WEBPACK_IMPORTED_MODULE_2_vue___default.a.http.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+
+var ClassPatient = __WEBPACK_IMPORTED_MODULE_2_vue___default.a.resource(__WEBPACK_IMPORTED_MODULE_1__adminConfig__["a" /* default */].ADMIN_URL + '/class_informations/{class_information}/patients/{patient}');
+var ClassMeeting = __WEBPACK_IMPORTED_MODULE_2_vue___default.a.resource(__WEBPACK_IMPORTED_MODULE_1__adminConfig__["a" /* default */].ADMIN_URL + '/class_informations/{class_information}/meetings/{meeting}');
+
+
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -22778,43 +22910,44 @@ if (typeof window !== 'undefined' && window.Vue) {
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(7);
-module.exports = __webpack_require__(24);
+__webpack_require__(9);
+module.exports = __webpack_require__(28);
 
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(8);
+__webpack_require__(10);
 
 window.Vue = __webpack_require__(1);
 
 //Vue.component('example', require('./components/Example.vue'));
-Vue.component('class-patient', __webpack_require__(14));
+Vue.component('class-patient', __webpack_require__(16));
+Vue.component('class-meeting', __webpack_require__(25));
 
 var app = new Vue({
     el: '#wrapper'
 });
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 try {
     window.$ = window.jQuery = __webpack_require__(0);
 
-    __webpack_require__(9);
+    __webpack_require__(11);
     window.PNotify = __webpack_require__(3);
-    __webpack_require__(10);
+    __webpack_require__(12);
 } catch (e) {}
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports) {
 
 /*!
@@ -25197,7 +25330,7 @@ if (typeof jQuery === 'undefined') {
 
 
 /***/ }),
-/* 10 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// Buttons
@@ -25370,7 +25503,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -25423,13 +25556,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(12);
+__webpack_require__(14);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -25619,10 +25752,10 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(13)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(15)))
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -25812,15 +25945,15 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(15)
+var normalizeComponent = __webpack_require__(5)
 /* script */
-var __vue_script__ = __webpack_require__(16)
+var __vue_script__ = __webpack_require__(17)
 /* template */
-var __vue_template__ = __webpack_require__(23)
+var __vue_template__ = __webpack_require__(24)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25859,123 +25992,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_adminConfig__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_store__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_store__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_select2__);
 //
 //
@@ -26078,26 +26102,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__class_patient__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__class_patient__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__class_meeting__ = __webpack_require__(22);
 //Administra todos os modules de armazém
 
 
-//import classTeaching from './class_teaching';
+
 
 /* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
     modules: {
         //'classPatient': classPatient representado de modo simplificado por classPatient
-        classPatient: __WEBPACK_IMPORTED_MODULE_1__class_patient__["a" /* default */]
+        classPatient: __WEBPACK_IMPORTED_MODULE_1__class_patient__["a" /* default */], classMeeting: __WEBPACK_IMPORTED_MODULE_2__class_meeting__["a" /* default */]
     }
 }));
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26910,12 +26935,12 @@ var index_esm = {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_resources__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_resource__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_resources__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_resource__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_adminConfig__ = __webpack_require__(2);
@@ -26956,7 +26981,7 @@ var actions = {
         var patientId = _ref.patientId,
             classInformationId = _ref.classInformationId;
 
-        return __WEBPACK_IMPORTED_MODULE_0__services_resources__["a" /* ClassPatient */].save({ class_information: classInformationId }, { patient_id: patientId }).then(function (response) {
+        return __WEBPACK_IMPORTED_MODULE_0__services_resources__["b" /* ClassPatient */].save({ class_information: classInformationId }, { patient_id: patientId }).then(function (response) {
             context.commit('add', response.data);
         });
     },
@@ -26964,7 +26989,7 @@ var actions = {
         var patientId = _ref2.patientId,
             classInformationId = _ref2.classInformationId;
 
-        return __WEBPACK_IMPORTED_MODULE_0__services_resources__["a" /* ClassPatient */].delete({ class_information: classInformationId, patient: patientId }).then(function (response) {
+        return __WEBPACK_IMPORTED_MODULE_0__services_resources__["b" /* ClassPatient */].delete({ class_information: classInformationId, patient: patientId }).then(function (response) {
             context.commit('destroy', patientId);
         });
     }
@@ -26978,28 +27003,6 @@ var module = {
 /* harmony default export */ __webpack_exports__["a"] = (module);
 
 /***/ }),
-/* 20 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClassPatient; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_resource__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__adminConfig__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue__);
-
-
-
-
-//Caminho para configurar um header que será passado na requisição
-__WEBPACK_IMPORTED_MODULE_2_vue___default.a.http.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-
-var ClassPatient = __WEBPACK_IMPORTED_MODULE_2_vue___default.a.resource(__WEBPACK_IMPORTED_MODULE_1__adminConfig__["a" /* default */].ADMIN_URL + '/class_informations/{class_information}/patients/{patient}');
-//let ClassTeaching = Vue.resource(`${ADMIN_CONFIG.ADMIN_URL}/class_informations/{class_information}/teachings/{teaching}`);
-
-
-
-/***/ }),
 /* 21 */
 /***/ (function(module, exports) {
 
@@ -27007,6 +27010,72 @@ var ClassPatient = __WEBPACK_IMPORTED_MODULE_2_vue___default.a.resource(__WEBPAC
 
 /***/ }),
 /* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_resources__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_adminConfig__ = __webpack_require__(2);
+
+
+
+
+var state = {
+    meetings: []
+};
+
+var mutations = {
+    add: function add(state, patient) {
+        state.meetings.push(patient);
+    },
+    set: function set(state, meetings) {
+        state.meetings = meetings;
+    },
+    destroy: function destroy(state, meetingId) {
+        var index = state.meetings.findIndex(function (item) {
+            return item.id == meetingId;
+        });
+        if (index != -1) {
+            state.meetings.splice(index, 1);
+        }
+    }
+};
+
+var actions = {
+    query: function query(context, classInformationId) {
+        return __WEBPACK_IMPORTED_MODULE_1_vue___default.a.http.get(__WEBPACK_IMPORTED_MODULE_2__services_adminConfig__["a" /* default */].ADMIN_URL + '/class_informations/' + classInformationId + '/meetings').then(function (response) {
+            context.commit('set', response.data);
+        });
+    },
+    store: function store(context, _ref) {
+        var psychoanalystId = _ref.psychoanalystId,
+            subjectId = _ref.subjectId,
+            classInformationId = _ref.classInformationId;
+
+        return __WEBPACK_IMPORTED_MODULE_0__services_resources__["a" /* ClassMeeting */].save({ class_information: classInformationId }, { psychoanalyst_id: psychoanalystId, subject_id: subjectId }).then(function (response) {
+            context.commit('add', response.data);
+        });
+    },
+    destroy: function destroy(context, _ref2) {
+        var meetingId = _ref2.meetingId,
+            classInformationId = _ref2.classInformationId;
+
+        return __WEBPACK_IMPORTED_MODULE_0__services_resources__["a" /* ClassMeeting */].delete({ class_information: classInformationId, meetings: meetingId }).then(function (response) {
+            context.commit('destroy', meetingId);
+        });
+    }
+};
+
+var module = {
+    namespaced: true,
+    state: state, mutations: mutations, actions: actions
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (module);
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var require;var require;/*!
@@ -32862,7 +32931,7 @@ S2.define('jquery.select2',[
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -32937,7 +33006,326 @@ if (false) {
 }
 
 /***/ }),
-/* 24 */
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(26)
+/* template */
+var __vue_template__ = __webpack_require__(27)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\admin\\js\\components\\class_information\\ClassMeeting.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-546f9b5e", Component.options)
+  } else {
+    hotAPI.reload("data-v-546f9b5e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_adminConfig__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_store__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_select2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_select2__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['classInformation'],
+    computed: {
+        meetings: function meetings() {
+            return __WEBPACK_IMPORTED_MODULE_1__store_store__["a" /* default */].state.classMeeting.meetings;
+        }
+    },
+    mounted: function mounted() {
+        __WEBPACK_IMPORTED_MODULE_1__store_store__["a" /* default */].dispatch('classMeeting/query', this.classInformation);
+        var selects = [{
+            url: __WEBPACK_IMPORTED_MODULE_0__services_adminConfig__["a" /* default */].API_URL + '/psychoanalysts',
+            selector: "select[name=psychoanalysts]",
+            processResults: function processResults(data) {
+                return {
+                    results: data.map(function (psychoanalyst) {
+                        return { id: psychoanalyst.id, text: psychoanalyst.user.name };
+                    })
+                };
+            }
+        }, {
+            url: __WEBPACK_IMPORTED_MODULE_0__services_adminConfig__["a" /* default */].API_URL + '/subjects',
+            selector: "select[name=subjects]",
+            processResults: function processResults(data) {
+                return {
+                    results: data.map(function (subject) {
+                        return { id: subject.id, text: subject.name };
+                    })
+                };
+            }
+        }];
+        //funciona apenas no padrão ES6
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = selects[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var item = _step.value;
+
+                $(item.selector).select2({
+                    ajax: {
+                        url: item.url,
+                        dataType: 'json',
+                        delay: 250,
+                        data: function data(params) {
+                            return {
+                                q: params.term
+                            };
+                        },
+
+                        processResults: item.processResults
+                    },
+                    minimumInputLength: 1
+                });
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+    },
+
+    methods: {
+        destroy: function destroy(meeting) {
+            if (confirm('Deseja remover esta patologia?')) {
+                __WEBPACK_IMPORTED_MODULE_1__store_store__["a" /* default */].dispatch('classMeeting/destroy', {
+                    meetingId: meeting.id,
+                    classInformationId: this.classInformation
+                });
+            }
+        },
+        store: function store() {
+            __WEBPACK_IMPORTED_MODULE_1__store_store__["a" /* default */].dispatch('classMeeting/store', {
+                psychoanalystId: $("select[name=psychoanalysts]").val(),
+                subjectId: $("select[name=subjects]").val(),
+                classInformationId: this.classInformation
+            }).then(function (response) {
+                new PNotify({
+                    title: 'Aviso',
+                    text: 'Sessão adicionada com sucesso',
+                    styling: 'brighttheme',
+                    type: 'success'
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-sm btn-primary",
+        on: {
+          click: function($event) {
+            _vm.store()
+          }
+        }
+      },
+      [_vm._v("Adicionar")]
+    ),
+    _vm._v(" "),
+    _c("br"),
+    _c("br"),
+    _vm._v(" "),
+    _c("table", { staticClass: "table table-bordered" }, [
+      _vm._m(1),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.meetings, function(meeting) {
+          return _c("tr", [
+            _c("td", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-link",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      _vm.destroy(meeting)
+                    }
+                  }
+                },
+                [
+                  _c("span", { staticClass: "glyphicon glyphicon-trash" }),
+                  _vm._v(" Excluir\n                ")
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(meeting.psychoanalyst.user.name))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(meeting.subject.name))])
+          ])
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { staticClass: "control-label" }, [
+            _vm._v("Selecionar psicanalista")
+          ]),
+          _vm._v(" "),
+          _c("select", {
+            staticClass: "form-control",
+            attrs: { name: "psychoanalysts" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("div", { staticClass: "form-group" }, [
+          _c("label", { staticClass: "control-label" }, [
+            _vm._v("Selecionar patologia")
+          ]),
+          _vm._v(" "),
+          _c("select", {
+            staticClass: "form-control",
+            attrs: { name: "subjects" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v("Psicanalista")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Patologia")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-546f9b5e", module.exports)
+  }
+}
+
+/***/ }),
+/* 28 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
