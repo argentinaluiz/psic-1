@@ -32,7 +32,10 @@ class ClassInformation extends Model implements TableInterface
         return $this->belongsToMany(Patient::class);//quando estou trabalhando com uma tabela pivot, o método correto é o belongsToMany
     }
 
-  
+    public function meetings()
+    {
+        return $this->hasMany(ClassMeeting::class);//não é um relacionamento com uma tabela pivot. Cada classe tem muitas sessões relacionadas
+    }
 
     /**
      * A list of headers to be used when a table is displayed
