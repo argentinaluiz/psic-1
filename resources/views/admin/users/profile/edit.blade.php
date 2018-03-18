@@ -25,8 +25,8 @@
     @endcomponent
 @endsection
 
-@section('extra-js')
-    <script type="text/javascript">
+@push('extra-js')
+	<script type="text/javascript">
         $('select[name=state_id]').change(function () {
             var stateId = $(this).val();
             if(stateId){
@@ -46,4 +46,4 @@
               }
         });
     </script>
-@endsection
+@endpush
