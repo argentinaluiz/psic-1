@@ -16,7 +16,7 @@
         </div>
         <button class="btn btn-sm btn-primary" @click="store()">Adicionar</button>
         <br/><br/>
-        <table class="table table-bordered">
+        <table class="table table-striped">
             <thead>
             <tr>
                 <th></th>
@@ -101,6 +101,13 @@
                     store.dispatch('classMeeting/destroy', {
                         meetingId: meeting.id,
                         classInformationId: this.classInformation
+                    }).then(response => {
+                        new PNotify({
+                            title: 'Aviso',
+                            text: 'Sessão deletada com sucesso!',
+                            styling: 'brighttheme',
+                            type: 'success'
+                        });
                     })
                 }
             },
@@ -112,7 +119,7 @@
                 }).then(response => {
                     new PNotify({
                         title: 'Aviso',
-                        text: 'Sessão adicionada com sucesso',
+                        text: 'Sessão adicionada com sucesso!',
                         styling: 'brighttheme',
                         type: 'success'
                     });

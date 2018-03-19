@@ -29,7 +29,10 @@ class ClassMeeting extends Model
     public function psychoanalyst(){
         return $this->belongsTo(Psychoanalyst::class);
     }
-
+    /*
+    Por padrão, o Eloquent não retornará todos os dados que queremos. Ao pesquisar a classe, o Eloquent traz as chaves primárias mas, não traz os valores dos campos de cada model relacionado para que possamos renderizar a view.
+    Isso quer dizer que teremos o id do psicanalista no relacionamento mas não teremos acesso ao nome do mesmo, por exemplo. Por isso, chamamos a função toArray.
+    */
     public function toArray()
     {
         $data = parent::toArray();

@@ -33185,6 +33185,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 __WEBPACK_IMPORTED_MODULE_1__store_store__["a" /* default */].dispatch('classMeeting/destroy', {
                     meetingId: meeting.id,
                     classInformationId: this.classInformation
+                }).then(function (response) {
+                    new PNotify({
+                        title: 'Aviso',
+                        text: 'Sessão deletada com sucesso!',
+                        styling: 'brighttheme',
+                        type: 'success'
+                    });
                 });
             }
         },
@@ -33196,7 +33203,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
                 new PNotify({
                     title: 'Aviso',
-                    text: 'Sessão adicionada com sucesso',
+                    text: 'Sessão adicionada com sucesso!',
                     styling: 'brighttheme',
                     type: 'success'
                 });
@@ -33232,7 +33239,7 @@ var render = function() {
     _c("br"),
     _c("br"),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-bordered" }, [
+    _c("table", { staticClass: "table table-striped" }, [
       _vm._m(1),
       _vm._v(" "),
       _c(
