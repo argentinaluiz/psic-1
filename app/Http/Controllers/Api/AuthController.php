@@ -59,10 +59,11 @@ class AuthController extends Controller
         ],400);
     }
 
+    //Revogação do token
     public function logout(){
+       // dd(\Auth::guard('api')->check());
         \Auth::guard('api')->logout();
         return response()->json([],204); //No content
     }
-
-
+    
 }
