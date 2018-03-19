@@ -180,6 +180,7 @@ return [
         \Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        \Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -143,7 +143,7 @@ class SubjectsController extends Controller
      * @param  \SON\Models\Subject $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject $subject)
+    public function destroy(Subject $subject )
     {
         if(Gate::denies('subjects-delete')){
             abort(403,"Não autorizado!");

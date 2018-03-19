@@ -198,7 +198,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::group(['prefix' => 'class_informations/{class_information}', 'as' => 'class_informations.'],
             function () {
                 Route::resource('patients', 'ClassPatientsController', ['only' => ['index', 'store', 'destroy']]);
-                Route::resource('meetings', 'ClassMeetingsController',['only' => ['index','store','destroy']]);
+                Route::resource('meetings', 'ClassMeetingsController', ['only' => ['index','store','destroy']]);
             });
     Route::resource('class_informations', 'ClassInformationsController');
 
