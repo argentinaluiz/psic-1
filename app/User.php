@@ -13,8 +13,9 @@ use App\Models\Painel\Admin;
 use App\Models\Painel\Patient;
 use App\Models\Painel\Role;
 use App\Models\Painel\UserProfile;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements TableInterface
+class User extends Authenticatable implements TableInterface, JWTSubject
 {
     use Notifiable;
     const ROLE_ADMIN = 1;
@@ -138,6 +139,29 @@ class User extends Authenticatable implements TableInterface
             case 'Papéis':
                 return $this->roles->pluck('name')->implode(','); 
         }
+    }
+
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
+
+    //Lembrar de não colocar aqui as informações sensíveis e password, porque essa informação irá no Payload
+    public function getJWTCustomClaims()
+    {
+        return [
+            'user' => [
+                'id' => $this->id,
+                'name' => $this->name,
+                'email' => $this->email,
+                'role' => $this->userable instanceof Psychoanalyst ? self::ROLE_PSYCHOANALYST : self::ROLE_PATIENT
+            ]
+        ];
     }
 
     /** Funções para a parte dos Papéis (Roles) */
