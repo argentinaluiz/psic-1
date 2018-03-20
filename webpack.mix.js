@@ -11,13 +11,17 @@ let mix = require('laravel-mix');
  |
  */
 
-// Parte Site - não esquecer de fazer
+// Parte do Site
 
-
+// Parte do Paciente
+mix.js('resources/assets/spa/js/spa.js', 'public/js')
+    .sass('resources/assets/spa/sass/spa.scss', 'public/css');
 
 // Parte Administrativa
 mix.js('resources/assets/admin/js/admin.js', 'public/js')
     .sass('resources/assets/admin/sass/admin.scss', 'public/css');
+
+// Para ambos
 mix.styles([
     'resources/assets/admin/css/font-awesome.min.css',
     'resources/assets/admin/css/bootstrap.min.css',

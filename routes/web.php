@@ -10,6 +10,10 @@ Auth::routes();
   Route::get('favorites', ['as'=>'site.favorites','uses'=>'SiteController@favorites']);
   Route::post('favorites/{product}', ['as'=>'site.favorites.create','uses'=>'SiteController@favoritesCreate']);
   Route::delete('favorites/{product}', ['as'=>'site.favorites.delete','uses'=>'SiteController@favoritesDelete']);
+
+  Route::get('/app', function () {
+    return view('layouts.spa');
+  });
  
  //Carrinho de compra 
  Route::get('/shop', 'ShopController@index')->name('shop.index');
@@ -36,7 +40,6 @@ Auth::routes();
 //Site
 Route::group(['prefix' => 'site', 'namespace' => 'Site'], function(){    
     //Language route
-    Route::post('/language', 'LanguageController@chooser');
     Route::post('/language/', array(
         'before'=> 'csrf',
         'as'    => 'language-chooser',

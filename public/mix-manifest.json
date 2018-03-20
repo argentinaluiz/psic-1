@@ -1,5 +1,7 @@
 {
     "/js/admin.js": "/js/admin.js",
+    "/js/spa.js": "/js/spa.js",
+    "/css/spa.css": "/css/spa.css",
     "/css/admin.css": "/css/admin.css",
     "/css/themeStyle.css": "/css/themeStyle.css",
     "/js/plugins.js": "/js/plugins.js",
