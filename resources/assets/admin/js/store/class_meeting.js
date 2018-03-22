@@ -39,7 +39,7 @@ const actions = {
             });
     },
     destroy(context,{meetingId, classInformationId}){
-        return ClassMeeting.delete({class_information: classInformationId,meetings: meetingId})
+        return ClassMeeting.delete({class_information: classInformationId,meeting: meetingId})
             .then(response => {
                 context.commit('destroy',meetingId)
             });
