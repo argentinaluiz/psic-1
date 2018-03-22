@@ -24347,7 +24347,7 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 
 new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     router: router,
-    el: '#wrapper',
+    el: '#app',
     components: {
         'app': __WEBPACK_IMPORTED_MODULE_3__components_App_vue___default.a
     }

@@ -9,7 +9,7 @@ const router = new VueRouter({
 
 new Vue({
     router,
-    el: '#wrapper',
+    el: '#app',
     components: {
         'app': AppComponent
     }
