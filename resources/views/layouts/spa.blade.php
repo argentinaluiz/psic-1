@@ -19,43 +19,7 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="page-wrapper" class="gray-bg">
-			@include('partials.nav-painel')
-
-			<div class="row wrapper border-bottom white-bg page-heading">
-				@yield('breadcrumb')
-			</div>
-
-		   <div class="wrapper wrapper-content  animated fadeInRight">
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="ibox float-e-margins">
-							<div class="ibox-title">
-								@yield('h5-title')
-								<div class="ibox-tools">
-									<a class="collapse-link">
-										<i class="fa fa-chevron-up"></i>
-									</a>
-									<a class="close-link">
-										<i class="fa fa-times"></i>
-									</a>
-								</div>
-							</div>
-							<div id="app" class="ibox-content">
-								@include('partials.message')                       
-								<div class="row">
-									<div class="col-md-12">
-										<app></app>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-            @include('partials.footer-painel')
-        </div>
+		<app></app>
     </div>
 	<!-- Script -->
 	<script src="{{ asset('js/spa.js') }} "></script>
