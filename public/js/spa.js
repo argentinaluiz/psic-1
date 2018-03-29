@@ -28895,8 +28895,11 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__store_store__ = __webpack_require__(59);
 //
 //
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -28904,6 +28907,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             menus: [{ name: "Minhas classes", routeName: 'class_informations.list' }],
             brandRouteName: 'class_informations.list'
         };
+    },
+
+    computed: {
+        isAuth: function isAuth() {
+            //Verifica se o usuário está com token válido, ou seja, autenticado
+            return __WEBPACK_IMPORTED_MODULE_0__store_store__["a" /* default */].state.auth.check;
+        },
+        user: function user() {
+            //Retorna o objeto de dados do usuário descriptografado do token
+            return __WEBPACK_IMPORTED_MODULE_0__store_store__["a" /* default */].state.auth.user;
+        },
+        username: function username() {
+            //Retorna apenas o nome do usuário, caso o usuário esteja autenticado corretamente
+            return this.isAuth ? __WEBPACK_IMPORTED_MODULE_0__store_store__["a" /* default */].state.auth.user.name : null;
+        }
     }
 });
 
@@ -28919,10 +28937,39 @@ var render = function() {
     "ul",
     { staticClass: "nav metismenu", attrs: { id: "side-menu" } },
     [
-      _vm._m(0),
+      _c("li", { staticClass: "nav-header" }, [
+        _c("div", { staticClass: "dropdown profile-element" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "dropdown-toggle",
+              attrs: { "data-toggle": "dropdown", href: "#" }
+            },
+            [
+              _c("span", { staticClass: "clear" }, [
+                _c("span", { staticClass: "block m-t-xs" }, [
+                  _c("strong", { staticClass: "font-bold" }, [
+                    _vm._v(_vm._s(_vm.username) + " ")
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(2)
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "logo-element" }, [
+          _vm._v("\r\n\t\t\t\tPSIC\r\n\t\t\t")
+        ])
+      ]),
       _vm._v(" "),
       _c("li", { staticClass: "active" }, [
-        _vm._m(1),
+        _vm._m(3),
         _vm._v(" "),
         _c(
           "ul",
@@ -28948,52 +28995,41 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-header" }, [
-      _c("div", { staticClass: "dropdown profile-element" }, [
-        _c("span", [
-          _c("img", {
-            staticClass: "img-circle",
-            attrs: { alt: "image", src: "img/profile_small.jpg" }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "dropdown-toggle",
-            attrs: { "data-toggle": "dropdown", href: "#" }
-          },
-          [
-            _c("span", { staticClass: "clear" }, [
-              _c("span", { staticClass: "block m-t-xs" }, [
-                _c("strong", { staticClass: "font-bold" })
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "text-muted text-xs block" }, [
-                _vm._v("Art Director "),
-                _c("b", { staticClass: "caret" })
-              ])
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("ul", { staticClass: "dropdown-menu animated fadeInRight m-t-xs" }, [
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Profile")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Contacts")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Mailbox")])]),
-          _vm._v(" "),
-          _c("li", { staticClass: "divider" }),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "l" } }, [_vm._v("Logout")])])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "logo-element" }, [
-        _vm._v("\r\n\t\t\t\tPSIC\r\n\t\t\t")
-      ])
+    return _c("span", [
+      _c("img", {
+        staticClass: "img-circle",
+        attrs: { alt: "image", src: "img/profile_small.jpg" }
+      })
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "text-muted text-xs block" }, [
+      _vm._v("Art Director "),
+      _c("b", { staticClass: "caret" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "ul",
+      { staticClass: "dropdown-menu animated fadeInRight m-t-xs" },
+      [
+        _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Profile")])]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Contacts")])]),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "" } }, [_vm._v("Mailbox")])]),
+        _vm._v(" "),
+        _c("li", { staticClass: "divider" }),
+        _vm._v(" "),
+        _c("li", [_c("a", { attrs: { href: "l" } }, [_vm._v("Logout")])])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -30729,12 +30765,15 @@ Em nossa aplicação não exigimos um local específico para o token ser gravado
 
 
 var state = {
-    user: null,
-    check: null
+    user: __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].payload != null ? __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].payload.user : null,
+    check: __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].token != null
 };
 
 var mutations = {
-    authenticated: function authenticated(state) {},
+    authenticated: function authenticated(state) {
+        state.check = true;
+        state.user = __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].payload.user;
+    },
     unauthenticated: function unauthenticated(state) {}
 };
 
@@ -30743,7 +30782,9 @@ var actions = {
         var username = _ref.username,
             password = _ref.password;
 
-        return __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].accessToken(username, password);
+        return __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].accessToken(username, password).then(function () {
+            context.commit('authenticated');
+        });
     },
     logout: function logout(context) {
         return __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].revokeToken();
@@ -30767,12 +30808,22 @@ var module = {
 
 
 
+//O método atob é responsável por decodificar o hash, que vem no formato base64. O método btoa faz o contrário.
+var payloadToObject = function payloadToObject(token) {
+    var payload = token.split('.')[1];
+    return JSON.parse(atob(payload));
+};
+
 /* harmony default export */ __webpack_exports__["a"] = ({
     get token() {
         return __WEBPACK_IMPORTED_MODULE_1__localstorage__["a" /* default */].get('token');
     },
     set token(value) {
         __WEBPACK_IMPORTED_MODULE_1__localstorage__["a" /* default */].set('token', value);
+    },
+    //Método para realizar o resgate das informações do usuário e descriptografar o hash do payload
+    get payload() {
+        return this.token != null ? payloadToObject(this.token) : null;
     },
     accessToken: function accessToken(username, password) {
         var _this = this;

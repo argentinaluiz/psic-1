@@ -7,13 +7,14 @@ Em nossa aplicação não exigimos um local específico para o token ser gravado
 import JwtToken from '../services/jwt-token';
 
 const state = {
-    user: null,
-    check: null
+    user: JwtToken.payload != null ? JwtToken.payload.user : null,
+    check: JwtToken.token != null
 };
 
 const mutations = {
     authenticated(state){
-
+        state.check = true;
+        state.user = JwtToken.payload.user;
     },
     unauthenticated(state){
 
@@ -22,7 +23,10 @@ const mutations = {
 
 const actions = {
     login(context, {username, password}){
-        return JwtToken.accessToken(username, password);
+        return JwtToken.accessToken(username, password)
+        .then(() => {
+            context.commit('authenticated');
+        });
     },
     logout(context){
         return JwtToken.revokeToken();
