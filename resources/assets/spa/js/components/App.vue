@@ -10,7 +10,11 @@
                 <psych-topo></psych-topo>
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
-                @yield('breadcrumb')
+                <h2>Geral</h2> 
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="http://localhost:8000/home">Listar classes</a></li>
+                </ol>
             </div>
 
             <div class="wrapper wrapper-content  animated fadeInRight">
@@ -18,7 +22,7 @@
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                @yield('h5-title')
+                                <h5>Lista de Classes</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>

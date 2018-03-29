@@ -28824,6 +28824,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -29113,7 +29117,7 @@ var staticRenderFns = [
             "form",
             {
               staticClass: "navbar-form-custom",
-              attrs: { role: "search", action: "" }
+              attrs: { role: "search", action: "search_results.html" }
             },
             [
               _c("div", { staticClass: "form-group" }, [
@@ -29134,7 +29138,7 @@ var staticRenderFns = [
         _c("ul", { staticClass: "nav navbar-top-links navbar-right" }, [
           _c("li", [
             _c("span", { staticClass: "m-r-sm text-muted welcome-message" }, [
-              _vm._v("Horário e Data")
+              _vm._v("Data e horário")
             ])
           ]),
           _vm._v(" "),
@@ -29157,26 +29161,33 @@ var staticRenderFns = [
             _c("ul", { staticClass: "dropdown-menu dropdown-messages" }, [
               _c("li", [
                 _c("div", { staticClass: "dropdown-messages-box" }, [
-                  _c("a", { staticClass: "pull-left", attrs: { href: "" } }, [
-                    _c("img", {
-                      staticClass: "img-circle",
-                      attrs: { alt: "image", src: "" }
-                    })
-                  ]),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "pull-left",
+                      attrs: { href: "profile.html" }
+                    },
+                    [
+                      _c("img", {
+                        staticClass: "img-circle",
+                        attrs: { alt: "image", src: "img/a7.jpg" }
+                      })
+                    ]
+                  ),
                   _vm._v(" "),
                   _c("div", { staticClass: "media-body" }, [
                     _c("small", { staticClass: "pull-right" }, [
-                      _vm._v("46h atrás")
+                      _vm._v("46h ago")
                     ]),
                     _vm._v(" "),
-                    _c("strong", [_vm._v("Vestibulum ante")]),
-                    _vm._v(" Vestibulum ante "),
-                    _c("strong", [_vm._v("Vestibulum ante ")]),
+                    _c("strong", [_vm._v("Mike Loreipsum")]),
+                    _vm._v(" started following "),
+                    _c("strong", [_vm._v("Monica Smith")]),
                     _vm._v(". "),
                     _c("br"),
                     _vm._v(" "),
                     _c("small", { staticClass: "text-muted" }, [
-                      _vm._v("3 dias atrás às 7:58 pm - 10.06.2017")
+                      _vm._v("3 days ago at 7:58 pm - 10.06.2014")
                     ])
                   ])
                 ])
@@ -29195,24 +29206,24 @@ var staticRenderFns = [
                     [
                       _c("img", {
                         staticClass: "img-circle",
-                        attrs: { alt: "image", src: "" }
+                        attrs: { alt: "image", src: "img/a4.jpg" }
                       })
                     ]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "media-body " }, [
                     _c("small", { staticClass: "pull-right text-navy" }, [
-                      _vm._v("5h atrás")
+                      _vm._v("5h ago")
                     ]),
                     _vm._v(" "),
-                    _c("strong", [_vm._v("Vestibulum ante ipsum primis")]),
-                    _vm._v(" Vestibulum ante ipsum "),
-                    _c("strong", [_vm._v("Vestibulum ante ")]),
+                    _c("strong", [_vm._v("Chris Johnatan Overtunk")]),
+                    _vm._v(" started following "),
+                    _c("strong", [_vm._v("Monica Smith")]),
                     _vm._v(". "),
                     _c("br"),
                     _vm._v(" "),
                     _c("small", { staticClass: "text-muted" }, [
-                      _vm._v("Ontem 1:21 pm - 11.06.2017")
+                      _vm._v("Yesterday 1:21 pm - 11.06.2014")
                     ])
                   ])
                 ])
@@ -29231,24 +29242,24 @@ var staticRenderFns = [
                     [
                       _c("img", {
                         staticClass: "img-circle",
-                        attrs: { alt: "image", src: "" }
+                        attrs: { alt: "image", src: "img/profile.jpg" }
                       })
                     ]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "media-body " }, [
                     _c("small", { staticClass: "pull-right" }, [
-                      _vm._v("23h atrás")
+                      _vm._v("23h ago")
                     ]),
                     _vm._v(" "),
-                    _c("strong", [_vm._v("Vestibulum ante ")]),
-                    _vm._v(" primis "),
-                    _c("strong", [_vm._v("ipsum primis")]),
+                    _c("strong", [_vm._v("Monica Smith")]),
+                    _vm._v(" love "),
+                    _c("strong", [_vm._v("Kim Smith")]),
                     _vm._v(". "),
                     _c("br"),
                     _vm._v(" "),
                     _c("small", { staticClass: "text-muted" }, [
-                      _vm._v("2 dias atrás às 2:30 am - 11.06.2017")
+                      _vm._v("2 days ago at 2:30 am - 11.06.2014")
                     ])
                   ])
                 ])
@@ -29261,7 +29272,7 @@ var staticRenderFns = [
                   _c("a", { attrs: { href: "mailbox.html" } }, [
                     _c("i", { staticClass: "fa fa-envelope" }),
                     _vm._v(" "),
-                    _c("strong", [_vm._v("Leia todas as mensagens")])
+                    _c("strong", [_vm._v("Read All Messages")])
                   ])
                 ])
               ])
@@ -29290,10 +29301,10 @@ var staticRenderFns = [
                   _c("div", [
                     _c("i", { staticClass: "fa fa-envelope fa-fw" }),
                     _vm._v(
-                      " Você tem 16 mensagens\r\n                            "
+                      " You have 16 messages\r\n                                "
                     ),
                     _c("span", { staticClass: "pull-right text-muted small" }, [
-                      _vm._v("4 minutos atrás")
+                      _vm._v("4 minutes ago")
                     ])
                   ])
                 ])
@@ -29305,9 +29316,11 @@ var staticRenderFns = [
                 _c("a", { attrs: { href: "profile.html" } }, [
                   _c("div", [
                     _c("i", { staticClass: "fa fa-twitter fa-fw" }),
-                    _vm._v(" 3 novas tarefas\r\n                            "),
+                    _vm._v(
+                      " 3 New Followers\r\n                                "
+                    ),
                     _c("span", { staticClass: "pull-right text-muted small" }, [
-                      _vm._v("12 minutos atrás")
+                      _vm._v("12 minutes ago")
                     ])
                   ])
                 ])
@@ -29319,9 +29332,11 @@ var staticRenderFns = [
                 _c("a", { attrs: { href: "grid_options.html" } }, [
                   _c("div", [
                     _c("i", { staticClass: "fa fa-upload fa-fw" }),
-                    _vm._v(" Vestibulum ante \r\n                            "),
+                    _vm._v(
+                      " Server Rebooted\r\n                                "
+                    ),
                     _c("span", { staticClass: "pull-right text-muted small" }, [
-                      _vm._v("4 minutos atrás")
+                      _vm._v("4 minutes ago")
                     ])
                   ])
                 ])
@@ -29331,41 +29346,26 @@ var staticRenderFns = [
               _vm._v(" "),
               _c("li", [
                 _c("div", { staticClass: "text-center link-block" }, [
-                  _c("a", { attrs: { href: "" } }, [
-                    _c("strong", [_vm._v("Veja todas as notificações")]),
+                  _c("a", { attrs: { href: "notifications.html" } }, [
+                    _c("strong", [_vm._v("See All Alerts")]),
                     _vm._v(" "),
                     _c("i", { staticClass: "fa fa-angle-right" })
                   ])
                 ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href: "",
-                      onclick:
-                        "event.preventDefault();\r\n                                    document.getElementById('logout-form').submit();"
-                    }
-                  },
-                  [
-                    _c("i", { staticClass: "fa fa-sign-out" }),
-                    _vm._v(" Sair\r\n                    ")
-                  ]
-                ),
-                _vm._v(" "),
-                _c("form", {
-                  staticStyle: { display: "none" },
-                  attrs: { id: "logout-form", action: "", method: "POST" }
-                })
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { staticClass: "right-sidebar-toggle" }, [
-                  _c("i", { staticClass: "fa fa-tasks" })
-                ])
               ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "login.html" } }, [
+              _c("i", { staticClass: "fa fa-sign-out" }),
+              _vm._v(" Logout\r\n                ")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { staticClass: "right-sidebar-toggle" }, [
+              _c("i", { staticClass: "fa fa-tasks" })
             ])
           ])
         ])
@@ -29506,11 +29506,7 @@ var render = function() {
       [
         _c("div", { staticClass: "row border-bottom" }, [_c("psych-topo")], 1),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "row wrapper border-bottom white-bg page-heading" },
-          [_vm._v("\n                @yield('breadcrumb')\n            ")]
-        ),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "div",
@@ -29519,7 +29515,7 @@ var render = function() {
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-sm-12" }, [
                 _c("div", { staticClass: "ibox float-e-margins" }, [
-                  _vm._m(0),
+                  _vm._m(1),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -29544,10 +29540,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "row wrapper border-bottom white-bg page-heading" },
+      [
+        _c("h2", [_vm._v("Geral")]),
+        _vm._v(" "),
+        _c("ol", { staticClass: "breadcrumb" }, [
+          _c("li", [_c("a", { attrs: { href: "/" } }, [_vm._v("Home")])]),
+          _vm._v(" "),
+          _c("li", [
+            _c("a", { attrs: { href: "http://localhost:8000/home" } }, [
+              _vm._v("Listar classes")
+            ])
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "ibox-title" }, [
-      _vm._v(
-        "\n                                @yield('h5-title')\n                                "
-      ),
+      _c("h5", [_vm._v("Lista de Classes")]),
+      _vm._v(" "),
       _c("div", { staticClass: "ibox-tools" }, [
         _c("a", { staticClass: "collapse-link" }, [
           _c("i", { staticClass: "fa fa-chevron-up" })
@@ -30703,6 +30720,12 @@ if (false) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__ = __webpack_require__(61);
+/*gravar o token no local storage do browser, pois a cada requisição feita precisaremos passar esta informação no header.
+O local storage é o mais indicado para se guardar porque não existe tempo de validade, ou seja, o token será válido até que nossa aplicação faça a alteração ou o usuário limpe os dados do navegador.
+O fato de trabalhar com token deixa o cliente livre para consumir os dados da API de qualquer tipo de aplicação desenvolvida, tirando a necessidade de se trabalhar com cookies e sessões. Até mesmo uma aplicação desktop poderá consumir dados da API, basta que ele passe o token na requisição.
+Em nossa aplicação não exigimos um local específico para o token ser gravado, apenas exigimos que o mesmo seja passado nas requisições.
+*/
+
 
 
 var state = {
@@ -30716,16 +30739,19 @@ var mutations = {
 };
 
 var actions = {
-    login: function login(username, password) {
+    login: function login(context, _ref) {
+        var username = _ref.username,
+            password = _ref.password;
+
         return __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].accessToken(username, password);
     },
-    logout: function logout() {
+    logout: function logout(context) {
         return __WEBPACK_IMPORTED_MODULE_0__services_jwt_token__["a" /* default */].revokeToken();
     }
 };
 
 var module = {
-    namespaced: true, // consegue acessar o state, um dispatch() para disparar uma ação, fazer commit etc. 
+    namespaced: true,
     state: state, mutations: mutations, actions: actions
 };
 
@@ -30743,7 +30769,7 @@ var module = {
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     get token() {
-        return __WEBPACK_IMPORTED_MODULE_1__localstorage__["a" /* default */].get();
+        return __WEBPACK_IMPORTED_MODULE_1__localstorage__["a" /* default */].get('token');
     },
     set token(value) {
         __WEBPACK_IMPORTED_MODULE_1__localstorage__["a" /* default */].set('token', value);
@@ -30776,7 +30802,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 
 
-//Para não precisarmos ficar repetindo o caminho base para as requisições, definimos o caminho padrão através do recurso options.root, que o Vue disponibiliza.
 __WEBPACK_IMPORTED_MODULE_2_vue___default.a.http.options.root = __WEBPACK_IMPORTED_MODULE_1__spaConfig__["a" /* default */].API_URL;
 
 var Jwt = function () {
@@ -30799,7 +30824,9 @@ var Jwt = function () {
     return Jwt;
 }();
 
+// export {
 
+// };
 
 /***/ }),
 /* 63 */
@@ -30826,23 +30853,26 @@ var location = window.location;
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
     set: function set(key, value) {
-        //string, inteiro, boolean
+        //string, inteiro, boolean - 	Adiciona o token no local storage do browser de acordo com a chave e o valor informado
         window.localStorage[key] = value;
         return window.localStorage[key];
     },
     get: function get(key) {
         var defaultValue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-        //string, inteiro, boolean
+        //leio esses valores string, inteiro, boolean - Pega o valor do local de acordo com a chave informada
         return window.localStorage[key] || defaultValue;
     },
     setObject: function setObject(key, value) {
+        //Transforma o formato JSON em string para conseguir gravar no local storage
         window.localStorage[key] = JSON.stringify(value);
         return this.getObject(key);
     },
     getObject: function getObject(key) {
+        //Transforma o valor do local storage em um JSON, fazendo o processo inverso ao método anterior
         return JSON.parse(window.localStorage[key] || null);
     },
     remove: function remove(key) {
+        //Remove o token do local storage
         window.localStorage.removeItem(key);
     }
 });

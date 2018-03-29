@@ -3,7 +3,7 @@ import LocalStorage from './localstorage';
 
 export default {
     get token() {
-        return LocalStorage.get();
+        return LocalStorage.get('token');
     },
     set token(value) {
         LocalStorage.set('token', value);

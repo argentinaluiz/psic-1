@@ -50,7 +50,7 @@
             }
         },
         methods: {
-            login(){
+          login(){
                 store.dispatch('auth/login', this.user)
                     .then(() => {
                         this.$router.push({name: 'class_informations.list'})
