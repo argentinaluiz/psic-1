@@ -15,11 +15,13 @@ let mix = require('laravel-mix');
 
 // Parte do Paciente
 mix.js('resources/assets/spa/js/spa.js', 'public/js')
-    .sass('resources/assets/spa/sass/spa.scss', 'public/css');
+    .sass('resources/assets/spa/sass/spa.scss', 'public/css')
+    .sourceMaps();
 
 // Parte Administrativa
 mix.js('resources/assets/admin/js/admin.js', 'public/js')
-    .sass('resources/assets/admin/sass/admin.scss', 'public/css');
+    .sass('resources/assets/admin/sass/admin.scss', 'public/css')
+    .sourceMaps();
 
 // Para ambos
 mix.styles([
