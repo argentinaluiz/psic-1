@@ -17,7 +17,8 @@ const mutations = {
         state.user = JwtToken.payload.user;
     },
     unauthenticated(state){
-
+        state.check = false;
+        state.user = null;
     }
 };
 
@@ -29,7 +30,12 @@ const actions = {
         });
     },
     logout(context){
-        return JwtToken.revokeToken();
+        let afterLogout = () => {
+            context.commit('unauthenticated');
+        }
+        return JwtToken.revokeToken()
+            .then(afterLogout)
+            .catch(afterLogout);
     }
 };
 

@@ -12,7 +12,7 @@ export default {
         return LocalStorage.get('token');
     },
     set token(value) {
-        LocalStorage.set('token', value);
+        value ? LocalStorage.set('token', value) : LocalStorage.remove('token');
     },
     //Método para realizar o resgate das informações do usuário e descriptografar o hash do payload
     get payload(){
@@ -25,6 +25,11 @@ export default {
             })
     },
     revokeToken(){
-
+        let afterRevokeToken = () => {
+            this.token = null;
+        };
+        return Jwt.logout()
+            .then(afterRevokeToken)
+            .catch(afterRevokeToken)
     }
 };

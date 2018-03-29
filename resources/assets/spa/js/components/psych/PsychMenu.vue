@@ -2,8 +2,12 @@
 
 <script type="text/javascript">
     import store from '../../store/store';
+    import LogoutComponent from '../Logout.vue';
 
     export default {
+        components: {
+            'logout': LogoutComponent,
+        },
         data(){
             return {
                 menus:[

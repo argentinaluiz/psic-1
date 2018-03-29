@@ -46,9 +46,6 @@ mix.browserSync('localhost:8000');
 
 
 
-
-
-
 /*Copiar um arquivo do node_modules para a pasta public
     mix.copy('node_modules/font-awesome/fonts','public/fonts')
     .copy('node_modules/font-awesome/css/font-awesome.min.css','public/css/font-awesome.min.css');
