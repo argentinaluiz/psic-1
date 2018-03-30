@@ -24,4 +24,6 @@ Route::group([
         });
         Route::post('/logout', 'AuthController@logout');
     });
+
+
 });

@@ -7,12 +7,14 @@ const payloadToObject = (token) => {
     return JSON.parse(atob(payload));
 };
 
+const TOKEN = 'token';
+
 export default {
     get token() {
-        return LocalStorage.get('token');
+        return LocalStorage.get(TOKEN);
     },
     set token(value) {
-        value ? LocalStorage.set('token', value) : LocalStorage.remove('token');
+        value ? LocalStorage.set(TOKEN, value) : LocalStorage.remove(TOKEN);
     },
     //Método para realizar o resgate das informações do usuário e descriptografar o hash do payload
     get payload(){
@@ -31,5 +33,8 @@ export default {
         return Jwt.logout()
             .then(afterRevokeToken)
             .catch(afterRevokeToken)
+    },
+    getAuthorizationHeader(){
+        return `Bearer ${LocalStorage.get(TOKEN)}`;
     }
 };
