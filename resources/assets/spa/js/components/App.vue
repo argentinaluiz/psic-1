@@ -11,10 +11,7 @@
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
                 <h2>Geral</h2> 
-                <ol class="breadcrumb">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="http://localhost:8000/home">Listar classes</a></li>
-                </ol>
+                <psych-breadcrumb></psych-breadcrumb>
             </div>
 
             <div class="wrapper wrapper-content  animated fadeInRight">
@@ -48,13 +45,17 @@
 <script type="text/javascript">
     import PsychMenuComponent from './psych/PsychMenu.vue';
     import PsychTopoComponent from './psych/PsychTopo.vue';
+    import PsychBreadcrumbComponent from './psych/PsychBreadcrumb.vue';
     import PsychFooterComponent from './psych/PsychFooter.vue';
+    
 
     export default {
         components:{
             'psych-menu' : PsychMenuComponent,
             'psych-topo' : PsychTopoComponent,
+            'psych-breadcrumb' : PsychBreadcrumbComponent,
             'psych-footer' : PsychFooterComponent
+            
         }
         
     }

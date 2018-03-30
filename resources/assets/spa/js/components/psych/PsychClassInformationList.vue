@@ -6,7 +6,7 @@
                 <tr>
                     <th>Data Início</th>
                     <th>Data Fim</th>
-                    <th>Ciclo</th>
+                    <th>Tipo</th>
                     <th>Subdivisão</th>
                     <th>Semestre</th>
                     <th>Ano</th>
