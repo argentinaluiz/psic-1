@@ -20,10 +20,12 @@ Route::group([
     Route::post('/access_token', 'AuthController@accessToken');
     Route::group(['middleware' => 'auth.renew'], function () {
         Route::get('/user', function (Request $request) {
-            return $request->user();
+            return \Auth::user();
         });
-        Route::post('/logout', 'AuthController@logout');
     });
 
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::post('/logout', 'AuthController@logout');
+    });
 
 });
