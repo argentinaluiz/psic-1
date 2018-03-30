@@ -10,7 +10,7 @@
                 <psych-topo></psych-topo>
             </div>
             <div class="row wrapper border-bottom white-bg page-heading">
-                <h2>Geral</h2> 
+                <h2>{{ h2-breadcrumb }}</h2> 
                 <psych-breadcrumb></psych-breadcrumb>
             </div>
 
@@ -19,7 +19,7 @@
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-title">
-                                <h5>Lista de Classes</h5>
+                                <h5>{{ h5-title }}</h5>
                                 <div class="ibox-tools">
                                     <a class="collapse-link">
                                         <i class="fa fa-chevron-up"></i>
@@ -48,14 +48,12 @@
     import PsychBreadcrumbComponent from './psych/PsychBreadcrumb.vue';
     import PsychFooterComponent from './psych/PsychFooter.vue';
     
-
     export default {
         components:{
             'psych-menu' : PsychMenuComponent,
             'psych-topo' : PsychTopoComponent,
             'psych-breadcrumb' : PsychBreadcrumbComponent,
-            'psych-footer' : PsychFooterComponent
-            
+            'psych-footer' : PsychFooterComponent    
         }
         
     }
