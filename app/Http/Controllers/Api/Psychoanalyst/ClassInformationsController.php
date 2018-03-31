@@ -10,9 +10,10 @@ class ClassInformationsController extends Controller
 {
     public function index()
     {
-        $results = ClassInformation
-            ::byPsychoanalyst(\Auth::user()->userable->id)
-            ->get();
+        $results = ClassInformation::whereHas('meetings', function ($query){
+            $id = \Auth::user()->userable->id;
+            $query->where('psychoanalyst_id', $id);
+        })->get();
 
         return $results;
     }
@@ -26,9 +27,10 @@ class ClassInformationsController extends Controller
      */
     public function show($id)
     {
-        $result = ClassInformation
-            ::byPsychoanalyst(\Auth::user()->userable->id)
-            ->findOrFail($id);
+        $result = ClassInformation::whereHas('meetings', function ($query){
+            $id = \Auth::user()->userable->id;
+            $query->where('psychoanalyst_id', $id);
+        })->findOrFail($id);
         return $result;
     }
 }
