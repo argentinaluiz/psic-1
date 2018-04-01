@@ -38,8 +38,8 @@
 										</thead>
 										<tbody>
 										 <tr v-for="classInformation in classInformations">
-											<td>{{classInformation.date_start }}</td>
-											<td>{{classInformation.date_end }}</td>
+											<td>{{classInformation.date_start | dateBr }}</td>
+											<td>{{classInformation.date_end | dateBr }}</td>
 											<td>{{classInformation.name }}</td>
 											<td></td>
 											<td>{{classInformation.semester }}</td>
