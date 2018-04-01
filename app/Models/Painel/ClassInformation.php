@@ -37,6 +37,13 @@ class ClassInformation extends Model implements TableInterface
         return $this->hasMany(ClassMeeting::class);//não é um relacionamento com uma tabela pivot. Cada classe tem muitas sessões relacionadas
     }
 
+    public function scopeByPsychoanalyst($query, $psychoanalystId)
+    {
+        return $query->whereHas('meetings', function ($query) use($psychoanalystId){
+            $query->where('psychoanalyst_id', $psychoanalystId);
+        });
+    }
+
     /**
      * A list of headers to be used when a table is displayed
      *

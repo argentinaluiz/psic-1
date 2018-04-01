@@ -10,27 +10,18 @@ class ClassInformationsController extends Controller
 {
     public function index()
     {
-        $results = ClassInformation::whereHas('meetings', function ($query){
-            $id = \Auth::user()->userable->id;
-            $query->where('psychoanalyst_id', $id);
-        })->get();
+        $results = ClassInformation
+            ::byPsychoanalyst(\Auth::user()->userable->id)
+            ->get();
 
         return $results;
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        $result = ClassInformation::whereHas('meetings', function ($query){
-            $id = \Auth::user()->userable->id;
-            $query->where('psychoanalyst_id', $id);
-        })->findOrFail($id);
+        $result = ClassInformation
+            ::byPsychoanalyst(\Auth::user()->userable->id)
+            ->findOrFail($id);
         return $result;
     }
 }
