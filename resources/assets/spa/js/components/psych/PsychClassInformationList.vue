@@ -37,13 +37,13 @@
 										</tr>
 										</thead>
 										<tbody>
-										<tr >
+										 <tr v-for="classInformation in classInformations">
+											<td>{{classInformation.date_start }}</td>
+											<td>{{classInformation.date_end }}</td>
+											<td>{{classInformation.name }}</td>
 											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+											<td>{{classInformation.semester }}</td>
+											<td>{{classInformation.year }}</td>
 										</tr>
 										</tbody>
 									</table>
@@ -58,12 +58,16 @@
 </template>
 
 <script type="text/javascript">
-    export default {
-        data(){
-            return {
+    import store from '../../store/store';
 
+    export default {
+        computed: {
+            classInformations() {
+                return store.state.psych.classInformation.classInformations;
             }
         },
-        
-    };
+        mounted() {
+            store.dispatch('psych/classInformation/query');
+        }
+    }
 </script>
