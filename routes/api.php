@@ -22,7 +22,13 @@ Route::group([
         Route::get('/user', function (Request $request) {
             return \Auth::user();
         });
-        Route::group(['prefix' => 'psychoanalyst', 'as' => 'psychoanalyst.', 'namespace' => 'Psychoanalyst\\'], function(){
+        Route::group([
+            'prefix' => 'psychoanalyst', 
+            'as' => 'psychoanalyst.', 
+            'namespace' => 'Psychoanalyst\\',
+            //Observe que o middleware can:psychoanalyst está fazendo a segurança da rota para que pacientes não consigam acessá-la. A diretiva can testa a habilidade que criamos no App\Providers\AuthServiceProvider, anteriormente.
+            'middleware' => 'can:psychoanalyst'
+        ], function(){
             Route::resource('class_informations', 'ClassInformationsController', ['only' => ['index', 'show']]);
         });
     });

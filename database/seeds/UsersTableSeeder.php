@@ -26,11 +26,21 @@ class UsersTableSeeder extends Seeder
 
         factory(User::class)->create([
             'email' => 'psic@user.com',
-            'enrolment' => 400000
+            'enrolment' => 400000,
         ])->each(function(User $user){
             $profile = factory(UserProfile::class)->make();
             $user->profile()->create($profile->toArray());
             User::assignRole($user, User::ROLE_PSYCHOANALYST);
+            $user->save();
+        });
+
+        factory(User::class)->create([
+            'email' => 'patient@user.com',
+            'enrolment' => 700000,
+        ])->each(function(User $user){
+            $profile = factory(UserProfile::class)->make();
+            $user->profile()->create($profile->toArray());
+            User::assignRole($user, User::ROLE_PATIENT);
             $user->save();
         });
         
