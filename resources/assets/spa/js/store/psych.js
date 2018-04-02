@@ -1,9 +1,10 @@
 import classInformation from './psych/class_information';
+import classMeeting from './psych/class_meeting';
 
 const module = {
     namespaced: true,
     modules: {
-        classInformation
+        classInformation, classMeeting
     }
 }
 

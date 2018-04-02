@@ -9,9 +9,9 @@
         data(){
             return {
                 menus:[
-                    {name: "Minhas classes", routeName: 'class_informations.list' }
+                    {name: "Minhas classes", routeName: 'class_meetings.list' }
                 ],
-                brandRouteName: 'class_informations.list'
+                brandRouteName: 'class_meetings.list'
             }
         }
     };

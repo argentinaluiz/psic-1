@@ -2,10 +2,18 @@
 A rota login não precisa ser protegida, então não adicionamos. À partir de agora devemos adicionar a propriedade meta em todas as rotas protegidas.*/
 
 export default [
-     {
+    /*{
         name: 'class_informations.list',
         path: '/classes',
         component: require('./components/psych/PsychClassInformationList.vue'),
+        meta: {
+            auth: true
+        }
+    },*/
+    {
+        name: 'class_meetings.list',
+        path: '/classes',
+        component: require('./components/psych/PsychClassMeetingList.vue'),
         meta: {
             auth: true
         }
