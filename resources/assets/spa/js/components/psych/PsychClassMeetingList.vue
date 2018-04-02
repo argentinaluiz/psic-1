@@ -31,7 +31,7 @@
 											<th>Data Início</th>
 											<th>Data Fim</th>
 											<th>Classe</th>
-											<th>Disciplina</th>
+											<th>Patologia</th>
                                             <th>Ações</th>
 										</tr>
 										</thead>
