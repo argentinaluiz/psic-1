@@ -22,4 +22,11 @@ class ClassTest extends Model
     {
         return $this->hasMany(Question::class);
     }
+
+    public function scopeByPsychoanalyst($query, $psychoanalystId)
+    {
+        return $query->whereHas('classMeeting', function ($query) use($psychoanalystId){
+            $query->where('psychoanalyst_id', $psychoanalystId);
+        });
+    }
 }
