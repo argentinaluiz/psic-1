@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Psychoanalyst;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClassTestRequest;
 use App\Models\Painel\ClassTest;
 use App\Models\Painel\ClassMeeting;
 
@@ -19,12 +20,12 @@ class ClassTestsController extends Controller
         return $results;
     }
 
-    public function store(Request $request)
+    public function store(ClassTestRequest $request, ClassMeeting $classMeeting)
     {
         //
     }
 
-    public function update(Request $request, ClassTest $classTest)
+    public function update(ClassTestRequest $request, ClassMeeting $classMeeting, ClassTest $classTest)
     {
         //
     }
