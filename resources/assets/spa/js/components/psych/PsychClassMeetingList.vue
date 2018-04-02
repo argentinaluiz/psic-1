@@ -30,20 +30,22 @@
 										<tr>
 											<th>Data Início</th>
 											<th>Data Fim</th>
-											<th>Tipo</th>
-											<th>Subdivisão</th>
-											<th>Semestre</th>
-											<th>Ano</th>
+											<th>Classe</th>
+											<th>Disciplina</th>
+                                            <th>Ações</th>
 										</tr>
 										</thead>
 										<tbody>
-										 <tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+										 <tr v-for="classMeeting in classMeetings">
+											<td>{{classMeeting.class_information.date_start | dateBr}}</td>
+											<td>{{classMeeting.class_information.date_end | dateBr}}</td>
+											<td>{{classMeeting.class_information | classInformationAlias }}</td>
+											<td>{{classMeeting.subject.name}}</td>
+											<td>
+                                                <router-link :to="{name: 'psychoanalyst.class_tests.list', params: {class_meeting: classMeeting.id} }">
+                                                    Questões
+                                                </router-link>
+                                            </td>
 										</tr>
 										</tbody>
 									</table>

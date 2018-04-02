@@ -13,9 +13,9 @@ class ClassMeetingsController extends Controller
         $results = ClassMeeting
             ::where('psychoanalyst_id', \Auth::user()->userable->id)
             ->get()
-            ->toArray();
+            ->toArray();//Utilizamos o método toArray para transformar a resposta em array e, antes de retornar, removemos os dados desnecessários, que neste caso são os dados do psicanalista. Lembrando que quanto menos dados for passado na resposta, mais rápida será a aplicação.
 
-        return array_map(function ($item) {
+        return array_map(function ($item) {//mapear cada elemento do array
             unset($item['psychoanalyst']);
             return $item;
         }, $results);

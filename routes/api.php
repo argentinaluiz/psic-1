@@ -30,6 +30,7 @@ Route::group([
             'middleware' => 'can:psychoanalyst'
         ], function(){
             Route::resource('class_informations', 'ClassInformationsController', ['only' => ['index', 'show']]);
+            Route::resource('class_meetings', 'ClassMeetingsController', ['only' => ['index', 'show']]);
         });
     });
 
