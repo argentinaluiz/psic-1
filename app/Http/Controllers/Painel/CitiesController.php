@@ -9,18 +9,33 @@ use App\Models\Painel\State;
 
 class CitiesController extends Controller
 {
-    public function index($initials)
+    
+    private $stateModel;
+    
+    public function __construct(State $state)
     {
-        
-        $totalCities    = City::count();
-
-        \Session::flash('chave','valor');
-        $state = State::where('initials', $initials)->with('cities')->get()->first();
-        if(!$state)
-            return redirect()->back();
-        //dd($state);
-
-        $cities   = $state->cities;
-        return view('painel.cities.index', compact('cities', 'title', 'totalCities', 'state'));
+        $this->stateModel = $state;
     }
+
+    
+    public function index($stateId)
+    {
+
+      // $state = $this->stateModel->find($idState);
+      // $cities = $state->cities()->getQuery()->get(['id', 'name']);
+      //  return Response::json($cities);
+      // $nameState = urldecode($nameState);
+       $cities = \DB::table("cities")
+                ->where("state_id",$stateId)
+                ->get(array('name','id'));
+        return json_encode($cities);
+    }
+
+    
+    private function _cityStateIDForStateName($nameState)
+    {
+        return DB::table('states')->where("name","$nameState")->first()->idState;
+    }
+
+
 }

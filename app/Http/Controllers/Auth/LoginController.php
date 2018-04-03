@@ -67,4 +67,28 @@ class LoginController extends Controller
         \Auth::login($user); //fazendo o login manual
         return redirect()->intended($this->redirectPath());
     }
+
+    protected function credentials(Request $request)
+    {
+        $data = $request->only($this->username(), 'password');
+        $usernameKey = $this->usernameKey();
+        $data[$usernameKey] = $data[$this->username()];
+       // $data['userable_type'] = Admin::class;
+        unset($data[$this->username()]);
+        return $data;
+    }
+
+
+    protected function usernameKey(){
+        $email = \Request::get($this->username());
+        $validator = \Validator::make([
+            'email' => $email
+        ],['email' => 'email']);
+        return $validator->fails() ? 'enrolment': 'email';
+    }
+
+    public function username()
+    {
+        return 'username';
+    }
 }

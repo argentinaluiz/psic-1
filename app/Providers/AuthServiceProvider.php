@@ -8,6 +8,9 @@ use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use App\Models\Painel\Call;
 use App\Models\Painel\Permission;
+use App\Models\Painel\Admin;
+use App\Models\Painel\Psychoanalyst;
+
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -40,6 +43,21 @@ class AuthServiceProvider extends ServiceProvider
                 });
             }
         }
+
+        \Gate::define('admin', function($user){
+            return $user->userable instanceof Admin;
+         });
+
+         \Gate::define('psychoanalyst', function($user){
+            return $user->userable instanceof Psychoanalyst;
+        });
+
+         \Gate::before(function($user, $ability){
+            if($user ->eAdmin()){
+               return true; //não retorne false, pois isto bloqueia a execução da regra original chamada
+            }
+         });
+
 
 
         /*

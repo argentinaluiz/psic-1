@@ -2,14 +2,14 @@
 
 namespace App\Models\Painel;
 
+use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Product extends Model implements TableInterface
 {
     protected $fillable = [
         'name',
         'slug',
-        'image',
         'details',
         'old_price',
         'price',
@@ -18,38 +18,68 @@ class Product extends Model
         'active'
     ];
 
-    public function newProduct($request, $nameFile = '')
+     /**
+     * A list of headers to be used when a table is displayed
+     *
+     * @return array
+     */
+    public function getTableHeaders()
     {
-        /*
-        $data = $request->all();
-        //dd($data);
-        */
-        $data = $request->all();
-        $data['featured'] = $request->has('featured');
-        $data['active'] = $request->has('active');
-        $data['image'] = $nameFile;
-        return $this->create($data);
+        return ['ID', 'Nome', 'Preço anterior', 'Preço', 'Destaque', 'Ativo'];
     }
 
-    public function updateProduct($request, $nameFile = '')
+    /**
+     * Get the value for a given header. Note that this will be the value
+     * passed to any callback functions that are being used.
+     *
+     * @param string $header
+     * @return mixed
+     */
+    public function getValueForHeader($header)
     {
-        $data = $request->all();
-        $data['featured'] = $request->has('featured');
-        $data['active'] = $request->has('active');
-        $data['image'] = $nameFile;
-        
-        return $this->update($data);
+        switch ($header) {
+            case 'ID':
+                return $this->id;
+            case 'Nome':
+                return $this->name;
+            case 'Preço anterior':
+                return $this->textOldPrice;
+            case 'Preço':
+                return $this->textPrice;
+            case 'Destaque':
+                return $this->featured?'Sim': 'Não';
+            case 'Ativo':
+                return $this->active?'Sim': 'Não';
+        }
     }
 
-    public function categories()
+
+    public function users()
     {
-        return $this->belongsToMany('App\Models\Site\Category');
+        return $this->belongsToMany(\App\User::class);
     }
 
+    public function imagens()
+    {
+      return $this->hasMany(Gallery::class);
+    }
+
+    public function getTextPriceAttribute($value)
+    {
+        $valor = "R$ ".number_format($this->price,2,",",".");
+        return $valor;
+    }
+
+    public function getTextOldPriceAttribute($value)
+    {
+        $valor = "R$ ".number_format($this->old_price,2,",",".");
+        return $valor;
+    }
 
     public function scopeMightAlsoLike($query)
     {
         return $query->inRandomOrder();
     }
+
   
 }

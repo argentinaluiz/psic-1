@@ -52,9 +52,24 @@ class PermissionsTableSeeder extends Seeder
             'description' =>'Acesso aos favoritos'
         ]);
 
+        $favorites2 = Permission::firstOrCreate([
+            'name' =>'favorites-create',
+            'description' =>'Adicionar favoritos'
+        ]);
+  
+        $favorites3 = Permission::firstOrCreate([
+            'name' =>'favorites-delete',
+            'description' =>'Deletar favoritos'
+        ]);
+
         $perfil1 = Permission::firstOrCreate([
             'name' =>'perfil-view',
             'description' =>'Acesso ao perfil'
+        ]);
+
+        $perfil2 = Permission::firstOrCreate([
+            'name' =>'perfil-edit',
+            'description' =>'Atualizar perfil'
         ]);
 
         $products1 = Permission::firstOrCreate([
@@ -117,8 +132,124 @@ class PermissionsTableSeeder extends Seeder
             'description' =>'Deletar Clientes'
         ]);
 
+        $imagens1 = Permission::firstOrCreate([
+            'name' =>'imagens-view',
+            'description' =>'Acesso a lista de Imagens'
+        ]);
+        $imagens2 = Permission::firstOrCreate([
+            'name' =>'imagens-create',
+            'description' =>'Adicionar Imagens'
+        ]);
+        $imagens3 = Permission::firstOrCreate([
+            'name' =>'imagens-edit',
+            'description' =>'Editar Imagens'
+        ]);
+        $imagens4 = Permission::firstOrCreate([
+            'name' =>'imagens-delete',
+            'description' =>'Deletar Imagens'
+        ]);
 
+        $researches1 = Permission::firstOrCreate([
+            'name' =>'researches-view',
+            'description' =>'Acesso a lista de Pesquisas'
+        ]);
+        $researches2 = Permission::firstOrCreate([
+            'name' =>'researches-create',
+            'description' =>'Adicionar Pesquisa'
+        ]);
+        $researches3 = Permission::firstOrCreate([
+            'name' =>'researches-edit',
+            'description' =>'Editar Pesquisa'
+        ]);
+        $researches4 = Permission::firstOrCreate([
+            'name' =>'researches-delete',
+            'description' =>'Deletar Pesquisas'
+        ]);
 
+        $slides1 = Permission::firstOrCreate([
+            'name' =>'slides-view',
+            'description' =>'Acesso a lista de Slides'
+        ]);
+        $slides2 = Permission::firstOrCreate([
+            'name' =>'slides-create',
+            'description' =>'Adicionar Slide'
+        ]);
+        $slides3 = Permission::firstOrCreate([
+            'name' =>'slides-edit',
+            'description' =>'Editar Slide'
+        ]);
+        $slides4 = Permission::firstOrCreate([
+            'name' =>'slides-delete',
+            'description' =>'Deletar Slide'
+        ]);
+
+        $documents1 = Permission::firstOrCreate([
+            'name' =>'documents-view',
+            'description' =>'Acesso a lista de Documentos'
+        ]);
+        $documents2 = Permission::firstOrCreate([
+            'name' =>'documents-create',
+            'description' =>'Adicionar Documento'
+        ]);
+        $documents3 = Permission::firstOrCreate([
+            'name' =>'documents-edit',
+            'description' =>'Editar Documento'
+        ]);
+        $documents4 = Permission::firstOrCreate([
+            'name' =>'documents-delete',
+            'description' =>'Deletar Documento'
+        ]);
+
+        $categories1 = Permission::firstOrCreate([
+            'name' =>'categories-view',
+            'description' =>'Acesso a lista de Documentos'
+        ]);
+        $categories2 = Permission::firstOrCreate([
+            'name' =>'categories-create',
+            'description' =>'Adicionar Documento'
+        ]);
+        $categories3 = Permission::firstOrCreate([
+            'name' =>'categories-edit',
+            'description' =>'Editar Documento'
+        ]);
+        $categories4 = Permission::firstOrCreate([
+            'name' =>'categories-delete',
+            'description' =>'Deletar Documento'
+        ]);
+        
+        $specialties1 = Permission::firstOrCreate([
+            'name' =>'specialties-view',
+            'description' =>'Acesso a lista de Especialidades'
+        ]);
+        $specialties2 = Permission::firstOrCreate([
+            'name' =>'specialties-create',
+            'description' =>'Adicionar Especialidade'
+        ]);
+        $specialties3 = Permission::firstOrCreate([
+            'name' =>'specialties-edit',
+            'description' =>'Editar Especialidade'
+        ]);
+        $specialties4 = Permission::firstOrCreate([
+            'name' =>'specialties-delete',
+            'description' =>'Deletar Especialidade'
+        ]);
+
+        $subjects1 = Permission::firstOrCreate([
+            'name' =>'subjects-view',
+            'description' =>'Acesso a lista de Patologias'
+        ]);
+        $subjects2 = Permission::firstOrCreate([
+            'name' =>'subjects-create',
+            'description' =>'Adicionar Patologia'
+        ]);
+        $subjects3 = Permission::firstOrCreate([
+            'name' =>'subjects-edit',
+            'description' =>'Editar Patologia'
+        ]);
+        $subjects4 = Permission::firstOrCreate([
+            'name' =>'subjects-delete',
+            'description' =>'Deletar Patologia'
+        ]);
 
     }
 }

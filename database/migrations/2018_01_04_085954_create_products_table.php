@@ -17,13 +17,12 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('slug')->nullable();
-            $table->string('image', 200)->nullable();
             $table->string('details')->nullable();
-            $table->double('old_price', 10, 2);
-            $table->double('price', 10, 2);
+            $table->decimal('old_price',10,2);
+            $table->decimal('price', 10, 2);
             $table->text('description')->nullable();
-            $table->boolean('featured')->default(false);
-            $table->boolean('active')->default(true); //s ou n
+            $table->boolean('featured')->nullable();
+            $table->boolean('active')->nullable(); 
             $table->timestamps();
         });
     }

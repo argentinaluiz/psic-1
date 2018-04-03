@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 require_once __DIR__ . '/../faker_data/document_number.php';
 
-$factory->define(App\Models\Painel\Client::class, function (Faker $faker) {
+$factory->define(\App\Models\Painel\Client::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'expertise' => rand(1, 4),

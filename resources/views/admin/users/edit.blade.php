@@ -1,20 +1,26 @@
 @extends('layouts.app')
 @section('pag_title', 'Usuários - Editar')
 
-@section('content')
-<div class="container">
+@section('breadcrumb')
+    <h2>Configurações</h2>
     {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar usuários' => route('users.index'), 'Editar usuário' ))!!}
-    <div class="row">
+@endsection
+
+@section('h5-title')
+     <h5>Editar usuário</h5>
+@endsection
+
+@section('content')
+    @component('admin.users.tabs-component',['user' => $form->getModel()])
         <div class="col-md-12">
-            <h3>Editar Usuário</h3>
             <div class="cleaner_h25"></div>
+            <?php $icon = Icon::create('pencil');?>
             {!!
-            form($form->add('edit','submit', [
-                'attr' => ['class' => 'btn btn-primary btn-block'],
-                'label' => Icon::create('floppy-disk').'&nbsp;&nbsp;Salvar alterações'
-            ]))
+                form($form->add('salve', 'submit', [
+                    'attr' => ['class' => 'btn btn-primary btn-block'],
+                    'label' => $icon.'&nbsp;&nbsp;Salvar'
+                ]))
             !!}
         </div>
-    </div>
-</div>
+    @endcomponent
 @endsection

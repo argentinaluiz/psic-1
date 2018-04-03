@@ -1,4 +1,10 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/spa.js": "/js/spa.js",
+    "/css/spa.css": "/css/spa.css",
+    "/css/admin.css": "/css/admin.css",
+    "/js/admin.js": "/js/admin.js",
+    "/css/themeStyle.css": "/css/themeStyle.css",
+    "/js/plugins.js": "/js/plugins.js",
+    "/js/appCart.js": "/js/appCart.js",
+    "/js/atendimento.js": "/js/atendimento.js"
 }

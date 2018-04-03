@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CheckoutRequest;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
-use Cartalyst\Stripe\Exception\CardErrorException;
 use App\Http\Controllers\Controller;
+
+use App\Models\Painel\UserProfile;
+use App\Forms\UserProfileForm;
+use App\Models\Painel\Product;
+use App\Models\Painel\Order;
 
 class CheckoutController extends Controller
 {
@@ -20,12 +24,17 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('checkout')->with([
-            'discount' => $this->getNumbers()->get('discount'),
-            'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
-            'newTax' => $this->getNumbers()->get('newTax'),
-            'newTotal' => $this->getNumbers()->get('newTotal'),
-        ]);
+        if(Auth::check()){
+            return view('checkout')->with([
+                'discount' => $this->getNumbers()->get('discount'),
+                'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
+                'newTax' => $this->getNumbers()->get('newTax'),
+                'newTotal' => $this->getNumbers()->get('newTotal'),
+            ]);
+        }
+        else {
+            return redirect('login');
+        }
     }
 
 
@@ -36,50 +45,46 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(CheckoutRequest $request)
+    
     {
         $contents = Cart::content()->map(function ($item) {
             return $item->model->slug.', '.$item->qty;
         })->values()->toJson();
 
-        try {
-            $charge = Stripe::charges()->create([
-                'amount' => $this->getNumbers()->get('newTotal'),
-                'currency' => 'CAD',
-                'source' => $request->stripeToken,
-                'description' => 'Order',
-                'receipt_email' => $request->email,
-                'metadata' => [
-                    //change to Order ID after we start using DB
-                    'contents' => $contents,
-                    'quantity' => Cart::instance('default')->count(),
-                    'discount' => collect(session()->get('coupon'))->toJson(),
-                ],
-            ]);
+        $userid = Auth::user()->id;
+            $UserProfile = new UserProfile;
+            $UserProfile->address = $request->address;
+            $UserProfile->number = $request->number;
+            $UserProfile->complement = $request->complement;
+            $UserProfile->city_id = $request->city_id;
+            $UserProfile->cep = $request->cep;
+            $UserProfile->neighborhood = $request->neighborhood;
+            $UserProfile->user_id = $userid;
+            $UserProfile->save();
+           // dd('done');
+            order::createOrder();
 
             // SUCCESSFUL
             Cart::instance('default')->destroy();
             session()->forget('coupon');
 
             return redirect()->route('confirmation.index')->with('message', 'Obrigado! Seu pagamento foi aceito com sucesso!');
-        } catch (CardErrorException $e) {
-            return back()->withErrors('Error! ' . $e->getMessage());
-        }
     }
 
     private function getNumbers()
     {
         $tax = config('cart.tax') / 100;
         $discount = session()->get('coupon')['discount'] ?? 0;
-       // $newSubtotal = (Cart::subtotal() - $discount);
-       // $newTax = $newSubtotal * $tax;
-       // $newTotal = $newSubtotal * (1 + $tax);
+        $newSubtotal = (Cart::subtotal() - $discount);
+        $newTax = $newSubtotal * $tax;
+        $newTotal = $newSubtotal * (1 + $tax);
 
         return collect([
             'tax' => $tax,
             'discount' => $discount,
-          //  'newSubtotal' => $newSubtotal,
-          //  'newTax' => $newTax,
-          //  'newTotal' => $newTotal,
+            'newSubtotal' => $newSubtotal,
+            'newTax' => $newTax,
+            'newTotal' => $newTotal,
         ]);
     }
 }

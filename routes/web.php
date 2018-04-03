@@ -1,19 +1,20 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Auth::routes();
 
   Route::get('/', 'SiteController@index')->name('site.home.index');
+  Route::get('perfil', ['as'=>'site.perfil','uses'=>'SiteController@perfil']);
+  Route::put('perfil', ['as'=>'site.perfil.update','uses'=>'SiteController@perfilUpdate']);
 
+  Route::get('orders', ['as'=>'site.orders','uses'=>'SiteController@orders']);
+
+  Route::get('favorites', ['as'=>'site.favorites','uses'=>'SiteController@favorites']);
+  Route::post('favorites/{product}', ['as'=>'site.favorites.create','uses'=>'SiteController@favoritesCreate']);
+  Route::delete('favorites/{product}', ['as'=>'site.favorites.delete','uses'=>'SiteController@favoritesDelete']);
+
+  Route::get('/app', function () {
+    return view('layouts.spa');
+  });
+ 
  //Carrinho de compra 
  Route::get('/shop', 'ShopController@index')->name('shop.index');
  Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
@@ -39,14 +40,11 @@ Auth::routes();
 //Site
 Route::group(['prefix' => 'site', 'namespace' => 'Site'], function(){    
     //Language route
-    Route::post('/language', 'LanguageController@chooser');
     Route::post('/language/', array(
         'before'=> 'csrf',
         'as'    => 'language-chooser',
         'uses'  => 'LanguageController@chooser',
-    ));
-
-
+    ));    
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -58,7 +56,6 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::post('/login/social', 'Auth\LoginController@loginSocial');
 Route::get('/login/callback', 'Auth\LoginController@loginCallback');
-
    
 Route::get('/checkout/{id}', function ($id) {
     return view('site.store.checkout', compact('id'));
@@ -94,14 +91,16 @@ Route::post('/checkout/{id}', function ($id) {
     return $data;
 });
 
-
-
 Route::group(['prefix' => 'painel', 'namespace' => 'Painel', 'middleware' => ['auth']], function(){    
     
     Route::resource('clients', 'ClientsController');
 
     Route::get('states', 'StatesController@index')->name('states.index');
-    Route::get('state/{initials}/cities', 'CitiesController@index')->name('state.cities');
+    Route::get('state/{state}', 'CitiesController@index');   
+
+    //Route::get('get-cities/{idState}', 'CitiesController@getCities');
+
+    //Route::get('states/{state}/cities', 'CitiesController@getCities');
 
     Route::resource('rooms', 'RoomsController');
 
@@ -109,21 +108,86 @@ Route::group(['prefix' => 'painel', 'namespace' => 'Painel', 'middleware' => ['a
     
     Route::resource('reserves', 'ReservesController');
     
+    Route::resource('categories', 'CategoriesController');
+   
+    Route::get('products', 'ProductsController@index')->name('products.index');
+    Route::post('products', 'ProductsController@store')->name('products.store');
+    Route::get('products', 'ProductsController@edit')->name('products.edit');
     Route::resource('products', 'ProductsController');
-    Route::get('products', 'ProductsController@index')->name('painel.products.index');
-    Route::post('products', 'ProductsController@store')->name('painel.products.store');
+
+    Route::get('products/gallery/{product}', ['as'=>'products.gallery','uses'=>'ProductsController@indexGallery']);
+    Route::get('products/gallery/create/{product}', ['as'=>'products.gallery.create','uses'=>'ProductsController@createGallery']);
+    Route::post('products/gallery/store', ['as'=>'products.gallery.store','uses'=>'ProductsController@storeGallery']);
+    Route::delete('products/gallery/remove', ['as'=>'products.gallery.remove','uses'=>'ProductsController@removeGallery']);
+  
+    Route::get('products/gallery/edit/{gallery}', ['as'=>'products.gallery.edit','uses'=>'ProductsController@editGallery']);
+    Route::put('products/gallery/update/{gallery}', ['as'=>'products.gallery.update','uses'=>'ProductsController@updateGallery']);
+    Route::delete('products/gallery/delete/{gallery}', ['as'=>'products.gallery.delete','uses'=>'ProductsController@deleteGallery']);
+   
+    Route::get('imagens/excluidas', ['as'=>'imagens.excluidas','uses'=>'ImagensController@excluidas']);
+    Route::put('imagens/recupera/{id}', ['as'=>'imagens.recupera','uses'=>'ImagensController@recupera']);
+    
+    Route::resource('imagens', 'ImagensController');
+    Route::get('imagens', 'ImagensController@index')->name('imagens.index');
+    Route::post('imagens', 'ImagensController@store')->name('imagens.store');
+
+    Route::post('slides/store/ajax', ['as'=>'slides.store.ajax','uses'=>'SlidesController@storeSlide']);
+    Route::delete('slides/remove/ajax', ['as'=>'slides.remove.ajax','uses'=>'SlidesController@removeSlide']);
+    Route::resource('slides', 'SlidesController');
+
+    Route::get('researches/category/{id}', ['as'=>'researches.category','uses'=>'ResearchesController@category']);
+    Route::post('researches/category/{category}', ['as'=>'category.store','uses'=>'ResearchesController@categoryStore']);
+    Route::delete('researches/category/{research}/{category}', ['as'=>'category.destroy','uses'=>'ResearchesController@categoryDestroy']);
+
+    Route::resource('researches', 'ResearchesController');
+
+    Route::get('researches/arcade/{research}', ['as'=>'researches.arcade','uses'=>'ResearchesController@indexArcade']);
+    Route::get('researches/arcade/create/{research}', ['as'=>'researches.arcade.create','uses'=>'ResearchesController@createArcade']);
+    Route::post('researches/arcade/store', ['as'=>'researches.arcade.store','uses'=>'ResearchesController@storeArcade']);
+    Route::delete('researches/arcade/remove', ['as'=>'researches.arcade.remove','uses'=>'ResearchesController@removeArcade']);
+  
+    Route::get('researches/arcade/edit/{arcade}', ['as'=>'researches.arcade.edit','uses'=>'ResearchesController@editArcade']);
+    Route::put('researches/arcade/update/{arcade}', ['as'=>'researches.arcade.update','uses'=>'ResearchesController@updateArcade']);
+    Route::delete('researches/arcade/delete/{arcade}', ['as'=>'researches.arcade.delete','uses'=>'ResearchesController@deleteArcade']);
+   
+    Route::get('documents/excluidas', ['as'=>'documents.excluidas','uses'=>'DocumentsController@excluidas']);
+    Route::put('documents/recupera/{id}', ['as'=>'documents.recupera','uses'=>'DocumentsController@recupera']);
+    
+    Route::get('documents', 'DocumentsController@index')->name('documents.index');
+    Route::post('documents', 'DocumentsController@store')->name('documents.store');
+    Route::resource('documents', 'DocumentsController');
+
+    Route::get("teste1","testeImagemController@teste1");
+    Route::post("teste1","testeImagemController@teste1Post");
+
+    Route::get("teste2","testeImagemController@teste2");
+    Route::post("teste2","testeImagemController@teste2Post");
 
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function(){    
 
     Route::get('/', 'AdminController@index');
+
+    Route::group(['prefix' => 'users', 'as' => 'admin.users.'], function (){
+        Route::name('settings.edit')->get('settings', 'UserSettingsController@edit');
+        Route::name('settings.update')->put('update', 'UserSettingsController@update');
+    });
+
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function (){
+        Route::name('show_details')->get('show_details', 'UserController@showDetails');
+        Route::group(['prefix' => '{user}/profile'], function () {
+            Route::name('profile.edit')->get('', 'UserProfileController@edit');
+            Route::name('profile.update')->put('', 'UserProfileController@update');
+        });
+     });
+
     Route::resource('users', 'UserController');
-  
+      
     Route::get('users/role/{id}', ['as'=>'users.role','uses'=>'UserController@role']);
     Route::post('users/role/{role}', ['as'=>'users.role.store','uses'=>'UserController@roleStore']);
     Route::delete('users/role/{user}/{role}', ['as'=>'users.role.destroy','uses'=>'UserController@roleDestroy']);
-  
+
     Route::resource('roles', 'RoleController');
   
     Route::get('roles/permission/{id}', ['as'=>'roles.permission','uses'=>'RoleController@permission']);
@@ -131,5 +195,28 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::delete('roles/permission/{role}/{permission}', ['as'=>'roles.permission.destroy','uses'=>'RoleController@permissionDestroy']);
   
     Route::resource('permissions', 'PermissionController');
-  
+    
+    Route::resource('subjects', 'SubjectsController');
+    Route::resource('specialties', 'SpecialtiesController');
+    Route::group(['prefix' => 'class_informations/{class_information}', 'as' => 'class_informations.'],
+            function () {
+                Route::resource('patients', 'ClassPatientsController', ['only' => ['index', 'store', 'destroy']]);
+                Route::resource('meetings', 'ClassMeetingsController', ['only' => ['index','store','destroy']]);
+            });
+    Route::resource('class_informations', 'ClassInformationsController');
+
   });
+
+Route::prefix('admin')->group(function () {
+    Auth::routes();
+    Route::group([
+        'namespace' => 'Api\\',
+        'as' => 'admin.api.',
+        'middleware' => ['auth', 'can:admin'],
+        'prefix' => 'api'
+    ], function (){
+        Route::name('patients.index')->get('patients','PatientsController@index');
+        Route::name('subjects.index')->get('subjects', 'SubjectsController@index');
+        Route::name('psychoanalysts.index')->get('psychoanalysts', 'PsychoanalystsController@index');
+    });
+});

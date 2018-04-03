@@ -1,17 +1,26 @@
 @extends('layouts.app')
 @section('pag_title', 'Produto - Editar')
 
+@section('breadcrumb')
+    <h2>Produtos</h2>
+     {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar produtos' => route('products.index'), 'Editar produto' ))!!}
+@endsection
+
+@section('h5-title')
+     <h5>Editar produto</h5>
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row">
+     @component('painel.products.tabs-component',['product' => $form->getModel()])
         <div class="col-md-12">
-            <h3>Editar produto</h3>
-            @include('form._form_errors')
-            {{ Form::model($product,['route' => ['products.update',$product->id], 'class' => 'form form-search form-ds', 'files' => true, 'method' => 'PUT' ]) }}
-                @include('painel.products._form')
-                <button type="submit" class="btn btn-sm btn-default">Salvar</button>
-            {{ Form::close() }}
+            <div class="cleaner_h25"></div>
+            <?php $icon = Icon::create('pencil');?>
+            {!!
+                form($form->add('salve', 'submit', [
+                    'attr' => ['class' => 'btn btn-primary btn-block'],
+                    'label' => $icon.'&nbsp;&nbsp;Salvar'
+                ]))
+            !!}
         </div>
-    </div>
-</div>
+    @endcomponent
 @endsection

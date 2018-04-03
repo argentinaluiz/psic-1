@@ -67,7 +67,6 @@ class UserController extends Controller
     }
 
     
-    
     public function create()
     {   
         if(Gate::denies('users-create')){
@@ -90,21 +89,34 @@ class UserController extends Controller
         }
 
           /** @var Form $form */
-    $form = \FormBuilder::create(UserForm::class);
+        $form = \FormBuilder::create(UserForm::class);
 
-    if(!$form->isValid()){
-        return redirect()
-            ->back()
-            ->withErrors($form->getErrors())
-            ->withInput();
+        if(!$form->isValid()){
+            return redirect()
+                ->back()
+                ->withErrors($form->getErrors())
+                    ->withInput();
+        }
+
+        $data = $form->getFieldValues();
+        $result = User::createFully($data);
+        $request->session()->flash('message','Usuário criado com sucesso');
+        $request->session()->flash('user_created',[
+            'id' => $result['user']->id,
+            'password' => $result['password']
+        ]);
+        return redirect()->route('users.show_details');
     }
 
-    $data = $form->getFieldValues();
-    $password = str_random(6);
-    $data['password'] = $password;
-    User::create($data);
+    public function showDetails(){
+        if(Gate::denies('users-create')){
+            abort(403,"Não autorizado!");
+        }
 
-    return redirect()->route('users.index');
+        $userData = session('user_created');
+        $user = User::findOrFail($userData['id']);
+        $user->password = $userData['password'];
+        return view('admin.users.show_details',compact('user'));
     }
 
 
@@ -166,7 +178,8 @@ class UserController extends Controller
         }
         
         $user->delete();
-        return redirect()->route('users.index')
-            ->with('message','Usuário excluído com sucesso');
+        session()->flash('message','Usuário excluído com sucesso');
+        return redirect()->route('users.index');
     }
+
 }

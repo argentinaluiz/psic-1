@@ -25,11 +25,13 @@ class CheckoutRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'name' => 'required',
+            'name' => 'required|min:5|max:35',
             'address' => 'required',
-            'city' => 'required',
-            'province' => 'required',
-            'postalcode' => 'required',
+            'number' => 'required|numeric',
+            'complement' => 'required',
+            'neighborhood' => 'required',
+            'city_id' => 'min:1|max:25',
+            'cep' => 'required|max:25',
             'phone' => 'required',
         ];
     }
