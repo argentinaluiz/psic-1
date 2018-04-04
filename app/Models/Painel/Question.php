@@ -12,6 +12,11 @@ class Question extends Model
         'class_test_id'
     ];
 
+    public function questionable()
+    {
+        return $this->morphTo();
+    }
+
     public function choices()
     {
         return $this->hasMany(QuestionChoice::class);
