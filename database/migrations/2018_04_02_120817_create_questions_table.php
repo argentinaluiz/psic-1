@@ -19,6 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->float('point');
             $table->integer('class_test_id')->unsigned();
             $table->foreign('class_test_id')->references('id')->on('class_tests');
+            $table->nullableMorphs('questionable');//cria dois campos (questionable_id e questionable_type)
             $table->timestamps();
         });
     }
