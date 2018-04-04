@@ -30,6 +30,14 @@ class ClassTest extends Model
         });
     }
 
+    protected function deleteQuestions()
+    {
+        foreach ($this->questions()->get() as $question) {
+            $question->choices()->delete();//aqui o choices é um método do relacionamento
+            $question->delete();
+        }
+    }
+
     protected static function createQuestion($question){
         /** @var Question $newQuestion */
         $newQuestion = Question::create($question);
@@ -46,4 +54,23 @@ class ClassTest extends Model
         }
         return $classTest;
     }
+
+    public function updateFully(array $data)
+    {
+        $this->update($data);
+        $this->deleteQuestions();
+        foreach ($data['questions'] as $question) {
+            self::createQuestion($question + ['class_test_id' => $this->id]);
+        }
+        return $this;
+    }
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+        $data['questions'] = $this->questions;
+        return $data;
+    }
+
+
 }

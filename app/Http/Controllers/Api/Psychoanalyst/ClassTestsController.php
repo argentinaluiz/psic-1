@@ -25,9 +25,9 @@ class ClassTestsController extends Controller
         return ClassTest::createFully($request->all()+['class_meeting_id' => $classMeeting->id]);
     }
 
-    public function update(ClassTestRequest $request, ClassMeeting $classMeeting, ClassTest $classTest)
+    public function update(ClassTestRequest $request,ClassMeeting $classMeeting,ClassTest $classTest)
     {
-        //
+        return $classTest->updateFully($request->all());
     }
 
     public function show(ClassMeeting $classMeeting, $id)
