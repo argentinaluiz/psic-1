@@ -65,6 +65,12 @@ class ClassTest extends Model
         return $this;
     }
 
+    public function deleteFully()
+    {
+        $this->deleteQuestions();
+        $this->delete();
+    }
+
     public function toArray()
     {
         $data = parent::toArray();

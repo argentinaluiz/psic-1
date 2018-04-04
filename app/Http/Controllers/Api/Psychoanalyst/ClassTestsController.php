@@ -38,8 +38,12 @@ class ClassTestsController extends Controller
         return $result;
     }
 
-    public function destroy(ClassTest $classTest)
+    public function destroy(ClassMeeting $classMeeting, $classTestId)
     {
-        //
+        $classTest = ClassTest
+            ::byPsychoanalyst(\Auth::user()->userable->id)
+            ->findOrFail($classTestId);
+        $classTest->deleteFully();
+        return response()->json([],204);
     }
 }
