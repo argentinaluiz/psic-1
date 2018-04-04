@@ -22,7 +22,7 @@ class ClassTestsController extends Controller
 
     public function store(ClassTestRequest $request, ClassMeeting $classMeeting)
     {
-        //
+        return ClassTest::createFully($request->all()+['class_meeting_id' => $classMeeting->id]);
     }
 
     public function update(ClassTestRequest $request, ClassMeeting $classMeeting, ClassTest $classTest)
