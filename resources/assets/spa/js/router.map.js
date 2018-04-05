@@ -19,6 +19,14 @@ export default [
         }
     },
     {
+        name: 'class_tests.list',
+        path: 'classes/:class_meeting/tests',
+        component: require('./components/psych/class_test/PsychClassTestList.vue'),
+        meta: {
+            auth: true
+        }
+    },
+    {
         name: 'login',
         path: '/login',
         component: require('./components/Login.vue')

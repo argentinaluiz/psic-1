@@ -42,7 +42,7 @@
 											<td>{{classMeeting.class_information | classInformationAlias }}</td>
 											<td>{{classMeeting.subject.name}}</td>
 											<td>
-                                                <router-link :to="{name: 'psychoanalyst.class_tests.list', params: {class_meeting: classMeeting.id} }">
+                                                <router-link :to="{name: 'class_tests.list', params: {class_meeting: classMeeting.id} }">
                                                     Questões
                                                 </router-link>
                                             </td>
