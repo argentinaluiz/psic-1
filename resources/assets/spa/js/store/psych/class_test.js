@@ -2,12 +2,20 @@ import {Psychoanalyst} from '../../services/resources';
 
 const state = {
     classTests: [],
+    classTest: {
+        name: '',
+        date_start: '',
+        date_end: ''
+    }
 };
 
 const mutations = {
     setClassTests(state,classTests){
         state.classTests = classTests;
     },
+    setName(state,name){
+        state.classTest.name = name;
+    }
 };
 
 const actions = {

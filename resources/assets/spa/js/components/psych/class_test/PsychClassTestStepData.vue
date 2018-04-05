@@ -29,7 +29,9 @@
 								<h3>Informações da questão</h3>
 								<div class="form-group">
 									<label for="name" class="col-sm-2 control-label">Nome</label>
-									<div class="col-sm-6"><input  name="name" id="name" class="form-control"></div>
+									<div class="col-sm-6"><input  name="name" id="name" class="form-control" v-model="name">
+                                    {{name}}
+                                    </div>
 								</div>
 								<div class="form-group">
 									<label for="date_start" class="col-sm-2 control-label">Início</label>
@@ -63,6 +65,16 @@
             classTest(){
                 return store.state.psych.classTest.classTest;
             },
+            
+            /*form handler two way data binding
+            name:{
+                get(){
+                    return this.classTest.name
+                },
+                set(value){
+                    store.commit('psych/classTest/setName', value);
+                }
+            }*/
         },
         mounted() {
             let classMeetingId = this.$route.params.class_meeting;
