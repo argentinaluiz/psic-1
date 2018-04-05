@@ -5,7 +5,8 @@ const state = {
     classTest: {
         name: '',
         date_start: '',
-        date_end: ''
+        date_end: '',
+        questions:[]
     }
 };
 

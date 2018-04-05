@@ -25,28 +25,9 @@
                             </div>
                         </div>
                         <div  class="ibox-content">  
-							<form class="form-horizontal" @submit.prevent="goToQuestions">
-								<h3>Informações da questão</h3>
-								<div class="form-group">
-									<label for="name" class="col-sm-2 control-label">Nome</label>
-									<div class="col-sm-6"><input  name="name" id="name" class="form-control" v-model="classTest.name">
-                                    {{classTest.name}}
-                                    </div>
-								</div>
-								<div class="form-group">
-									<label for="date_start" class="col-sm-2 control-label">Início</label>
-									<div class="col-sm-3"><input  id="date_start" type="datetime-local" name="date_start" class="form-control" v-model="classTest.date_start"></div>
-								</div>
-								<div class="form-group">
-									<label for="date_end" class="col-sm-2 control-label">Fim</label>
-									<div class="col-sm-3"><input id="date_end" type="datetime-local" name="date_end" class="form-control" v-model="classTest.date_end"></div>
-								</div>
-								<div class="form-group">
-									<div class="col-sm-12">
-										<button class="btn btn-sm btn-primary btn-block">Ir para questões</button>
-									</div>
-								</div>
-							</form>
+							<div class="well well-sm">
+                                {{classTest.name}} | {{classTest.date_start}} à {{classTest.date_end}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,20 +50,10 @@
 
         },
         mounted() {
-            let classMeetingId = this.$route.params.class_meeting;
-            store.dispatch('psych/classMeeting/get',classMeetingId);
+            store.dispatch('psych/classMeeting/get', this.$route.params.class_meeting);
         },
         methods: {
-            goToQuestions(){
-                this.$router.push(
-                    {
-                        name: 'class_tests.questions',
-                        params:{
-                            class_meeting:this.$route.params.class_meeting
-                        }
-                    }
-                );
-            }
+            
         }
     }
 </script>
