@@ -27,6 +27,14 @@ export default [
         }
     },
     {
+        name: 'class_tests.create_data',
+        path: 'class_meetings/:class_meeting/tests/create_data',
+        component: require('./components/psych/class_test/PsychClassTestStepData.vue'),
+        meta: {
+            auth: true
+        }
+    },
+    {
         name: 'login',
         path: '/login',
         component: require('./components/Login.vue')

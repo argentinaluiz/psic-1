@@ -4,8 +4,8 @@
             <h2>Dashboard</h2> 
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li><a href="">Minhas Classes</a></li>
-                <li><a href="http://localhost:8000/home">Questões</a></li>
+                <li><a href="">Listar Classes</a></li>
+                <li><a href="">Questões</a></li>
             </ol>
         </div>
         <div class="wrapper wrapper-content  animated fadeInRight">
@@ -28,8 +28,8 @@
                         <div  class="ibox-content">  
 							 <div class="row">
 								<div class="col-md-12">
-                                    <router-link  class="btn btn-sm btn-primary">
-                                        <span class="glyphicon glyphicon-plus"></span> Nova questão
+                                    <router-link :to="routeClassTestCreate" class="btn btn-sm btn-primary">
+                                       <span class="glyphicon glyphicon-plus"></span> Nova questão
                                     </router-link>
                                     <div class="cleaner_h15"></div>
 									<table class="table table-striped">
@@ -68,25 +68,21 @@
 
 <script type="text/javascript">
     import store from '../../../store/store';
+    import classInformationMixin from '../../../mixins/class_information.mixin';
 
     export default {
+        mixins:[classInformationMixin],
         computed: {
             classTests() {
                 return store.state.psych.classTest.classTests;
             },
-            classMeeting(){
-                return store.state.psych.classMeeting.classMeeting;
-            },
-            classInformation(){
-                return !this.classMeeting ? null : this.classMeeting.class_information;
-            },
-            classInformationName(){
-                if(this.classInformation){
-                    //acessar o filtro eu faço this.$options.filters.classInformationAlias(this.classInformation)
-                    let classInformationAlias = this.$options.filters.classInformationAlias(this.classInformation);
-                    return `${classInformationAlias} - ${this.classMeeting.subject.name}`;
+            routeClassTestCreate(){
+                return {
+                    name: 'class_tests.create_data',
+                    params: {
+                        'class_meeting': this.$route.params.class_meeting
+                    }
                 }
-                return '';
             }
         },
         mounted() {
