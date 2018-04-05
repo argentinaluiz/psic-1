@@ -74,6 +74,20 @@
             classTests() {
                 return store.state.psych.classTest.classTests;
             },
+            classMeeting(){
+                return store.state.psych.classMeeting.classMeeting;
+            },
+            classInformation(){
+                return !this.classMeeting ? null : this.classMeeting.class_information;
+            },
+            classInformationName(){
+                if(this.classInformation){
+                    //acessar o filtro eu faço this.$options.filters.classInformationAlias(this.classInformation)
+                    let classInformationAlias = this.$options.filters.classInformationAlias(this.classInformation);
+                    return `${classInformationAlias} - ${this.classMeeting.subject.name}`;
+                }
+                return '';
+            }
         },
         mounted() {
             let classMeetingId = this.$route.params.class_meeting;
