@@ -28,7 +28,7 @@
                         <div  class="ibox-content">  
 							 <div class="row">
 								<div class="col-md-12">
-                                    <router-link :to="routeClassTestCreate" class="btn btn-sm btn-primary">
+                                    <router-link  class="btn btn-sm btn-primary">
                                         <span class="glyphicon glyphicon-plus"></span> Nova questão
                                     </router-link>
                                     <div class="cleaner_h15"></div>
@@ -51,12 +51,7 @@
                                                 <td>{{classTest.total_questions}}</td>
                                                 <td>{{classTest.total_points}}</td>
                                                 <td>
-                                                    <router-link :to="routeClassTestEdit(classTest.id)">
-                                                        Editar
-                                                    </router-link> |
-                                                    <a href="#" @click.prevent="deleteClassTest(classTest)">
-                                                        Excluir
-                                                    </a>
+                                                   
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -78,12 +73,13 @@
         computed: {
             classTests() {
                 return store.state.psych.classTest.classTests;
-            }
+            },
         },
         mounted() {
-            
+            let classMeetingId = this.$route.params.class_meeting;
+            store.dispatch('psych/classMeeting/get',classMeetingId);
+            store.dispatch('psych/classTest/query', classMeetingId);
         },
     }
-
-    
+  
 </script>

@@ -2,6 +2,7 @@
 
 namespace App\Models\Painel;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ClassTest extends Model
@@ -73,8 +74,13 @@ class ClassTest extends Model
 
     public function toArray()
     {
+        //SELECT count(questions.id) from questions - Melhor SELECT * from questions
         $data = parent::toArray();
-        $data['questions'] = $this->questions;
+        $data['date_start'] = (new Carbon($this->date_start))->format('Y-m-d\TH:i');
+        $data['date_end'] = (new Carbon($this->date_end))->format('Y-m-d\TH:i');
+        $data['total_questions'] = $this->questions()->getQuery()->count();
+        $data['total_points'] = $this->questions()->getQuery()->sum('point');
+       // $data['questions'] = $this->questions;
         return $data;
     }
 
