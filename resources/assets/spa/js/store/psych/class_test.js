@@ -1,5 +1,15 @@
 import {Psychoanalyst} from '../../services/resources';
 
+function newQuestion(){
+    return{
+        question: '',
+        point:1,
+        choices:[
+            
+        ]
+    };
+}
+
 const state = {
     classTests: [],
     classTest: {
@@ -8,13 +18,7 @@ const state = {
         date_end: '',
         questions:[]
     },
-    question:{
-        question: '',
-        point:1,
-        choices:[
-            
-        ]
-    }
+    question: newQuestion()
 };
 
 const mutations = {
@@ -23,6 +27,10 @@ const mutations = {
     },
     setName(state,name){
         state.classTest.name = name;
+    },
+    addQuestion(state){
+        state.classTest.questions.push(state.question);
+        state.question = newQuestion();
     }
 };
 

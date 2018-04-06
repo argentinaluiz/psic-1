@@ -34,7 +34,7 @@
                                     <psych-class-test-question-form></psych-class-test-question-form>
                                 </div>
                                 <div class="col-md-6">
-                                    
+                                    <psych-class-test-question-list></psych-class-test-question-list>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +51,8 @@
 
     export default {
         components:{
-            'psych-class-test-question-form' : require('./PsychClassTestQuestionForm.vue')
+            'psych-class-test-question-form' : require('./PsychClassTestQuestionForm.vue'),
+            'psych-class-test-question-list' : require('./PsychClassTestQuestionList.vue')
         },
         mixins:[classInformationMixin],
         computed: {
