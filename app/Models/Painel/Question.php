@@ -21,4 +21,11 @@ class Question extends Model
     {
         return $this->hasMany(QuestionChoice::class);
     }
+
+    public function toArray()
+    {
+        $data = parent::toArray();
+        $data['choices'] = $this->choices;
+        return $data;
+    }
 }

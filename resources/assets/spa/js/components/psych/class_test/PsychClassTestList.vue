@@ -51,7 +51,10 @@
                                                 <td>{{classTest.total_questions}}</td>
                                                 <td>{{classTest.total_points}}</td>
                                                 <td>
-                                                   
+                                                    <router-link :to="routeClassTestEdit(classTest.id)">
+                                                       <span class="glyphicon glyphicon-pencil"></span> Editar
+                                                    </router-link> |
+
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -90,6 +93,17 @@
             store.dispatch('psych/classMeeting/get',classMeetingId);
             store.dispatch('psych/classTest/query', classMeetingId);
         },
+        methods:{
+            routeClassTestEdit(classTestId){
+                return{
+                    name: 'class_tests.update_data',
+                    params:{
+                        class_meeting: this.$route.params.class_meeting,
+                        class_test: classTestId
+                    }
+                }
+            }
+        }
     }
   
 </script>

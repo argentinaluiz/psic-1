@@ -32,6 +32,9 @@ const state = {
 };
 
 const mutations = {
+    setClassTest(state,classTest){
+        state.classTest = classTest;
+    },
     setClassTests(state,classTests){
         state.classTests = classTests;
     },
@@ -68,6 +71,11 @@ const actions = {
     },
     create(context,classMeetingId){
         return Psychoanalyst.classTest.save({class_meeting:classMeetingId},context.state.classTest);
+    },
+    update(context,{classMeetingId, classTestId}){
+        return Psychoanalyst.classTest.update({
+            class_meeting:classMeetingId, class_test:classTestId
+        },context.state.classTest);
     }
 };
 

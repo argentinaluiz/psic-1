@@ -70,7 +70,13 @@
         },
         mounted() {
             let classMeetingId = this.$route.params.class_meeting;
-            store.dispatch('psych/classMeeting/get',classMeetingId);
+            store.dispatch('psych/classMeeting/get', classMeetingId);
+            if(this.$route.name == 'class_tests.update_data'){
+                store.dispatch('psych/classTest/get', {
+                    classMeetingId: this.$route.params.class_meeting,
+                    classTestId: this.$route.params.class_test
+                })
+            }
         },
         methods: {
             goToQuestions(){

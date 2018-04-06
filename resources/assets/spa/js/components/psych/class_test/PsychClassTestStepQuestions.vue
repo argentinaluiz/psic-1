@@ -31,7 +31,7 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-sm btn-primary btn-block" @click="create"
+                                    <button class="btn btn-sm btn-primary btn-block" @click="save"
                                     :disabled="!classTest.questions.length">Criar questão</button>
                                 </div>
                                 <div class="cleaner_h15"></div>
@@ -74,17 +74,26 @@
             store.dispatch('psych/classMeeting/get', this.$route.params.class_meeting);
         },
         methods: {
-            create(){
+            save(){
                 let classMeetingId = this.$route.params.class_meeting;
-                store.dispatch('psych/classTest/create',classMeetingId)
-                    .then(() => {
-                        this.$router.push({
-                            name: 'class_tests.list',
-                            params: {
-                                class_meeting: classMeetingId
-                            }
-                        });
+                let afterSave = () => {
+                    this.$router.push({
+                        name: 'class_tests.list',
+                        params: {
+                            class_meeting: classMeetingId
+                        }
                     });
+                };
+                if(typeof this.classTest.id == "undefined"){
+                    store.dispatch('psych/classTest/create',classMeetingId)
+                        .then(afterSave);
+                }else{
+                    store.dispatch('psych/classTest/update',{
+                        classMeetingId,
+                        classTestId: this.classTest.id
+                    })
+                        .then(afterSave);
+                }
             }
         }
     }

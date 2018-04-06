@@ -35,8 +35,16 @@ export default [
         }
     },
     {
+        name: 'class_tests.update_data',
+        path: 'class_meetings/:class_meeting/tests/:class_test/update_data',
+        component: require('./components/psych/class_test/PsychClassTestStepData.vue'),
+        meta: {
+            auth: true
+        }
+    },
+    {
         name: 'class_tests.questions',
-        path: 'class_meetings/:class_meeting/tests/questions',
+        path: 'class_meetings/:class_meeting/tests/:class_test?/questions',
         component: require('./components/psych/class_test/PsychClassTestStepQuestions.vue'),
         meta: {
             auth: true
