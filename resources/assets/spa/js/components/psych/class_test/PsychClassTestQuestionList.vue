@@ -2,7 +2,7 @@
     <div>
         <div class="panel panel-default" v-for="(question,index) in classTest.questions">
             <div class="panel-heading">
-                <button class="btn btn-danger btn-sm" @click.prevent="deleteQuestion(index)">
+                <button class="btn btn-warning btn-sm" @click.prevent="deleteQuestion(index)">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
                 {{question.question}} - {{question.point}}

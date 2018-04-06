@@ -24,7 +24,7 @@
             <tbody>
                 <tr v-for="(choice,index) in question.choices">
                     <td>
-                        <a href="#" @click.prevent="deleteChoice(index)">
+                        <a class="btn btn-warning btn-sm" href="#" @click.prevent="deleteChoice(index)">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
@@ -38,7 +38,7 @@
         </table>
 
 
-        <button class="btn btn-sm btn-success btn-block">Adicionar</button>
+        <button class="btn btn-sm btn-primary btn-block">Adicionar</button>
     </form>
 </template>
 
