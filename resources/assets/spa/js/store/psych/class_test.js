@@ -41,6 +41,15 @@ const mutations = {
     addQuestion(state){
         state.classTest.questions.push(state.question);
         state.question = newQuestion();
+    },
+    deleteQuestion(state,index){
+        state.classTest.questions.splice(index,1);
+    },
+    addChoice(state){
+        state.question.choices.push(newChoice());
+    },
+    deleteChoice(state,index){
+        state.question.choices.splice(index,1);
     }
 };
 

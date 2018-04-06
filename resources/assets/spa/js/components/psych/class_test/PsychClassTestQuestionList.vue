@@ -1,7 +1,10 @@
 <template>
     <div>
-        <div class="panel panel-default" v-for="question in classTest.questions">
+        <div class="panel panel-default" v-for="(question,index) in classTest.questions">
             <div class="panel-heading">
+                <button class="btn btn-danger btn-sm" @click.prevent="deleteQuestion(index)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
                 {{question.question}} - {{question.point}}
             </div>
             <div class="panel-body">
@@ -16,6 +19,7 @@
 </template>
 
 <script type="text/javascript">
+    import store from '../../../store/store';
 
     export default {
         computed: {
@@ -25,7 +29,9 @@
 
         },
         methods: {
-            
+            deleteQuestion(index){
+                store.commit('psych/classTest/deleteQuestion',index);
+            }
         }
     }
 </script>

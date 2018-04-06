@@ -10,6 +10,9 @@
             <label for="point" class="col-sm-2 control-label">Pontos</label>
             <div class="col-sm-6"><input  id="point" name="point" class="form-control" v-model="question.point"></div>
         </div>
+        <button type="button" class="btn btn-primary" @click="addChoice">
+            <span class="glyphicon glyphicon-plus"></span> Nova alternativa
+        </button>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -19,8 +22,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="choice in question.choices">
-                    <td></td>
+                <tr v-for="(choice,index) in question.choices">
+                    <td>
+                        <a href="#" @click.prevent="deleteChoice(index)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
                     <td></td>
                     <td>
                         <textarea class="form-control" v-model="choice.choice"></textarea>
@@ -52,6 +59,12 @@
             addQuestion() {
                 store.commit('psych/classTest/addQuestion');
             },
+            addChoice(){
+                store.commit('psych/classTest/addChoice');
+            },
+            deleteChoice(index){
+                store.commit('psych/classTest/deleteChoice',index);
+            }
         }
     }
 </script>
