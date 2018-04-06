@@ -28,6 +28,15 @@
 							<div class="well well-sm">
                                 {{classTest.name}} | {{classTest.date_start}} à {{classTest.date_end}}
                             </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <psych-class-test-question-form></psych-class-test-question-form>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -41,6 +50,9 @@
     import classInformationMixin from '../../../mixins/class_information.mixin';
 
     export default {
+        components:{
+            'psych-class-test-question-form' : require('./PsychClassTestQuestionForm.vue')
+        },
         mixins:[classInformationMixin],
         computed: {
             classTest(){

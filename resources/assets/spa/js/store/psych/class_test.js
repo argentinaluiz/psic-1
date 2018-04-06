@@ -7,6 +7,13 @@ const state = {
         date_start: '',
         date_end: '',
         questions:[]
+    },
+    question:{
+        question: '',
+        point:1,
+        choices:[
+            
+        ]
     }
 };
 
