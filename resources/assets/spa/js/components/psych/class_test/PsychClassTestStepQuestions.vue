@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div  class="ibox-content">  
-							<div class="well well-sm">
+							<div class="alert alert-warning">
                                 {{classTest.name}} | {{classTest.date_start}} à {{classTest.date_end}}
                             </div>
                             

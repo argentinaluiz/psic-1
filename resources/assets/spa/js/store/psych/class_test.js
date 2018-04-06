@@ -1,11 +1,21 @@
 import {Psychoanalyst} from '../../services/resources';
 
+function newChoice(){
+    return{
+        choice:''
+    };
+}
+
+
 function newQuestion(){
     return{
         question: '',
         point:1,
         choices:[
-            
+            newChoice(),
+            newChoice(),
+            newChoice(),
+            newChoice(),
         ]
     };
 }
