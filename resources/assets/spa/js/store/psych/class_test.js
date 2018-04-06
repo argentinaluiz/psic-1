@@ -66,6 +66,9 @@ const actions = {
                 context.commit('setClassTest',response.data);
             })
     },
+    create(context,classMeetingId){
+        return Psychoanalyst.classTest.save({class_meeting:classMeetingId},context.state.classTest);
+    }
 };
 
 export default {

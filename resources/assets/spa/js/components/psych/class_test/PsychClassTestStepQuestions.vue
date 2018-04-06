@@ -28,6 +28,14 @@
 							<div class="alert alert-warning">
                                 {{classTest.name}} | {{classTest.date_start}} à {{classTest.date_end}}
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-sm btn-primary btn-block" @click="create"
+                                    :disabled="!classTest.questions.length">Criar questão</button>
+                                </div>
+                                <div class="cleaner_h15"></div>
+                            </div>
                             
                             <div class="row">
                                 <div class="col-md-6">
@@ -66,7 +74,18 @@
             store.dispatch('psych/classMeeting/get', this.$route.params.class_meeting);
         },
         methods: {
-            
+            create(){
+                let classMeetingId = this.$route.params.class_meeting;
+                store.dispatch('psych/classTest/create',classMeetingId)
+                    .then(() => {
+                        this.$router.push({
+                            name: 'class_tests.list',
+                            params: {
+                                class_meeting: classMeetingId
+                            }
+                        });
+                    });
+            }
         }
     }
 </script>
