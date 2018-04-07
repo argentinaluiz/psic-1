@@ -2,7 +2,10 @@
     <div>
         <div class="panel panel-default" v-for="(question,index) in classTest.questions">
             <div class="panel-heading">
-                <button class="btn btn-warning btn-sm" @click.prevent="deleteQuestion(index)">
+                <button class="btn btn-sm btn-primary" @click.prevent="editQuestion(question)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
+                <button class="btn btn-sm btn-warning " @click.prevent="deleteQuestion(index)">
                     <span class="glyphicon glyphicon-trash"></span>
                 </button>
                 {{question.question}} - {{question.point}}
@@ -29,6 +32,9 @@
 
         },
         methods: {
+            editQuestion(question){
+                store.commit('psych/classTest/setQuestion',question);
+            },
             deleteQuestion(index){
                 store.commit('psych/classTest/deleteQuestion',index);
             }

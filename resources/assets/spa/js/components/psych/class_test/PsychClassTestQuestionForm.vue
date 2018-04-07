@@ -36,8 +36,6 @@
             </tbody>
 
         </table>
-
-
         <button class="btn btn-sm btn-primary btn-block">Adicionar</button>
     </form>
 </template>

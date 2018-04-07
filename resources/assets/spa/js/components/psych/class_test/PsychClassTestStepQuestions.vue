@@ -72,11 +72,25 @@
         },
         mounted() {
             store.dispatch('psych/classMeeting/get', this.$route.params.class_meeting);
+            let classTestId = this.$route.params.class_test;
+            if(typeof this.classTest.id =="undefined" && classTestId){
+                let classMeetingId = this.$route.params.class_meeting;
+                store.dispatch('psych/classTest/get',{
+                    classMeetingId: classMeetingId,
+                    classTestId: classTestId
+                })
+            }
         },
         methods: {
             save(){
                 let classMeetingId = this.$route.params.class_meeting;
                 let afterSave = () => {
+                    new PNotify({
+                        title: 'Informação',
+                        text: 'Avaliação salva com sucesso',
+                        styling: 'brighttheme',
+                        type: 'success'
+                    });
                     this.$router.push({
                         name: 'class_tests.list',
                         params: {
@@ -84,15 +98,29 @@
                         }
                     });
                 };
+                let error = (responseError) => {
+                    let messageError = 'Não foi possível realizar a operação! Tente novamente.';
+                    switch (responseError.status){
+                        case 422:
+                            messageError = 'Informações inválidas! Verifique os dados da questão novamente.'
+                            break;
+                    }
+                    new PNotify({
+                        title: 'Mensagem de erro',
+                        text: messageError,
+                        styling: 'brighttheme',
+                        type: 'error'
+                    });
+                };
                 if(typeof this.classTest.id == "undefined"){
                     store.dispatch('psych/classTest/create',classMeetingId)
-                        .then(afterSave);
+                        .then(afterSave,error);
                 }else{
                     store.dispatch('psych/classTest/update',{
                         classMeetingId,
                         classTestId: this.classTest.id
                     })
-                        .then(afterSave);
+                        .then(afterSave,error);
                 }
             }
         }

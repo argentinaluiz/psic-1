@@ -84,7 +84,8 @@
                     {
                         name: 'class_tests.questions',
                         params:{
-                            class_meeting:this.$route.params.class_meeting
+                            class_meeting:this.$route.params.class_meeting,
+                            class_test: this.$route.params.class_test
                         }
                     }
                 );
