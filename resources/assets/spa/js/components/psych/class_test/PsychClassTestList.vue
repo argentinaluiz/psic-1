@@ -51,10 +51,12 @@
                                                 <td>{{classTest.total_questions}}</td>
                                                 <td>{{classTest.total_points}}</td>
                                                 <td>
-                                                    <router-link :to="routeClassTestEdit(classTest.id)">
+                                                    <router-link :to="routeClassTestEdit(classTest.id)" class="btn btn-link">
                                                        <span class="glyphicon glyphicon-pencil"></span> Editar
                                                     </router-link> |
-
+                                                    <a href="#" class="btn btn-link" @click.prevent="deleteClassTest(classTest)">
+                                                       <span class="glyphicon glyphicon-trash"></span> Excluir
+                                                    </a>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -101,6 +103,14 @@
                         class_meeting: this.$route.params.class_meeting,
                         class_test: classTestId
                     }
+                }
+            },
+            deleteClassTest(classTest){
+                if(confirm('Deseja excluir esta avaliação?')){
+                    store.dispatch('psych/classTest/delete', {
+                        classMeetingId: this.$route.params.class_meeting,
+                        classTestId: classTest.id
+                    })
                 }
             }
         }

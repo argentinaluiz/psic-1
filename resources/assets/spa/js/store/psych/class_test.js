@@ -38,6 +38,14 @@ const mutations = {
     setClassTests(state,classTests){
         state.classTests = classTests;
     },
+    deleteClassTest(state,classTestId){
+        let index = state.classTests.findIndex((item) => {
+            return item.id == classTestId;
+        });
+        if(index!=-1){
+            state.classTests.splice(index,1);
+        }
+    },
     setName(state,name){
         state.classTest.name = name;
     },
@@ -81,6 +89,13 @@ const actions = {
         return Psychoanalyst.classTest.update({
             class_meeting:classMeetingId, class_test:classTestId
         },context.state.classTest);
+    },
+    'delete'(context,{classMeetingId, classTestId}){
+        return Psychoanalyst.classTest.delete({
+            class_meeting:classMeetingId, class_test:classTestId
+        }).then(() => {
+            context.commit('deleteClassTest', classTestId);
+        });
     }
 };
 
