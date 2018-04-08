@@ -43,6 +43,7 @@ class ClassTest extends Model
         /** @var Question $newQuestion */
         $newQuestion = Question::create($question);
         foreach ($question['choices'] as $choice) {
+            $choice['true'] = $choice ['true'] !== false ? true : false;
             $newQuestion->choices()->create($choice);
         }
     }

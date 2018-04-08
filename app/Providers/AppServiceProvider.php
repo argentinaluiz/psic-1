@@ -23,6 +23,12 @@ class AppServiceProvider extends ServiceProvider
            $documentValidator = $parameters[0] =='cpf' ? new Cpf(): new Cnpj();
            return $documentValidator->isValid($value);
         });
+        \Validator::extend('choice_true', function ($attribute, $value, $parameters, $validator) {
+            $items = collect($value)->filter(function ($item) {
+                return isset($item['true']) && $item['true'] !== false;
+            });
+            return $items->count() === 1;
+        });
     }
 
     /**
