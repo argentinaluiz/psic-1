@@ -71,6 +71,14 @@ export default [
                     template: '<div>Olá paciente</div>'
                 },
             },
+            {
+                name: 'patient.class_informations.list',
+                path: 'classes',
+                component: require('./components/patient/PatientClassInformationList.vue'),
+                meta: {
+                    auth: true
+                }
+            },
 
         ]
     },

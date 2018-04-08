@@ -28,16 +28,16 @@
     export default {
         computed: {
             classTest(){
-                return this.$deepModel('psych.classTest.classTest')
+                return this.$deepModel('patient.classTest.classTest')
             },
 
         },
         methods: {
             editQuestion(question){
-                store.commit('psych/classTest/setQuestion',question);
+                store.commit('patient/classTest/setQuestion',question);
             },
             deleteQuestion(index){
-                store.commit('psych/classTest/deleteQuestion',index);
+                store.commit('patient/classTest/deleteQuestion',index);
             }
         }
     }

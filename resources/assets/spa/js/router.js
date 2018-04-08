@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
             return router.push({name: 'psych.class_meetings.list'});
        }
        if(store.getters['auth/isPatient'] && to.name.startsWith('psych')){
-        return router.push({name: 'patient.test'});
+            return router.push({name: 'patient.class_informations.list'});
         }
     }
     next();

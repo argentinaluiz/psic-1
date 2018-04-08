@@ -42,7 +42,7 @@
 											<td>{{classMeeting.class_information | classInformationAlias }}</td>
 											<td>{{classMeeting.subject.name}}</td>
 											<td>
-                                                <router-link class="btn btn-link" :to="{name: 'psych.class_tests.list', params: {class_meeting: classMeeting.id} }">
+                                                <router-link class="btn btn-link" :to="{name: 'patient.class_tests.list', params: {class_meeting: classMeeting.id} }">
                                                    <span class="glyphicon glyphicon-list-alt"></span> Questões
                                                 </router-link>
                                             </td>
@@ -65,11 +65,11 @@
     export default {
         computed: {
             classMeetings() {
-                return store.state.psych.classMeeting.classMeetings;
+                return store.state.patient.classMeeting.classMeetings;
             }
         },
         mounted() {
-            store.dispatch('psych/classMeeting/query');
+            store.dispatch('patient/classMeeting/query');
         }
     }
 </script>

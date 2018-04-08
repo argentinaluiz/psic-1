@@ -79,11 +79,11 @@
         mixins:[classInformationMixin],
         computed: {
             classTests() {
-                return store.state.psych.classTest.classTests;
+                return store.state.patient.classTest.classTests;
             },
             routeClassTestCreate(){
                 return {
-                    name: 'psych.class_tests.create_data',
+                    name: 'patient.class_tests.create_data',
                     params: {
                         'class_meeting': this.$route.params.class_meeting
                     }
@@ -92,13 +92,13 @@
         },
         mounted() {
             let classMeetingId = this.$route.params.class_meeting;
-            store.dispatch('psych/classMeeting/get',classMeetingId);
-            store.dispatch('psych/classTest/query', classMeetingId);
+            store.dispatch('patient/classMeeting/get',classMeetingId);
+            store.dispatch('patient/classTest/query', classMeetingId);
         },
         methods:{
             routeClassTestEdit(classTestId){
                 return{
-                    name: 'psych.class_tests.update_data',
+                    name: 'patient.class_tests.update_data',
                     params:{
                         class_meeting: this.$route.params.class_meeting,
                         class_test: classTestId
@@ -107,7 +107,7 @@
             },
             deleteClassTest(classTest){
                 if(confirm('Deseja excluir esta avaliação?')){
-                    store.dispatch('psych/classTest/delete', {
+                    store.dispatch('patient/classTest/delete', {
                         classMeetingId: this.$route.params.class_meeting,
                         classTestId: classTest.id
                     })

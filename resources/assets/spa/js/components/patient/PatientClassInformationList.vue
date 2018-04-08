@@ -31,19 +31,17 @@
 											<th>Data Início</th>
 											<th>Data Fim</th>
 											<th>Tipo</th>
-											<th>Subdivisão</th>
-											<th>Semestre</th>
-											<th>Ano</th>
+											<th>Ações</th>
 										</tr>
 										</thead>
 										<tbody>
 										 <tr v-for="classInformation in classInformations">
 											<td>{{classInformation.date_start | dateBr }}</td>
 											<td>{{classInformation.date_end | dateBr }}</td>
-											<td>{{classInformation.name }}</td>
-											<td></td>
-											<td>{{classInformation.semester }}</td>
-											<td>{{classInformation.year }}</td>
+											<td>{{classInformation.name | classInformationAlias }}</td>
+											<td>
+                                                EscolherNome
+                                            </td>
 										</tr>
 										</tbody>
 									</table>

@@ -12,7 +12,7 @@ export default {
             return this.isAuth?store.state.auth.user.name:null;
         },
         isPsych(){
-            return store.getters['auth/isPsych']
+            return store.getters['auth/isPsych'];
         }
     }
 }
