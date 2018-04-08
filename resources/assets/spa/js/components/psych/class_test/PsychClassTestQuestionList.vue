@@ -13,6 +13,7 @@
             <div class="panel-body">
                 <ol>
                     <li v-for="choice in question.choices">
+                        <span class="glyphicon glyphicon-ok" v-if="choice['true']"></span>
                         {{choice.choice}}
                     </li>
                 </ol>

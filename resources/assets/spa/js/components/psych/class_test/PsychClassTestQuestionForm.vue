@@ -17,7 +17,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Verd.?</th>
+                    <th style="width: 10px">Verd.?</th>
                     <th>Alternativa</th>
                 </tr>
             </thead>
@@ -28,7 +28,9 @@
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
-                    <td></td>
+                    <td>
+                         <input type="radio" name="choice_true" v-model="choice['true']" value="true" @click="uncheck(choice)">
+                    </td>
                     <td>
                         <textarea class="form-control" v-model="choice.choice"></textarea>
                     </td>
@@ -62,6 +64,9 @@
             },
             deleteChoice(index){
                 store.commit('psych/classTest/deleteChoice',index);
+            },
+            uncheck(choice){
+               store.commit('psych/classTest/setChoiceTrue',choice);
             }
         }
     }

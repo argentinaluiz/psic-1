@@ -12,6 +12,10 @@ class QuestionChoice extends Model
         'question_id'
     ];
 
+    protected $casts = [
+        'true' => 'boolean'
+    ];
+
     public function question(){
         return $this->morphOne(\App\Models\Painel\Question::class, 'questionable');
     }
