@@ -92,7 +92,7 @@
                         type: 'success'
                     });
                     this.$router.push({
-                        name: 'class_tests.list',
+                        name: 'psych.class_tests.list',
                         params: {
                             class_meeting: classMeetingId
                         }

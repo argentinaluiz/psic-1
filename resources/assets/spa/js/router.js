@@ -15,6 +15,18 @@ router.beforeEach((to, from, next) => {
     next();
 });
 
+router.beforeEach((to, from, next) => {
+    if (store.state.auth.user) {
+       if(store.getters['auth/isPsych'] && to.name.startsWith('patient')){
+            return router.push({name: 'psych.class_meetings.list'});
+       }
+       if(store.getters['auth/isPatient'] && to.name.startsWith('psych')){
+        return router.push({name: 'patient.test'});
+        }
+    }
+    next();
+});
+
 new Vue({
     store,
     router,

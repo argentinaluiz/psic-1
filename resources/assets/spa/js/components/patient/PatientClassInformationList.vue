@@ -30,22 +30,20 @@
 										<tr>
 											<th>Data Início</th>
 											<th>Data Fim</th>
-											<th>Classe</th>
-											<th>Patologia</th>
-                                            <th>Ações</th>
+											<th>Tipo</th>
+											<th>Subdivisão</th>
+											<th>Semestre</th>
+											<th>Ano</th>
 										</tr>
 										</thead>
 										<tbody>
-										 <tr v-for="classMeeting in classMeetings">
-											<td>{{classMeeting.class_information.date_start | dateBr}}</td>
-											<td>{{classMeeting.class_information.date_end | dateBr}}</td>
-											<td>{{classMeeting.class_information | classInformationAlias }}</td>
-											<td>{{classMeeting.subject.name}}</td>
-											<td>
-                                                <router-link class="btn btn-link" :to="{name: 'psych.class_tests.list', params: {class_meeting: classMeeting.id} }">
-                                                   <span class="glyphicon glyphicon-list-alt"></span> Questões
-                                                </router-link>
-                                            </td>
+										 <tr v-for="classInformation in classInformations">
+											<td>{{classInformation.date_start | dateBr }}</td>
+											<td>{{classInformation.date_end | dateBr }}</td>
+											<td>{{classInformation.name }}</td>
+											<td></td>
+											<td>{{classInformation.semester }}</td>
+											<td>{{classInformation.year }}</td>
 										</tr>
 										</tbody>
 									</table>
@@ -64,12 +62,12 @@
 
     export default {
         computed: {
-            classMeetings() {
-                return store.state.psych.classMeeting.classMeetings;
+            classInformations() {
+                return store.state.psych.classInformation.classInformations;
             }
         },
         mounted() {
-            store.dispatch('psych/classMeeting/query');
+            store.dispatch('psych/classInformation/query');
         }
     }
 </script>
