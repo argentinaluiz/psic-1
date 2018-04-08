@@ -63,11 +63,11 @@
     export default {
         computed: {
             classInformations() {
-                return store.state.psych.classInformation.classInformations;
+                return store.state.patient.classInformation.classInformations;
             }
         },
         mounted() {
-            store.dispatch('psych/classInformation/query');
+            store.dispatch('patient/classInformation/query');
         }
     }
 </script>

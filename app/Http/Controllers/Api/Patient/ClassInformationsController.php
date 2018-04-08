@@ -14,11 +14,11 @@ class ClassInformationsController extends Controller
      */
     public function index()
     {
-        $patient = \Auth::user()->userable;
-        $results = $patient->classInformations;
-        /*$results = ClassInformation
-            ::byStudent(\Auth::user()->userable->id)
-            ->get();*/
+        //$patient = \Auth::user()->userable;
+        //$results = $patient->classInformations;
+        $results = ClassInformation
+            ::byPatient(\Auth::user()->userable->id)
+            ->get();
 
         return $results;
     }
@@ -32,11 +32,11 @@ class ClassInformationsController extends Controller
      */
     public function show($id)
     {
-        $patient = \Auth::user()->userable;
-        $result = $patient->classInformations()->findOrFail($id);
-        /*$result = ClassInformation
-            ::byStudent(\Auth::user()->userable->id)
-            ->findOrFail($id);*/
+       // $patient = \Auth::user()->userable;
+       // $result = $patient->classInformations()->findOrFail($id);
+       $result = ClassInformation
+            ::byPatient(\Auth::user()->userable->id)
+            ->findOrFail($id);
         return $result;
     }
 }
