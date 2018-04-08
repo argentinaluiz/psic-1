@@ -3,7 +3,12 @@
         <template v-if="isAuth">
             <nav class="navbar-default navbar-static-side" role="navigation">
                 <div class="sidebar-collapse">
-                    <psych-menu></psych-menu>
+                    <template v-if="isPsych">
+                        <psych-menu></psych-menu>
+                    </template>
+                    <template v-else="isPatient">
+                        <patient-menu></patient-menu>
+                    </template>
                 </div>
             </nav>
         </template>
@@ -31,12 +36,14 @@
 </template>
 
 <script type="text/javascript">
+    import PatientMenuComponent from './patient/PatientMenu.vue';
     import PsychMenuComponent from './psych/PsychMenu.vue';
     import PsychTopoComponent from './psych/PsychTopo.vue';
     import authMixin from '../mixins/auth.mixin';
     
     export default {
         components:{
+            'patient-menu' : PatientMenuComponent,
             'psych-menu' : PsychMenuComponent,
             'psych-topo' : PsychTopoComponent
         },
