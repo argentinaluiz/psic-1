@@ -42,8 +42,8 @@
 											<td>{{classMeeting.class_information | classInformationAlias }}</td>
 											<td>{{classMeeting.subject.name}}</td>
 											<td>
-                                                <router-link :to="{name: 'class_tests.list', params: {class_meeting: classMeeting.id} }">
-                                                    Questões
+                                                <router-link class="btn btn-link" :to="{name: 'class_tests.list', params: {class_meeting: classMeeting.id} }">
+                                                   <span class="glyphicon glyphicon-list-alt"></span> Questões
                                                 </router-link>
                                             </td>
 										</tr>

@@ -46,8 +46,8 @@
 										<tbody>
                                              <tr v-for="classTest in classTests">
                                                 <td>{{classTest.name}}</td>
-                                                <td>{{classTest.date_start}}</td>
-                                                <td>{{classTest.date_end}}</td>
+                                                <td>{{classTest.date_start | dateTimeBr}}</td>
+                                                <td>{{classTest.date_end | dateTimeBr}}</td>
                                                 <td>{{classTest.total_questions}}</td>
                                                 <td>{{classTest.total_points}}</td>
                                                 <td>
