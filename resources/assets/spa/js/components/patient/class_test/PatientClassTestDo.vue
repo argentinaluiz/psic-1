@@ -30,11 +30,11 @@
 								<div class="col-md-3">
                                     <strong>Classe:</strong> {{classInformationName}}
                                     <br/>
-                                    <strong>Pontos:</strong> 
+                                    <strong>Pontos:</strong> {{classTestPoints}}
                                     <br/>
-                                    <strong>Início:</strong> 
+                                    <strong>Início:</strong> {{classTestDateStart}}
                                     <br/>
-                                    <strong>Fim:</strong> 
+                                    <strong>Fim:</strong>     {{classTestDateEnd}}
                                     <div class="cleaner_h10"></div>
                                     <button class="btn btn-sm btn-primary btn-block" @click="save">Salvar</button>
 								</div>
@@ -70,6 +70,18 @@
             },
             classTest() {
                 return store.state.patient.classTest.classTest;
+            },
+            classTestPoints() {
+                let classTest = this.classTest;
+                return classTest ? classTest.total_points : 0;
+            },
+            classTestDateStart() {
+                let classTest = this.classTest;
+                return classTest ? this.$options.filters.dateTimeBr(classTest.date_start) : '';
+            },
+            classTestDateEnd() {
+                let classTest = this.classTest;
+                return classTest ? this.$options.filters.dateTimeBr(classTest.date_end) : '';
             }
         },
         mounted() {
