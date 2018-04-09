@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div  class="ibox-content">  
-							 <div class="row">
+							<div class="row">
 								<div class="col-md-3">
                                     <strong>Classe:</strong> {{classInformationName}}
                                     <br/>
@@ -49,7 +49,11 @@
                                         </li>
                                     </ol>
 								</div>
-							</div> 
+							</div>
+                            <div class="cleaner_h15"></div>
+                            <div class="row">
+                                <patient-class-test-question></patient-class-test-question>
+                            </div>    
                         </div>
                     </div>
                 </div>
@@ -63,6 +67,9 @@
     import classInformationMixin from '../../../mixins/class_information.mixin';
 
     export default {
+        components:{
+            'patient-class-test-question': require('./PatientClassTestQuestion.vue')
+        },
         mixins:[classInformationMixin],
         computed: {
             storeType(){
@@ -89,10 +96,20 @@
             let classInformationId = this.$route.params.class_information;
             let classTestId = this.$route.params.class_test;
             store.dispatch('patient/classMeeting/get',{classInformationId, classMeetingId});
-            store.dispatch('patient/classTest/get', {classMeetingId,classTestId});
+            store.dispatch('patient/classTest/get', {classMeetingId,classTestId})
+                .then(() => {
+                    let question = this.classTest.questions[0];
+                    store.commit('patient/classTest/setQuestion',question);
+                });
         },
         methods:{
-            
+            setQuestion(question){
+                store.commit('patient/classTest/setQuestion',question);
+            },
+            save(){
+
+            }
+
         }
     }
 </script>

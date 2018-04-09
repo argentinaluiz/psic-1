@@ -3,7 +3,8 @@ import {Patient} from '../../services/resources';
 const state = {
     classTests: [],
     classTest: null,
-    question: null
+    question: null,
+    questionIndex: 0
 };
 
 const mutations = {
@@ -13,8 +14,13 @@ const mutations = {
     setClassTests(state,classTests){
         state.classTests = classTests;
     },
-    setQuestion(state,question){
+    setQuestion(state, question) {
+         // console.log(question);
         state.question = question;
+        let index = state.classTest.questions.findIndex((item) => {
+            return item.id == question.id;
+        });
+        state.questionIndex = index;
     },
 };
 
