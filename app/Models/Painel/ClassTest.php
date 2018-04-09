@@ -31,6 +31,17 @@ class ClassTest extends Model
         });
     }
 
+    public function scopeByPatient($query, $patientId)
+    {
+        return $query->whereHas('classMeeting', function ($query) use($patientId){
+            $query->whereHas('classInformation', function ($query) use($patientId){
+                $query->whereHas('patients', function ($query) use($patientId){
+                    $query->where('patient_id', $patientId);
+                });
+            });
+        });
+    }
+
     protected function deleteQuestions()
     {
         foreach ($this->questions()->get() as $question) {

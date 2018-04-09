@@ -67,7 +67,7 @@
             }
         },
         mounted() {
-            store.dispatch('psych/classInformation/query');
+            store.dispatch('psych/classInformation/query'); 
         }
     }
 </script>
