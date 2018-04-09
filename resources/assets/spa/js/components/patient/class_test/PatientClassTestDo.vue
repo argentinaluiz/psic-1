@@ -42,7 +42,7 @@
 									<ol class="nav nav-pills">
                                         <li v-for="(question,index) in classTest.questions">
                                             <a href="#" @click.prevent="setQuestion(question)">
-                                                <span class="label label-default">
+                                                <span class="label" :class="defineColorQuestion(question)">
                                                     Quest. #{{index+1}}
                                                 </span>
                                             </a>
@@ -89,6 +89,9 @@
             classTestDateEnd() {
                 let classTest = this.classTest;
                 return classTest ? this.$options.filters.dateTimeBr(classTest.date_end) : '';
+            },
+            choices(){
+                return store.state.patient.patientClassTest.patientClassTest.choices;
             }
         },
         mounted() {
@@ -105,6 +108,12 @@
         methods:{
             setQuestion(question){
                 store.commit('patient/classTest/setQuestion',question);
+            },
+            defineColorQuestion(question){
+                return{
+                    'label-default': !this.choices.hasOwnProperty(question.id),
+                    'label-primary': this.choices.hasOwnProperty(question.id)
+                }
             },
             save(){
 
