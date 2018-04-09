@@ -47,8 +47,11 @@ Route::group([
             });
             Route::group(['prefix' => 'class_meetings/{class_meeting}', 'as' => 'class_meetings.'], function () {
                 Route::resource('class_tests', 'ClassTestsController', ['only' => ['index', 'show']]);
-            });            
-            
+            });
+            Route::group(['prefix' => 'class_tests/{class_test}', 'as' => 'class_tests.'], function () {
+                Route::resource('do', 'PatientClassTestsController', ['only' => ['show','store']]);
+            }); 
+
             Route::resource('class_informations', 'ClassInformationsController', ['only' => ['index', 'show']]);
         });
     });

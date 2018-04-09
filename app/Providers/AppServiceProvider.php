@@ -29,6 +29,17 @@ class AppServiceProvider extends ServiceProvider
             });
             return $items->count() === 1;
         });
+        \Validator::extend('choice_from_question', function ($attribute, $value, $parameters, $validator) {
+            //recebo: 'choices.7.question_choice_id'
+            $data = $validator->getData();
+            $questionIdAttr = str_replace('question_choice_id', 'question_id', $attribute);
+            $questionId = array_get($data, $questionIdAttr);
+
+            $choice = QuestionChoice
+                ::where('question_id', $questionId)
+                ->find($value);
+            return $choice != null;
+        });
     }
 
     /**
