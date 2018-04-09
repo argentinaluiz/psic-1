@@ -113,3 +113,7 @@
         }
     }
 </script>
+
+<style type="text/css" scoped>
+    .nav > li > a {padding: 0px;}
+</style>

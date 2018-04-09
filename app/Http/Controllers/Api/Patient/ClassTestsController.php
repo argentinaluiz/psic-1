@@ -27,10 +27,16 @@ class ClassTestsController extends Controller
 
         $array = $result->toArray();
 
-        $array['questions'] = $result->questions;
+        $array['questions'] = array_map(function ($question) {
 
-        return $result;
-    }
+                $question['choices'] = array_map(function ($choice){
+                    //dd($choice);
+                    unset($choice['true']);
+                    return $choice;
+                }, $question['choices']->toArray());
+            return $question;
+        }, $result->questions->toArray());
 
-   
+        return $array;
+    }   
 }
