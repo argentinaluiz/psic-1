@@ -62,6 +62,9 @@
     export default {
         mixins:[classInformationMixin],
         computed: {
+            storeType(){
+                return 'psych';
+            },
             classTest(){
                 return this.$deepModel('psych.classTest.classTest');
             },

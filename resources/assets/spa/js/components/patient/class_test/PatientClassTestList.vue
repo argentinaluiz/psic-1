@@ -28,10 +28,6 @@
                         <div  class="ibox-content">  
 							 <div class="row">
 								<div class="col-md-12">
-                                    <router-link :to="routeClassTestCreate" class="btn btn-sm btn-primary">
-                                       <span class="glyphicon glyphicon-plus"></span> Nova questão
-                                    </router-link>
-                                    <div class="cleaner_h15"></div>
 									<table class="table table-striped">
 										<thead>
 										<tr>
@@ -40,6 +36,7 @@
                                             <th>Fim</th>
                                             <th>Questões</th>
                                             <th>Pontos</th>
+                                            <th>Meus pontos</th>
                                             <th>Ações</th>
 										</tr>
 										</thead>
@@ -50,13 +47,9 @@
                                                 <td>{{classTest.date_end | dateTimeBr}}</td>
                                                 <td>{{classTest.total_questions}}</td>
                                                 <td>{{classTest.total_points}}</td>
+                                                <td>00</td>
                                                 <td>
-                                                    <router-link :to="routeClassTestEdit(classTest.id)" class="btn btn-link">
-                                                       <span class="glyphicon glyphicon-pencil"></span> Editar
-                                                    </router-link> |
-                                                    <a href="#" class="btn btn-link" @click.prevent="deleteClassTest(classTest)">
-                                                       <span class="glyphicon glyphicon-trash"></span> Excluir
-                                                    </a>
+                                                   Começar
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -78,42 +71,21 @@
     export default {
         mixins:[classInformationMixin],
         computed: {
+            storeType(){
+                return 'patient';
+            },
             classTests() {
                 return store.state.patient.classTest.classTests;
-            },
-            routeClassTestCreate(){
-                return {
-                    name: 'patient.class_tests.create_data',
-                    params: {
-                        'class_meeting': this.$route.params.class_meeting
-                    }
-                }
             }
         },
         mounted() {
             let classMeetingId = this.$route.params.class_meeting;
-            store.dispatch('patient/classMeeting/get',classMeetingId);
+            let classInformationId = this.$route.params.class_information;
+            store.dispatch('patient/classMeeting/get',{classInformationId, classMeetingId});
             store.dispatch('patient/classTest/query', classMeetingId);
         },
         methods:{
-            routeClassTestEdit(classTestId){
-                return{
-                    name: 'patient.class_tests.update_data',
-                    params:{
-                        class_meeting: this.$route.params.class_meeting,
-                        class_test: classTestId
-                    }
-                }
-            },
-            deleteClassTest(classTest){
-                if(confirm('Deseja excluir esta avaliação?')){
-                    store.dispatch('patient/classTest/delete', {
-                        classMeetingId: this.$route.params.class_meeting,
-                        classTestId: classTest.id
-                    })
-                }
-            }
+            
         }
     }
-  
 </script>

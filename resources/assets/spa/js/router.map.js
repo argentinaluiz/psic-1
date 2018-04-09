@@ -87,7 +87,14 @@ export default [
                     auth: true
                 }
             },
-
+            {
+                name: 'patient.class_tests.list',
+                path: 'classes/:class_information/meetings/:class_meeting/tests',
+                component: require('./components/patient/class_test/PatientClassTestList.vue'),
+                meta: {
+                    auth: true
+                }
+            },
         ]
     },
     {

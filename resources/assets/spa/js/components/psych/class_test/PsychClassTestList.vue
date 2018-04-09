@@ -78,6 +78,9 @@
     export default {
         mixins:[classInformationMixin],
         computed: {
+            storeType(){
+                return 'psych';
+            },
             classTests() {
                 return store.state.psych.classTest.classTests;
             },

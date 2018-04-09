@@ -58,7 +58,7 @@
     import store from '../../store/store';
 
     export default {
-        computed: {
+        computed: {//não aceita params
             classMeetings() {
                 return store.state.patient.classMeeting.classMeetings;
             },
@@ -70,6 +70,17 @@
             let classInformationId = this.$route.params.class_information;
             store.dispatch('patient/classInformation/get',classInformationId);
             store.dispatch('patient/classMeeting/query',classInformationId );
+        },
+        methods:{
+            routeClassTestList(classMeeting){
+                return{
+                    name: 'patient.class_tests.list', 
+                    params:{
+                        class_information: this.$route.params.class_information,
+                        class_meeting: classMeeting.id,
+                    }
+                }
+            }
         }
     }
 </script>
