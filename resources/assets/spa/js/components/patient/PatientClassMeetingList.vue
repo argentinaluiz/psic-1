@@ -12,7 +12,8 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Listagem de classes</h5>
+                            <h5>Escolher um nome de  <small v-if="classInformation">{{classInformation | classInformationAlias}}</small>
+                                 </h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -28,21 +29,15 @@
 									<table class="table table-striped">
 										<thead>
 										<tr>
-											<th>Data Início</th>
-											<th>Data Fim</th>
-											<th>Classe</th>
-											<th>Patologia</th>
+											<th>Escolher nome</th>
                                             <th>Ações</th>
 										</tr>
 										</thead>
 										<tbody>
 										 <tr v-for="classMeeting in classMeetings">
-											<td>{{classMeeting.class_information.date_start | dateBr}}</td>
-											<td>{{classMeeting.class_information.date_end | dateBr}}</td>
-											<td>{{classMeeting.class_information | classInformationAlias }}</td>
 											<td>{{classMeeting.subject.name}}</td>
 											<td>
-                                                <router-link class="btn btn-link" :to="{name: 'psych.class_tests.list', params: {class_meeting: classMeeting.id} }">
+                                                <router-link class="btn btn-link" :to="{name: 'patient.class_tests.list', params: {class_meeting: classMeeting.id} }">
                                                    <span class="glyphicon glyphicon-list-alt"></span> Questões
                                                 </router-link>
                                             </td>
@@ -63,13 +58,29 @@
     import store from '../../store/store';
 
     export default {
-        computed: {
+        computed: {//não aceita params
             classMeetings() {
-                return store.state.psych.classMeeting.classMeetings;
+                return store.state.patient.classMeeting.classMeetings;
+            },
+            classInformation(){
+                return store.state.patient.classInformation.classInformation;
             }
         },
         mounted() {
-            store.dispatch('psych/classMeeting/query');
+            let classInformationId = this.$route.params.class_information;
+            store.dispatch('patient/classInformation/get',classInformationId);
+            store.dispatch('patient/classMeeting/query',classInformationId );
+        },
+        methods:{
+            routeClassTestList(classMeeting){
+                return{
+                    name: 'patient.class_tests.list', 
+                    params:{
+                        class_information: this.$route.params.class_information,
+                        class_meeting: classMeeting.id,
+                    }
+                }
+            }
         }
     }
 </script>

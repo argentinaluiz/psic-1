@@ -48,8 +48,12 @@ class AuthServiceProvider extends ServiceProvider
             return $user->userable instanceof Admin;
          });
 
-         \Gate::define('psychoanalyst', function($user){
+        \Gate::define('psychoanalyst', function($user){
             return $user->userable instanceof Psychoanalyst;
+        });
+
+        \Gate::define('patient', function($user){
+            return $user->userable instanceof Patient;
         });
 
          \Gate::before(function($user, $ability){

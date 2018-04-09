@@ -35,6 +35,25 @@ Route::group([
             Route::resource('class_informations', 'ClassInformationsController', ['only' => ['index', 'show']]);
             Route::resource('class_meetings', 'ClassMeetingsController', ['only' => ['index', 'show']]);
         });
+        Route::group([
+            'prefix' => 'patient', 
+            'as' => 'patient.', 
+            'namespace' => 'Patient\\',
+            //Observe que o middleware can:psychoanalyst está fazendo a segurança da rota para que pacientes não consigam acessá-la. A diretiva can testa a habilidade que criamos no App\Providers\AuthServiceProvider, anteriormente.
+            //'middleware' => 'can:patient'
+        ], function(){ //GET /class_meeting/1/class_tests/1 - forma alinhada porque para consultar as questões, preciso consultar as meetings
+            Route::group(['prefix' => 'class_informations/{class_information}', 'as' => 'class_informations.'], function(){
+                Route::resource('class_meetings', 'ClassMeetingsController', ['only' => ['index', 'show']]);
+            });
+            Route::group(['prefix' => 'class_meetings/{class_meeting}', 'as' => 'class_meetings.'], function () {
+                Route::resource('class_tests', 'ClassTestsController', ['only' => ['index', 'show']]);
+            });
+            Route::group(['prefix' => 'class_tests/{class_test}', 'as' => 'class_tests.'], function () {
+                Route::resource('do', 'PatientClassTestsController', ['only' => ['show','store']]);
+            }); 
+
+            Route::resource('class_informations', 'ClassInformationsController', ['only' => ['index', 'show']]);
+        });
     });
 
     Route::group(['middleware' => 'auth:api'], function () {

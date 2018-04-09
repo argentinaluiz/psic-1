@@ -31,19 +31,20 @@
 											<th>Data Início</th>
 											<th>Data Fim</th>
 											<th>Tipo</th>
-											<th>Subdivisão</th>
-											<th>Semestre</th>
-											<th>Ano</th>
+											<th>Ações</th>
 										</tr>
 										</thead>
 										<tbody>
 										 <tr v-for="classInformation in classInformations">
 											<td>{{classInformation.date_start | dateBr }}</td>
 											<td>{{classInformation.date_end | dateBr }}</td>
-											<td>{{classInformation.name }}</td>
-											<td></td>
-											<td>{{classInformation.semester }}</td>
-											<td>{{classInformation.year }}</td>
+											<td>{{classInformation | classInformationAlias }}</td>
+											<td>
+                                                <router-link :to="{name: 'patient.class_meetings.list', params: {class_information: classInformation.id} }" class="btn btn-link">
+                                                    EscolherNome
+                                                </router-link>|
+
+                                            </td>
 										</tr>
 										</tbody>
 									</table>
@@ -63,11 +64,11 @@
     export default {
         computed: {
             classInformations() {
-                return store.state.psych.classInformation.classInformations;
+                return store.state.patient.classInformation.classInformations;
             }
         },
         mounted() {
-            store.dispatch('psych/classInformation/query'); 
+            store.dispatch('patient/classInformation/query');
         }
     }
 </script>

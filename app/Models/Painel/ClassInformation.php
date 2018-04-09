@@ -44,6 +44,13 @@ class ClassInformation extends Model implements TableInterface
         });
     }
 
+    public function scopeByPatient($query, $patientId)
+    {
+        return $query->whereHas('patients', function ($query) use($patientId){
+            $query->where('patient_id', $patientId);
+        });
+    }
+
     /**
      * A list of headers to be used when a table is displayed
      *

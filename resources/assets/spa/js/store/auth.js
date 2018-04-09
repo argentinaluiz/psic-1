@@ -6,6 +6,9 @@ Em nossa aplicação não exigimos um local específico para o token ser gravado
 
 import JwtToken from '../services/jwt-token';
 
+const ROLE_PSYCHOANALYST = 2;
+const ROLE_PATIENT = 3;
+
 const state = {
     user: JwtToken.payload != null ? JwtToken.payload.user : null,
     check: JwtToken.token != null
@@ -38,10 +41,19 @@ const actions = {
             .catch(afterLogout);
     }
 };
+//O getters pode receber parâmetros e o computer não
+const getters = {
+    isPsych(state){
+        return state.user && state.user.role == ROLE_PSYCHOANALYST;
+    },
+    isPatient(state){
+        return state.user && state.user.role == ROLE_PATIENT;
+    }
+}
 
 const module = {
     namespaced: true,
-    state, mutations, actions
+    state, mutations, actions, getters
 };
 
 export default module;

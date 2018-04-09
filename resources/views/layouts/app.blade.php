@@ -17,7 +17,7 @@
 	@stack('extra-css')
 
 </head>
-<body>
+<body id="admin">
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
 			<div class="sidebar-collapse">

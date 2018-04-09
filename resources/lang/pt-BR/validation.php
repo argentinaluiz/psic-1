@@ -88,6 +88,8 @@ return [
     'uploaded'             => 'Falha no Upload do arquivo :attribute.',
     'url'                  => 'O formato da URL informada para o campo :attribute é inválido.',
     'document_number'      => 'O documento é inválido.',
+    'choice_true'          => 'Escolha uma alternativa correta.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

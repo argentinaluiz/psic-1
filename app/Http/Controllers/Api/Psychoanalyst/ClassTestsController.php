@@ -22,12 +22,12 @@ class ClassTestsController extends Controller
 
     public function store(ClassTestRequest $request, ClassMeeting $classMeeting)
     {
-        //
+        return ClassTest::createFully($request->all()+['class_meeting_id' => $classMeeting->id]);
     }
 
-    public function update(ClassTestRequest $request, ClassMeeting $classMeeting, ClassTest $classTest)
+    public function update(ClassTestRequest $request,ClassMeeting $classMeeting,ClassTest $classTest)
     {
-        //
+        return $classTest->updateFully($request->all());
     }
 
     public function show(ClassMeeting $classMeeting, $id)
@@ -35,11 +35,17 @@ class ClassTestsController extends Controller
         $result = ClassTest
             ::byPsychoanalyst(\Auth::user()->userable->id)
             ->findOrFail($id);
+        $array = $result->toArray();
+        $array['questions'] = $result->questions;
         return $result;
     }
 
-    public function destroy(ClassTest $classTest)
+    public function destroy(ClassMeeting $classMeeting, $classTestId)
     {
-        //
+        $classTest = ClassTest
+            ::byPsychoanalyst(\Auth::user()->userable->id)
+            ->findOrFail($classTestId);
+        $classTest->deleteFully();
+        return response()->json([],204);
     }
 }

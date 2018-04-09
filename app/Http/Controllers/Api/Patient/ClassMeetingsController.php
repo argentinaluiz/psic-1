@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Patient;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Painel\ClassInformation;
 
 class ClassMeetingsController extends Controller
 {
