@@ -7,10 +7,12 @@
             </div>
             <div class="panel-body">
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="choice in question.choices">
-                        <span class="glyphicon glyphicon-ok" v-if="choice['true']"></span>
-                        {{choice.choice}}
-                    </li>
+                     <a href="#" @click.prevent="setChoiceTrue(choice)" v-for="(choice,index) in question.choices">
+                        <li class="list-group-item" :class="activeChoice(choice)">
+                            <span class="glyphicon glyphicon-ok" v-if="choice['true']"></span>
+                           {{index+1}} - {{choice.choice}}
+                        </li>
+                    </a>
                 </ul>
             </div>
         </div>
@@ -26,7 +28,23 @@
             },
             questionIndex(){
                 return store.state.patient.classTest.questionIndex;
+            },
+            choices(){
+                return store.state.patient.patientClassTest.patientClassTest.choices;
+            },
+            patientClassTest(){
+                return store.state.student.patientClassTest.patientClassTest;
             }
+        },
+        methods:{
+            setChoiceTrue(choice){
+                store.commit('patient/patientClassTest/setChoiceTrue',{choiceId: choice.id,question:this.question});
+            },
+            activeChoice(choice){
+                return {
+                    'active': this.choices[this.question.id] == choice.id
+                }
+            },
         }
     }
 </script>
