@@ -52,7 +52,9 @@ const Psychoanalyst = {
 Psychoanalyst.classInformation.query() ou Psychoanalyst.classInformation.get()*/
 
 const Patient = {
-    classInformation: Vue.resource('patient/class_informations/{class_information}')
+    classInformation: Vue.resource('patient/class_informations/{class_information}'),
+    classMeeting: Vue.resource('patient/class_informations/{class_information}/class_meetings/{class_meeting}')
+
 };
 
 export {

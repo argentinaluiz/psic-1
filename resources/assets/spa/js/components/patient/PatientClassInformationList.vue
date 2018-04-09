@@ -38,9 +38,12 @@
 										 <tr v-for="classInformation in classInformations">
 											<td>{{classInformation.date_start | dateBr }}</td>
 											<td>{{classInformation.date_end | dateBr }}</td>
-											<td>{{classInformation.name | classInformationAlias }}</td>
+											<td>{{classInformation | classInformationAlias }}</td>
 											<td>
-                                                EscolherNome
+                                                <router-link :to="{name: 'patient.class_meetings.list', params: {class_information: classInformation.id} }" class="btn btn-link">
+                                                    EscolherNome
+                                                </router-link>|
+
                                             </td>
 										</tr>
 										</tbody>
