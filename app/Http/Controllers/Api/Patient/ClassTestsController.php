@@ -24,6 +24,11 @@ class ClassTestsController extends Controller
         $result = ClassTest
             ::byPatient(\Auth::user()->userable->id)
             ->findOrFail($id);
+
+        $array = $result->toArray();
+
+        $array['questions'] = $result->questions;
+
         return $result;
     }
 

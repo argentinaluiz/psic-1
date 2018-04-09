@@ -38,8 +38,16 @@
                                     <div class="cleaner_h10"></div>
                                     <button class="btn btn-sm btn-primary btn-block" @click="save">Salvar</button>
 								</div>
-                                <div class="col-md-9">
-									
+                                <div class="col-md-9" v-if="classTest">
+									<ol class="nav nav-pills">
+                                        <li v-for="(question,index) in classTest.questions">
+                                            <a href="#" @click.prevent="setQuestion(question)">
+                                                <span class="label label-default">
+                                                    Quest. #{{index+1}}
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ol>
 								</div>
 							</div> 
                         </div>
@@ -67,8 +75,9 @@
         mounted() {
             let classMeetingId = this.$route.params.class_meeting;
             let classInformationId = this.$route.params.class_information;
+            let classTestId = this.$route.params.class_test;
             store.dispatch('patient/classMeeting/get',{classInformationId, classMeetingId});
-            store.dispatch('patient/classTest/query', classMeetingId);
+            store.dispatch('patient/classTest/get', {classMeetingId,classTestId});
         },
         methods:{
             
