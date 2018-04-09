@@ -28,6 +28,7 @@ class PatientClassTestRequest extends FormRequest
         $classTest = $this->route('class_test');
         $data = [
             'class_test_id' => $classTest->id,
+            'date_start' => $classTest->date_start,
             'date_end' => $classTest->date_end,
             'date' => (new Carbon())->format(\DateTime::ISO8601)
         ];
