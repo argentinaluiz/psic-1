@@ -49,7 +49,9 @@
                                                 <td>{{classTest.total_points}}</td>
                                                 <td>00</td>
                                                 <td>
-                                                   Começar
+                                                    <router-link :to="routeClassTestDo(classTest)">
+                                                         Começar
+                                                    </router-link>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -85,7 +87,16 @@
             store.dispatch('patient/classTest/query', classMeetingId);
         },
         methods:{
-            
+            routeClassTestDo(classTest){
+                return{
+                    name: 'patient.class_tests.do',
+                    params: {
+                        class_information: this.$route.params.class_information,
+                        class_meeting:this.$route.params.class_meeting,
+                        class_test: classTest.id
+                    }
+                }
+            }
         }
     }
 </script>
