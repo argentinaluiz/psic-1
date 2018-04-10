@@ -24,7 +24,12 @@ class PatientClassTest extends Model
         return $this->hasMany(PatientQuestionChoice::class);
     }
 
-
-
-
+    public static function createFully(array $data){
+        $patientClassTest = parent::create($data);
+        foreach ($data['choices'] as $choice){
+            //question_id and question_choice_id
+            $patientClassTest->choices()->create($choice);
+        }
+        return $patientClassTest;
+    }
 }

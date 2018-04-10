@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Models\Painel\ClassMeeting;
+use App\Models\Painel\ClassTest;
 
 class PatientClassTestRequest extends FormRequest
 {
