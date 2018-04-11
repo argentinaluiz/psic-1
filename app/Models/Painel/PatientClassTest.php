@@ -30,6 +30,24 @@ class PatientClassTest extends Model
             //question_id and question_choice_id
             $patientClassTest->choices()->create($choice);
         }
+        $patientClassTest->point = self::calculatePoint($patientClassTest);
+        $patientClassTest->save();
         return $patientClassTest;
     }
+
+    public static function calculatePoint(PatientClassTest $patientClassTest){
+        $questions = $patientClassTest->classTest->questions;
+        $patientChoices = $patientClassTest->choices;
+        $point = 0;
+        foreach ($questions as $question){
+            $patientChoice = $patientChoices->where('question_id',$question->id)->first();
+            if($patientChoice){
+                $choiceTrue = $question->choices()->where('true',true)->first();
+                $point += $choiceTrue->id == $patientChoice->question_choice_id
+                    ?(float)$question->point:0;
+            }
+        }
+        return $point;
+    }
+
 }
