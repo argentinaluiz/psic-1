@@ -98,12 +98,16 @@
             let classMeetingId = this.$route.params.class_meeting;
             let classInformationId = this.$route.params.class_information;
             let classTestId = this.$route.params.class_test;
+            let patientClassTestId = this.$route.params.patient_class_test;
             store.dispatch('patient/classMeeting/get',{classInformationId, classMeetingId});
             store.dispatch('patient/classTest/get', {classMeetingId,classTestId})
                 .then(() => {
                     let question = this.classTest.questions[0];
                     store.commit('patient/classTest/setQuestion',question);
                 });
+            if(patientClassTestId){
+                store.dispatch('patient/patientClassTest/get',{classTestId,patientClassTestId});
+            }
         },
         methods:{
             setQuestion(question){

@@ -52,9 +52,19 @@
                                                 </td>
                                                 <td v-else></td>
                                                 <td>
-                                                    <router-link :to="routeClassTestDo(classTest)">
-                                                        Começar
-                                                    </router-link>
+                                                    <template v-if="!classTest.patient_class_test && afterStart(classTest.date_start) && beforeEnd(classTest.date_end)">
+                                                        <router-link :to="routeClassTestDo(classTest)">
+                                                            Começar
+                                                        </router-link>
+                                                    </template>
+                                                    <template v-if="classTest.patient_class_test && classTest.patient_class_test.point">
+                                                        <router-link :to="routeClassTestDo(classTest)">
+                                                            Ver
+                                                        </router-link>
+                                                    </template>
+                                                    <template v-if="classTest.patient_class_test && !classTest.patient_class_test.point">
+                                                        Em análise
+                                                    </template>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -72,6 +82,7 @@
 <script type="text/javascript">
     import store from '../../../store/store';
     import classInformationMixin from '../../../mixins/class_information.mixin';
+    import moment from 'moment';
 
     export default {
         mixins:[classInformationMixin],
@@ -90,13 +101,22 @@
             store.dispatch('patient/classTest/query', classMeetingId);
         },
         methods:{
+            afterStart(date) {
+                let date1 = moment(date, moment.ISO_8601).toDate();
+                return new Date().getTime() >= date1.getTime();
+            },
+            beforeEnd(date) {
+                let date1 = moment(date, moment.ISO_8601).toDate();
+                return new Date().getTime() <= date1.getTime();
+            },
             routeClassTestDo(classTest){
                 return{
                     name: 'patient.class_tests.do',
                     params: {
                         class_information: this.$route.params.class_information,
                         class_meeting:this.$route.params.class_meeting,
-                        class_test: classTest.id
+                        class_test: classTest.id,
+                        patient_class_test: classTest.patient_class_test ? classTest.patient_class_test.id : null
                     }
                 }
             }

@@ -97,7 +97,7 @@ export default [
             },
             {
                 name: 'patient.class_tests.do',
-                path: 'classes/:class_information/meetings/:class_meeting/tests/:class_test/do',
+                path: 'classes/:class_information/meetings/:class_meeting/tests/:class_test/do/:patient_class_test?',
                 component: require('./components/patient/class_test/PatientClassTestDo.vue'),
                 meta: {
                     auth: true

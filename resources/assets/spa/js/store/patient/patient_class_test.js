@@ -22,10 +22,10 @@ const mutations = {
 };
 
 const actions = {
-    get(context, {classMeetingId,classTestId}){
-        return Patient.classTest.get({class_meeting: classMeetingId, class_test: classTestId})
+    get(context, {patientClassTestId,classTestId}){
+        return Patient.patientClassTest.get({patient_class_test: patientClassTest, class_test: classTestId})
             .then(response => {
-                context.commit('setClassTest',response.data);
+                context.commit('setPatientClassTest',response.data);
             })
     },
 };

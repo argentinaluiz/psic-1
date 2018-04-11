@@ -42,13 +42,14 @@ class ClassTestsController extends Controller
 
         $array = $result->toArray();
 
-        $array['questions'] = array_map(function ($question) {
+        $array['questions'] = array_map(function ($question) use($array) {
 
-                $question['choices'] = array_map(function ($choice){
-                    //dd($choice);
+            if(!ClassTest::greatherDateEnd30Minutes($array['date_end'])) {
+                $question['choices'] = array_map(function ($choice) use ($array){
                     unset($choice['true']);
                     return $choice;
                 }, $question['choices']->toArray());
+            }
             return $question;
         }, $result->questions->toArray());
 

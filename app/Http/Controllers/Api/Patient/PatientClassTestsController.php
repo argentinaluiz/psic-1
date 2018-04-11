@@ -21,7 +21,19 @@ class PatientClassTestsController extends Controller
 
     public function show(ClassTest $classTest, $id)
     {
-        //
-    }
+        if(!ClassTest::greatherDateEnd30Minutes($classTest->date_end)) {
+            abort(403);
+        }
 
+        $result = PatientClassTest
+            ::where('patient_id', \Auth::user()->userable->id)
+            ->findOrFail($id);
+
+        return $result->toArray() + [
+                'choices' => $result
+                    ->choices
+                    ->pluck('question_choice_id', 'question_id')
+                    ->toArray()
+            ];
+    }
 }
