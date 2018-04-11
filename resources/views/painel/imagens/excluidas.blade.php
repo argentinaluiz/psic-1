@@ -29,7 +29,7 @@
 						<td>{{ $registro->id }}</td>
 						<td>{{ $registro->title }}</td>
 						<td>{{ $registro->description }}</td>
-						<td><img width="50" src="{{$registro->textoUrl()}}" alt="{{$registro->title}}"></td>
+						<td><img width="50" src="{{$registro->galeriaUrl()}}" alt="{{$registro->title}}"></td>
 
 						<td>
 							<form action="{{route('imagens.recupera',$registro->id)}}" method="post">
