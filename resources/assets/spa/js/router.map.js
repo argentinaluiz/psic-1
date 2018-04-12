@@ -103,6 +103,14 @@ export default [
                     auth: true
                 }
             },
+            {
+                name: 'patient.chart.per_subject',
+                path: 'classes/:class_information/meetings/:class_meeting/charts/per_subject',
+                component: require('./components/patient/chart/PatientChartPerSubject.vue'),
+                meta: {
+                    auth: true
+                }
+            },
         ]
     },
     {

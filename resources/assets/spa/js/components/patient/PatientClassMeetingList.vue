@@ -39,6 +39,9 @@
 											<td>
                                                 <router-link class="btn btn-link" :to="{name: 'patient.class_tests.list', params: {class_meeting: classMeeting.id} }">
                                                    <span class="glyphicon glyphicon-list-alt"></span> Questões
+                                                </router-link>|
+                                                <router-link class="btn btn-link" :to="{name: 'patient.chart.per_subject', params: {class_meeting: classMeeting.id} }">
+                                                    <span class="glyphicon glyphicon-signal"></span> Aproveitamento
                                                 </router-link>
                                             </td>
 										</tr>

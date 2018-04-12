@@ -55,7 +55,13 @@ const Patient = {
     classInformation: Vue.resource('patient/class_informations/{class_information}'),
     classMeeting: Vue.resource('patient/class_informations/{class_information}/class_meetings/{class_meeting}'),
     classTest: Vue.resource('patient/class_meetings/{class_meeting}/class_tests/{class_test}'),
-    patientClassTest: Vue.resource('patient/class_tests/{class_test}/do/{patient_class_test}')
+    patientClassTest: Vue.resource('patient/class_tests/{class_test}/do/{patient_class_test}'),
+    classTestResult: Vue.resource('',{},{
+        perSubject:{
+            method: 'GET',
+            url: 'patient/class_tests/results/per_subject?class_meeting={class_meeting}'
+        }
+    })
 };
 
 export {
