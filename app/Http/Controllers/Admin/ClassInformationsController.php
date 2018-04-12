@@ -79,7 +79,7 @@ class ClassInformationsController extends Controller
     public function edit(ClassInformation $class_information)
     {
         $form = \FormBuilder::create(ClassInformationForm::class, [
-            'url' => route('admin.class_informations.update',['class_information' => $class_information->id]),
+            'url' => route('class_informations.update',['class_information' => $class_information->id]),
             'method' => 'PUT',
             'model' => $class_information
         ]);
