@@ -8,6 +8,7 @@ use Faker\Factory;
 use Faker\Generator as FakerGenerator;
 use Faker\Factory as FakerFactory;
 use Illuminate\Support\ServiceProvider;
+use App\Models\Painel\QuestionChoice;
 
 class AppServiceProvider extends ServiceProvider
 {

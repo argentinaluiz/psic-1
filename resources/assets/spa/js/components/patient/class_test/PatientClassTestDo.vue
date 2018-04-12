@@ -36,7 +36,8 @@
                                     <br/>
                                     <strong>Fim:</strong>     {{classTestDateEnd}}
                                     <div class="cleaner_h10"></div>
-                                    <button class="btn btn-sm btn-primary btn-block" @click="save">Salvar</button>
+                                    <button class="btn btn-sm btn-primary btn-block" @click="save"
+                                            v-if="!patientClassTest.id">Salvar</button>
 								</div>
                                 <div class="col-md-9" v-if="classTest">
 									<ol class="nav nav-pills">
@@ -90,8 +91,11 @@
                 let classTest = this.classTest;
                 return classTest ? this.$options.filters.dateTimeBr(classTest.date_end) : '';
             },
+            patientClassTest(){
+                return store.state.patient.patientClassTest.patientClassTest;
+            },
             choices(){
-                return store.state.patient.patientClassTest.patientClassTest.choices;
+                return this.patientClassTest.choices;
             }
         },
         mounted() {
@@ -116,11 +120,45 @@
             defineColorQuestion(question){
                 return{
                     'label-default': !this.choices.hasOwnProperty(question.id),
-                    'label-primary': this.choices.hasOwnProperty(question.id)
+                    'label-primary': this.choices.hasOwnProperty(question.id),
+                    'label-success': store.getters['patient/classTest/isTrue'](question,this.choices[question.id]),
+                    'label-danger': this.patientClassTest.id && !store.getters['patient/classTest/isTrue'](question,this.choices[question.id])
                 }
             },
-            save(){
-
+           save() {
+                let classMeetingId = this.$route.params.class_meeting;
+                let classInformationId = this.$route.params.class_information;
+                let afterSave = () => {
+                    new PNotify({
+                        title: 'Informação',
+                        text: 'Questão salva com sucesso',
+                        styling: 'brighttheme',
+                        type: 'success'
+                    });
+                    this.$router.push({
+                        name: 'patient.class_tests.list',
+                        params: {
+                            class_information: classInformationId,
+                            class_meeting: classMeetingId,
+                        }
+                    });
+                };
+                let error = (responseError) => {
+                    let messageError = 'Não foi possível realizar a operação! Tente novamente.';
+                    switch (responseError.status) {
+                        case 422:
+                            messageError = 'Informações inválidas! Verifique os dados da questão novamente.'
+                            break;
+                    }
+                    new PNotify({
+                        title: 'Mensagem de erro',
+                        text: messageError,
+                        styling: 'brighttheme',
+                        type: 'error'
+                    });
+                };
+                store.dispatch('patient/patientClassTest/create', this.$route.params.class_test)
+                    .then(afterSave, error);
             }
 
         }

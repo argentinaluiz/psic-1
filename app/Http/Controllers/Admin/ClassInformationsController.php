@@ -79,14 +79,13 @@ class ClassInformationsController extends Controller
     public function edit(ClassInformation $class_information)
     {
         $form = \FormBuilder::create(ClassInformationForm::class, [
-            'url' => route('class_informations.update',['class_information' => $class_information->id]),
+            'url' => route('admin.class_informations.update',['class_information' => $class_information->id]),
             'method' => 'PUT',
             'model' => $class_information
         ]);
 
         return view('admin.class_informations.edit', compact('form'));
     }
-
     /**
      * Update the specified resource in storage.
      *

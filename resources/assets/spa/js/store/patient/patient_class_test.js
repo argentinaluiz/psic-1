@@ -28,6 +28,9 @@ const actions = {
                 context.commit('setPatientClassTest',response.data);
             })
     },
+    create(context, classTestId){
+        return Patient.patientClassTest.save({class_test: classTestId},context.state.patientClassTest)
+    }
 };
 
 export default {
