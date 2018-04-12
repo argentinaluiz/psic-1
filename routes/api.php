@@ -48,10 +48,14 @@ Route::group([
             Route::group(['prefix' => 'class_meetings/{class_meeting}', 'as' => 'class_meetings.'], function () {
                 Route::resource('class_tests', 'ClassTestsController', ['only' => ['index', 'show']]);
             });
-            Route::group(['prefix' => 'class_tests/{class_test}', 'as' => 'class_tests.'], function () {
-                Route::resource('do', 'PatientClassTestsController', ['only' => ['show','store']]);
+            Route::group(['prefix' => 'class_tests', 'as' => 'class_tests.'], function () {
+                Route::group(['prefix' => '{class_test}'], function(){
+                    Route::resource('do', 'PatientClassTestsController', ['only' => ['show','store']]);
+                });
+                Route::group(['prefix' => 'results'], function(){ //class_tests/results/per_subject
+                    Route::get('per_subject', 'ClassTestResultsController@perSubject');
+                });
             }); 
-
             Route::resource('class_informations', 'ClassInformationsController', ['only' => ['index', 'show']]);
         });
     });
@@ -59,5 +63,4 @@ Route::group([
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('/logout', 'AuthController@logout');
     });
-
 });

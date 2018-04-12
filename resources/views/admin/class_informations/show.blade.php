@@ -12,8 +12,8 @@
 
 @section('content')
     @php
-        $linkEdit = route('class_patients.edit',['class_patients' => $class_information->id]);
-        $linkDelete = route('class_patients.destroy',['class_patients' => $class_information->id]);
+        $linkEdit = route('class_patients.edit',['class_patients' => $class_patient->id]);
+        $linkDelete = route('class_patients.destroy',['class_patients' => $class_patient->id]);
     @endphp
     {!! Button::primary(Icon::pencil().' Editar')->asLinkTo($linkEdit) !!}
     {!!
@@ -36,23 +36,23 @@
         <tbody>
         <tr>
             <th scope="row">ID</th>
-            <td>{{$class_information->id}}</td>
+            <td>{{$class_patient->id}}</td>
         </tr>
         <tr>
             <th scope="row">Data Início</th>
-            <td>{{$class_information->date_start->format('d/m/Y')}}</td>
+            <td>{{$class_patient->date_start->format('d/m/Y')}}</td>
         </tr>
         <tr>
             <th scope="row">Data Fim</th>
-            <td>{{$class_information->date_start->format('d/m/Y')}}</td>
+            <td>{{$class_patient->date_start->format('d/m/Y')}}</td>
         </tr>
         <tr>
             <th scope="row">Nome</th>
-            <td>{{$class_information->name}}</td>
+            <td>{{$class_patient->name}}</td>
         </tr>
         <tr>
             <th scope="row">Semester</th>
-            <td>{{$class_information->year}}</td>
+            <td>{{$class_patient->year}}</td>
         </tr>
         </tbody>
     </table>
