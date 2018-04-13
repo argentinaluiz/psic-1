@@ -51,7 +51,7 @@
                                                     {{classTest.patient_class_test.point}}
                                                 </td>
                                                 <td v-else></td>
-                                                <td>
+                                                <td class="btn btn-link">
                                                     <template v-if="!classTest.patient_class_test && afterStart(classTest.date_start) && beforeEnd(classTest.date_end)">
                                                         <router-link :to="routeClassTestDo(classTest)">
                                                             Começar
