@@ -21,8 +21,10 @@ class ClassTestResultsController extends Controller
             ->join('class_tests', 'class_tests.id', '=', 'patient_class_tests.class_test_id')
             //->join('class_meetings','class_meetings.id','=','class_tests.class_meeting_id')
             //->join('subjects','subjects.id','=','class_meetings.subject_id')
-            ->where('patient_id',1)
-            ->where('class_tests.class_meeting_id',54)
+            ->where('patient_id', \Auth::user()->userable->id)
+            ->where('class_tests.class_meeting_id','class_meetings.id')
+           // ->where('patient_id', 15)
+           // ->where('class_tests.class_meeting_id',245)
             ->orderBy('patient_class_tests.created_at', 'asc')
             ->get();
         $results->map(function ($item) { //\stdClass - acessamos as informações como se fossem uma propriedade do objeto

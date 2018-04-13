@@ -59,7 +59,7 @@
             let classInformationId = this.$route.params.class_information;
             let classMeetingId = this.$route.params.class_meeting;
             store.dispatch('patient/classInformation/get', classInformationId);
-            store.dispatch('student/classMeeting/get', {classInformationId,classMeetingId})
+            store.dispatch('patient/classMeeting/get', {classInformationId,classMeetingId})
                 .then(this.getData)
                 .then(data => {
                     if(data.length === 1){
@@ -90,7 +90,7 @@
                 let data = [
                     ["Data Avaliação","Aproveitamento"],
                 ];
-                return Student.classTestResult.perSubject({class_teaching: this.classTeaching.id})
+                return Patient.classTestResult.perSubject({class_meeting: this.classMeeting.id})
                     .then(response => {
                         for(let object of response.data){
                             //{created:, percentage:} -> ["",90]

@@ -14,14 +14,15 @@ class PatientClassTestsController extends Controller
     {
         //se eu usar o $request->all(); irei chamar todos os dados como no original. Como fizemos o merge no PatientClassTestRequest, precisamos usar o $request->input();
         $patientClassTest = PatientClassTest::createFully($request->input() + [
-            'patient_id' => \Auth::user()->userable->id
-        ]);
-    return $patientClassTest;
+                'patient_id' => \Auth::user()->userable->id
+            ]);
+        return $patientClassTest;
+
     }
 
     public function show(ClassTest $classTest, $id)
     {
-        if(!ClassTest::greatherDateEnd30Minutes($classTest->date_end)) {
+        if (!ClassTest::greatherDateEnd30Minutes($classTest->date_end)) {
             abort(403);
         }
 

@@ -15,8 +15,8 @@ class ClassTestsController extends Controller
     {
         $patientId = \Auth::user()->userable->id;
         $results = ClassTest
-            ::where('class_meeting_id',$classMeeting->id)
-            ->byPatient(\Auth::user()->userable->id)
+            ::where('class_meeting_id', $classMeeting->id)
+            ->byPatient($patientId)
             ->get();
         $results = array_map(function($classTest) use($patientId){
             $patientClassTest = PatientClassTest
@@ -43,17 +43,19 @@ class ClassTestsController extends Controller
         $array = $result->toArray();
 
         $array['questions'] = array_map(function ($question) use($array) {
-           // dd($array['date_end']);
-           
+
             if(!ClassTest::greatherDateEnd30Minutes($array['date_end'])) {
                 $question['choices'] = array_map(function ($choice) use ($array){
                     unset($choice['true']);
                     return $choice;
                 }, $question['choices']->toArray());
             }
+
             return $question;
+
         }, $result->questions->toArray());
 
         return $array;
-    }   
-}
+    }
+} 
+
