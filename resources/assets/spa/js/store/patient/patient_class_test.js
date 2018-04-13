@@ -8,24 +8,24 @@ const state = {
 };
 
 const mutations = {
-    setPatientClassTest(state,patientclassTest){
-        state.patientClassTest = patientclassTest;
+    setPatientClassTest(state, patientClassTest) {
+        state.patientClassTest = patientClassTest;
     },
-    setChoiceTrue(state,{choiceId, question}){
+    setChoiceTrue(state,{choiceId,question}){
         if(!state.patientClassTest.choices.hasOwnProperty(question.id)){
             //vai forçar o Vue a ver choices
             Vue.set(state.patientClassTest.choices,question.id,choiceId);
         }
         state.patientClassTest.choices[question.id] = choiceId;
-       // console.log(state.patientClassTest.choices);
+        // console.log(state.patientClassTest.choices);
     }
 };
 
 const actions = {
-    get(context, {patientClassTestId,classTestId}){
-        return Patient.patientClassTest.get({patient_class_test: patientClassTest, class_test: classTestId})
+    get (context, {patientClassTestId, classTestId}) {
+        return Patient.patientClassTest.get({patient_class_test: patientClassTestId, class_test: classTestId})
             .then(response => {
-                context.commit('setPatientClassTest',response.data);
+                context.commit('setPatientClassTest', response.data);
             })
     },
     create(context, classTestId){

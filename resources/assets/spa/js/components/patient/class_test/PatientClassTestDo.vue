@@ -91,7 +91,7 @@
                 let classTest = this.classTest;
                 return classTest ? this.$options.filters.dateTimeBr(classTest.date_end) : '';
             },
-            patientClassTest(){
+            patientClassTest() {
                 return store.state.patient.patientClassTest.patientClassTest;
             },
             choices(){
