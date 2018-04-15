@@ -12,7 +12,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>(Classe)????
+                            <h5>Definir Nome????
                             <small>{{classInformationName}}</small>
                             </h5>
                             <div class="ibox-tools">
