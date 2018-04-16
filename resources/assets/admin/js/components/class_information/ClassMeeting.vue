@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label">Selecionar patologia</label>
+                    <label class="control-label">Selecionar subcategoria</label>
                     <select class="form-control" name="subjects"></select>
                 </div>
             </div>
@@ -21,7 +21,7 @@
             <tr>
                 <th></th>
                 <th>Psicanalista</th>
-                <th>Patologia</th>
+                <th>Subcategoria</th>
             </tr>
             </thead>
             <tbody>

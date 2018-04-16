@@ -4,7 +4,7 @@
             <h2>Dashboard</h2> 
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li><a href="http://localhost:8000/home">Listar classes</a></li>
+                <li><a href="http://localhost:8000/home">Listar categorias</a></li>
             </ol>
         </div>
         <div class="wrapper wrapper-content  animated fadeInRight">
@@ -12,7 +12,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Listagem de classes</h5>
+                            <h5>Listagem de categorias</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -30,8 +30,8 @@
 										<tr>
 											<th>Data Início</th>
 											<th>Data Fim</th>
-											<th>Classe</th>
-											<th>Patologia</th>
+											<th>Categorias</th>
+											<th>Subcategorias</th>
                                             <th>Ações</th>
 										</tr>
 										</thead>

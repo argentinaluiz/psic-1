@@ -1,20 +1,20 @@
 @extends('layouts.app')
-@section('pag_title', 'Patologias')
+@section('pag_title', 'Subcategorias')
 
 @section('breadcrumb')
     <h2>Configurações</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar Patologias' => route('subjects.index')))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar subcategorias' => route('subjects.index')))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Listagem de patologias</h5>
+     <h5>Listagem de subcategorias</h5>
 @endsection
 
 
 @section('content')
-    <span class="pull-right small text-muted">Total de patologias: {{ $totalSubjects }} </span>
+    <span class="pull-right small text-muted">Total de subcategorias: {{ $totalSubjects }} </span>
     <br/>
-    {!! Button::primary(Icon::create('plus').' Nova patologia')->asLinkTo(route('subjects.create')) !!}
+    {!! Button::primary(Icon::create('plus').' Nova subcategoria')->asLinkTo(route('subjects.create')) !!}
     <div class="cleaner_h15"></div>
         {!!
         Table::withContents($subjects->items())

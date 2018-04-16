@@ -17,7 +17,7 @@ class CreateClassInformationsTable extends Migration
             $table->increments('id');
             $table->date('date_start');
             $table->date('date_end')->nullable();
-            $table->enum('name',array_keys(\App\Models\Painel\ClassInformation::CLASS_TYPES));
+            $table->string('name');
             $table->integer('semester');
             $table->integer('year');
             $table->timestamps();

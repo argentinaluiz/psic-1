@@ -2,11 +2,11 @@
 
 @section('breadcrumb')
     <h2>Configurações</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar patologias' => route('subjects.index'), 'Nova patologia' ))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar subcategorias' => route('subjects.index'), 'Nova subcategoria' ))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Nova patologia</h5>
+     <h5>Nova subcategoria</h5>
 @endsection
 
 @section('content')

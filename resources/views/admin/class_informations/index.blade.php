@@ -1,17 +1,17 @@
 @extends('layouts.app')
-@section('pag_title', 'Classes')
+@section('pag_title', 'Categorias')
 
 @section('breadcrumb')
     <h2>Configurações</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar classes' => route('class_informations.index')))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar categorias' => route('class_informations.index')))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Listagem de classes</h5>
+     <h5>Listagem de categorias</h5>
 @endsection
 
 @section('content')
-    {!! Button::primary(Icon::create('plus').' Nova classe')->asLinkTo(route('class_informations.create')) !!}
+    {!! Button::primary(Icon::create('plus').' Nova categoria')->asLinkTo(route('class_informations.create')) !!}
     <div class="cleaner_h15"></div>
 
     {!!

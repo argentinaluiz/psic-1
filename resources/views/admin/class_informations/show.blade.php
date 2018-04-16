@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('pag_title', 'Classes - Mostrar')
+@section('pag_title', 'Categorias - Mostrar')
 
 @section('breadcrumb')
     <h2>Configurações</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar classes' => route('class_informations.index'), 'Detalhes da classe' ))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar categorias' => route('class_informations.index'), 'Detalhes da categoria' ))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Ver classe</h5>
+     <h5>Ver categoria</h5>
 @endsection
 
 @section('content')

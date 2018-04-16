@@ -28,9 +28,9 @@
 									<table class="table table-striped">
 										<thead>
 										<tr>
-											<th>Data Início</th>
+                                            <th>Data Início</th>
 											<th>Data Fim</th>
-											<th>Tipo</th>
+                                            <th>Categoria</th>
 											<th>Ações</th>
 										</tr>
 										</thead>
@@ -38,7 +38,7 @@
 										 <tr v-for="classInformation in classInformations">
 											<td>{{classInformation.date_start | dateBr }}</td>
 											<td>{{classInformation.date_end | dateBr }}</td>
-											<td>{{classInformation | classInformationAlias }}</td>
+                                            <td>{{classInformation | classInformationAlias }}</td>
 											<td>
                                                 <router-link :to="{name: 'patient.class_meetings.list', params: {class_information: classInformation.id} }" class="btn btn-link">
                                                     EscolherNome

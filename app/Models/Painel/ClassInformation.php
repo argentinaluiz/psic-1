@@ -7,13 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ClassInformation extends Model implements TableInterface
 {
     
-    const CLASS_TYPES = [
-        1 => 'Criança',
-        2 => 'Jovem',
-        3 => 'Adulto',
-        4 => 'Idoso'
-    ];
-    
+   
     protected $fillable = [
         'date_start',
         'date_end',
@@ -62,7 +56,7 @@ class ClassInformation extends Model implements TableInterface
             'ID',
             'Data Início',
             'Data Fim',
-            'Tipo',
+            'Categoria',
             'Semestre',
             'Ano'
         ];
@@ -84,7 +78,7 @@ class ClassInformation extends Model implements TableInterface
                 return $this->date_start->format('d/m/Y'); //Carbon
             case 'Data Fim':
                 return $this->date_end->format('d/m/Y'); 
-            case 'Tipo':
+            case 'Categoria':
                 return $this->name;
             case 'Semestre':
                 return $this->semester;
@@ -92,7 +86,5 @@ class ClassInformation extends Model implements TableInterface
                 return $this->year;
         }
     }
-
-
     
 }

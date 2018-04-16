@@ -15,25 +15,25 @@ class ClassTestResultsController extends Controller
             'patient_class_tests.created_at',
             "(patient_class_tests.`point`/$sumClassTestPoints)*100 as percentage"
         ];
+       // dd($selects);
+        var_dump($selects);
+        die();
         //permite que vc crie a query mais próxima do banco de dados
         $results = \DB::table('patient_class_tests')
-            ->selectRaw(implode(',', $selects))
-            ->join('class_tests', 'class_tests.id', '=', 'patient_class_tests.class_test_id')
-            //->join('class_meetings','class_meetings.id','=','class_tests.class_meeting_id')
-            //->join('subjects','subjects.id','=','class_meetings.subject_id')
-            ->where('patient_id', \Auth::user()->userable->id)
-            ->where('class_tests.class_meeting_id','class_meetings.id')
-           // ->where('patient_id', 15)
-           // ->where('class_tests.class_meeting_id',245)
-            ->orderBy('patient_class_tests.created_at', 'asc')
-            ->get();
-        $results->map(function ($item) { //\stdClass - acessamos as informações como se fossem uma propriedade do objeto
+        ->selectRaw(implode(',', $selects))
+        ->join('class_tests', 'class_tests.id', '=', 'patient_class_tests.class_test_id')
+        //->join('class_meetings','class_meetings.id','=','class_tests.class_meeting_id')
+        //->join('subjects','subjects.id','=','class_meetings.subject_id')
+        ->where('patient_id', \Auth::user()->userable->id)
+        ->where('class_tests.class_meeting_id','class_meeting_id')
+        // ->where('patient_id', 15)
+        // ->where('class_tests.class_meeting_id',245)
+        ->orderBy('patient_class_tests.created_at', 'asc')
+        ->get();
+        $results->map(function ($item) { //\stdClass
             $item->created_at = (new Carbon($item->created_at))->format(Carbon::ISO8601);
             return $item;
         });
         return $results;
-    }
-
-
-
+    }   
 }

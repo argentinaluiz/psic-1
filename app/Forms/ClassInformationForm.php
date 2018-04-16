@@ -23,14 +23,16 @@ class ClassInformationForm extends Form
                 'rules' => 'required|date',
                 'value' => $formatDate
             ])
-
-            ->add('type', 'select',[
-                'label' => 'Tipo de pacientes',
+            ->add('name', 'text', [
+                'label' => 'Categoria',
+                'rules' => 'required|min:3|max:50'
+            ])
+             /*->add('type', 'select',[
+                'label' => 'Categoria',
                 'choices' => ['1'=>'Criança', '2'=>'Jovem', '3'=>'Adulto', '4'=>'Idoso' ],
                 'selected' => '3',
                 'rules' => 'required|in:1,2,3,4'
-            ])
-
+            ])*/
             ->add('semester', 'number', [
                 'label' => 'Semestre (1 ou 2)',
                 'rules' => 'required|in:1,2'

@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('pag_title', 'Patologia - Editar')
+@section('pag_title', 'Subcategoria - Editar')
 
 @section('breadcrumb')
     <h2>Configurações</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar patologias' => route('subjects.index'), 'Editar patologia' ))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar subcategorias' => route('subjects.index'), 'Editar subcategoria' ))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Editar especialidade</h5>
+     <h5>Editar subcategoria</h5>
 @endsection
 
 @section('content')

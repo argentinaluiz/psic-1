@@ -4,7 +4,7 @@
             <h2>Dashboard</h2> 
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li><a href="http://localhost:8000/home">Listar classes</a></li>
+                <li><a href="http://localhost:8000/home">Listar categorias</a></li>
             </ol>
         </div>
         <div class="wrapper wrapper-content  animated fadeInRight">
@@ -12,7 +12,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Listagem de classes</h5>
+                            <h5>Listagem de categorias</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -30,18 +30,16 @@
 										<tr>
 											<th>Data Início</th>
 											<th>Data Fim</th>
-											<th>Tipo</th>
-											<th>Subdivisão</th>
+                                            <th>Categorias</th>
 											<th>Semestre</th>
 											<th>Ano</th>
 										</tr>
 										</thead>
 										<tbody>
 										 <tr v-for="classInformation in classInformations">
-											<td>{{classInformation.date_start | dateBr }}</td>
+                                            <td>{{classInformation.date_start | dateBr }}</td>
 											<td>{{classInformation.date_end | dateBr }}</td>
-											<td>{{classInformation.name }}</td>
-											<td></td>
+                                            <td>{{classInformation.name }}</td>
 											<td>{{classInformation.semester }}</td>
 											<td>{{classInformation.year }}</td>
 										</tr>

@@ -9,7 +9,7 @@
         data(){
             return {
                 menus:[
-                    {name: "Minhas classes", routeName: 'psych.class_meetings.list' }
+                    {name: "Minhas categorias", routeName: 'psych.class_meetings.list' }
                 ],
                 brandRouteName: 'psych.class_meetings.list'
             }

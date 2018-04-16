@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('pag_title', 'Classes - Pacientes')
+@section('pag_title', 'Categorias - Pacientes')
 
 @section('breadcrumb')
     <h2>Configurações</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar classes' => route('class_informations.index'), 'administração de pacientes' ))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar categorias' => route('class_informations.index'), 'administração de pacientes' ))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Administração de pacientes na classe</h5>
+     <h5>Administração de pacientes na categoria</h5>
 @endsection
 
 @section('content')

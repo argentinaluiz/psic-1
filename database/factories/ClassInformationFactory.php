@@ -6,7 +6,7 @@ $factory->define(App\Models\Painel\ClassInformation::class, function (Faker $fak
     return [
         'date_start' => $faker->date(),
         'date_end' => $faker->date(),
-        'name' => rand(1, 4),
+        'name' => $faker->word(10),
         'semester' => rand(1,2),
         'year' => rand(2017,2030),
     ];

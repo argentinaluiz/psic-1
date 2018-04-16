@@ -26,7 +26,7 @@
                         </div>
                         <div  class="ibox-content">  
 							<div class="row">
-								<div id="chart"></div>
+								<div id="chart"> </div>
 							</div>
                             <div class="cleaner_h15"></div>   
                         </div>
@@ -79,7 +79,7 @@
             },
             drawChart(){
                 let options = {
-                    title: `Aproveitamento da definir nome ${this.classMeeting.subject.name}`,
+                    title: `Aproveitamento da subcategoria ${this.classMeeting.subject.name}`,
                     curveType: 'function'
                 };
 
@@ -93,8 +93,8 @@
                 return Patient.classTestResult.perSubject({class_meeting: this.classMeeting.id})
                     .then(response => {
                         for(let object of response.data){
-                            //{created:, percentage:} -> ["",90]
-                            object.created_at = this.$options.filters.dateBr(object.created_at);
+                           // {created:, percentage:} -> ["",90]
+                           // object.created_at = this.$options.filters.dateBr(object.created_at);
                             data.push(Object.values(object));
                         }
                         return data;

@@ -4,7 +4,7 @@
             <h2>Dashboard</h2> 
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li><a href="">Listar Classes</a></li>
+                <li><a href="">Listar categorias</a></li>
                 <li><a href="">Questões</a></li>
             </ol>
         </div>
