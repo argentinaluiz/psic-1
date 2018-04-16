@@ -14,6 +14,6 @@
 @section('content')
 	{{ Form::model($registro,['route' => ['roles.update', $registro->id ], 'method' => 'PUT' ]) }}
 		@include('admin.role._form')
-		<button type="submit" class="btn btn-sm btn-default">Salvar</button>
+		<button type="submit" class="btn btn-sm btn-primary btn-block">Salvar</button>
 	{{ Form::close() }}
 @endsection

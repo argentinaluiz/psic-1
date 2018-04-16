@@ -17,7 +17,7 @@
             <?php $icon = Icon::create('pencil');?>
             {!!
                 form($form->add('salve', 'submit', [
-                    'attr' => ['class' => 'btn btn-primary btn-block'],
+                    'attr' => ['class' => 'btn btn-sm btn-primary btn-block'],
                     'label' => $icon.'&nbsp;&nbsp;Salvar'
                 ]))
             !!}

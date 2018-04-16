@@ -47,7 +47,8 @@ class SlidesController extends Controller
     
           $imagens = Imagem::where('deleted','=','N')->orderBy('id','DESC')->paginate(10);
     
-          return view('painel.slides.imagens',compact('imagens','imagensSlide'));
+          return view('painel.slides.imagens',compact('imagens','imagensSlide'))
+            ->with('message','Slide cadastrado com sucesso!');
     }
 
     public function storeSlide(Request $request)
@@ -106,9 +107,13 @@ class SlidesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Slide $slide)
     {
-        //
+        if(Gate::denies('slides-view')){
+            abort(403,"Não autorizado!");
+        }
+
+        return view('painel.slides.show', compact('slide'));
     }
 
     /**
@@ -140,6 +145,8 @@ class SlidesController extends Controller
             abort(403,"Não autorizado!");
         }
 
+       //dd($request);
+
         $this->validate($request, [
             'order' => 'required|numeric',
         ]);
@@ -148,7 +155,8 @@ class SlidesController extends Controller
         $registro = $slide;
 
         $registro->update($request->all());
-        return redirect()->route('slides.index');
+        return redirect()->route('slides.index')
+             ->with('message','Slide alterado com sucesso!');
     }
 
     /**
@@ -164,6 +172,7 @@ class SlidesController extends Controller
         }
 
         $slide->update(['deleted'=>'S']);
-        return redirect()->back();
+        return redirect()->route('slides.index')
+            ->with('message','Slide excluído com sucesso!');
     }
 }

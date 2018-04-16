@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pag_title', 'Produto - Galeria')
+@section('pag_title', 'Slide - Galeria')
 
 @section('breadcrumb')
     <h2>Slides</h2>
@@ -11,30 +11,40 @@
 @endsection
 
 @section('content')
-	<table class="table table-striped">
-		<thead>
-		<tr>
-			<th>Imagem</th>
-			<th>Título</th>
-			<th>Descrição</th>
-			<th>Link</th>
-			<th>Ordem</th>
-			<th>Ações</th>
-		</tr>
-		</thead>
-		<tbody>
-			<form action="{{ route('slides.update',$registro) }}" method="post">
-				{{csrf_field()}}
-				{{ method_field('PUT') }}
-				<tr>
-					<td><img width="50" src="{{ $registro->url }}"></td>
-					<td><input type="text" name="title" class="form-control" value="{{ isset($registro->title) ? $registro->title : '' }}{{old('title')}}"></td>
-					<td><input type="text" name="description" class="form-control" value="{{ isset($registro->description) ? $registro->description : '' }}{{old('description')}}"></td>
-					<td><input type="text" name="link" class="form-control"  value="{{ isset($registro->link) ? $registro->link : '' }}{{old('link')}}"></td>
-					<td><input type="text" name="order" class="form-control" value="{{ isset($registro->order) ? $registro->order : '' }}{{old('order')}}"></td>
-					<td> <button class="btn btn-sm btn-default"><span class="glyphicon glyphicon-pencil"></span> Atualizar</a></button>  </td>
-				</tr>
-			</form>
-		</tbody>
-	</table>
+	<form action="{{ route('slides.update',$registro) }}" class="form-horizontal" method="post">
+		{{csrf_field()}}
+		{{ method_field('PUT') }}
+		<div class="form-group"><label class="col-sm-2 control-label">Imagem</label>
+			<div class="col-sm-10">
+				<img width="50" src="{{ $registro->url }}">
+			</div>
+		</div>
+		<div class="form-group"><label class="col-sm-2 control-label">Título</label>
+			<div class="col-sm-10">
+				<input type="text" name="title" class="form-control" value="{{ isset($registro->title) ? $registro->title : '' }}{{old('title')}}">
+			</div>
+		</div>
+		<div class="form-group"><label class="col-sm-2 control-label">Descrição</label>
+			<div class="col-sm-10">
+			<input type="text" name="description" class="form-control" value="{{ isset($registro->description) ? $registro->description : '' }}{{old('description')}}">
+			</div>
+		</div>
+		<div class="form-group"><label class="col-sm-2 control-label">Link</label>
+
+			<div class="col-sm-10">
+				<input type="text" name="link" class="form-control" value="{{ isset($registro->link) ? $registro->link : '' }}{{old('link')}}">
+			</div>
+		</div>
+		<div class="form-group"><label class="col-sm-2 control-label">Ordem</label>
+
+			<div class="col-sm-10">
+				<input type="text" name="order" class="form-control" value="{{ isset($registro->order) ? $registro->order : '' }}{{old('order')}}">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-12">
+				<button class="btn btn-sm btn-block btn-primary" type="submit">Atualizar</button>
+			</div>
+		</div>
+	</form>
 @endsection

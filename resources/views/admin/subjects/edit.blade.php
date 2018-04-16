@@ -14,7 +14,7 @@
 
     {!!
     form($form->add('edit','submit', [
-        'attr' => ['class' => 'btn btn-primary btn-block'],
+        'attr' => ['class' => 'btn btn-sm btn-primary btn-block'],
         'label' => Icon::create('floppy-disk').'&nbsp;&nbsp;Salvar'
     ]))
     !!}

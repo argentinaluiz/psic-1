@@ -1190,6 +1190,7 @@ body.body-small .footer.fixed {margin-left: 0;}
 .table > tbody > tr > td,
 .table > tfoot > tr > td {border-top: 1px solid #e7eaec;line-height: 1.42857;padding: 1px 5px;vertical-align: middle;}
 .table > tbody > tr > td {border-top: 0px solid #e7eaec;line-height: 1.42857;}
+.table.table-bordered > tbody > tr > td {padding: 8px;}
 /* PANELS */
 .panel.blank-panel {background: none;margin: 0;}
 .blank-panel .panel-heading {padding-bottom: 0;}
@@ -1775,7 +1776,7 @@ body.body-small .vote-icon {display: none;}
 .panel-body {padding: 10px;}
 .checkbox, .radio {margin-top: 0px; margin-bottom: 0px;}
 .form-control {height: 30px; }
-.form-group {margin-bottom: 10px;}
+.form-group {margin-bottom: 20px;}
 label {font-weight: 500;}
 
 /*
