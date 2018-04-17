@@ -50,7 +50,7 @@
 					<td>
 						<form action="{{route('imagens.destroy',$registro->id)}}" method="post">
 							@can('imagens-edit')
-							<a href="{{route('imagens.edit',['image' => $registro->id])}}"><span class="glyphicon glyphicon-pencil"></span> Editar</a> |
+							<a href="{{route('imagens.edit',['image' => $registro->id])}}" class="btn btn-link"><span class="glyphicon glyphicon-pencil"></span> Editar</a> |
 							@endcan
 							@can('imagens-delete')
 								{{ method_field('DELETE') }}

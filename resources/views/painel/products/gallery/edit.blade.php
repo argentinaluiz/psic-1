@@ -19,26 +19,22 @@
 				<img width="50" src="{{ $registro->url }}">
 			</div>
 		</div>
-		<div class="hr-line-dashed"></div>
 		<div class="form-group"><label class="col-sm-2 control-label">Título</label>
 			<div class="col-sm-10">
 				<input type="text" name="title" class="form-control" value="{{ isset($registro->title) ? $registro->title : '' }}{{old('title')}}">
 			</div>
 		</div>
-		<div class="hr-line-dashed"></div>
 		<div class="form-group"><label class="col-sm-2 control-label">Descrição</label>
 			<div class="col-sm-10">
 			<input type="text" name="description" class="form-control" value="{{ isset($registro->description) ? $registro->description : '' }}{{old('description')}}">
 			</div>
 		</div>
-		<div class="hr-line-dashed"></div>
 		<div class="form-group"><label class="col-sm-2 control-label">URL</label>
 
 			<div class="col-sm-10">
 				<input type="text" disabled="" name="url" class="form-control" value="{{ isset($registro->url) ? $registro->url : '' }}{{old('url')}}">
 			</div>
 		</div>
-		<div class="hr-line-dashed"></div>
 		<div class="form-group"><label class="col-sm-2 control-label">Ordem</label>
 
 			<div class="col-sm-10">

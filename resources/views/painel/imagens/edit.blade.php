@@ -16,20 +16,26 @@
 	
 	<div class="row">
 		<div class="col-sm-12">
-			<form role="form" action="{{ route('imagens.update',$registro->id) }}" method="post" enctype="multipart/form-data">
+			<form class="form-horizontal" role="form" action="{{ route('imagens.update',$registro->id) }}" method="post" enctype="multipart/form-data">
 				{{csrf_field()}}
                 {{ method_field('PUT') }}
-				<div class="form-group"><label>Título</label> 
-					<input type="text" name="title" class="form-control" value="{{ isset($registro->title) ? $registro->title : '' }}">
+				<div class="form-group">
+                    <label class="col-sm-2 control-label">Título</label> 
+                     <div class="col-sm-10">
+                        <input type="text" name="title" class="form-control" value="{{ isset($registro->title) ? $registro->title : '' }}">
+                    </div> 
 				</div>
-				<div class="form-group"><label>Descrição</label> 
-					<input type="text" name="description" class="form-control" value="{{ isset($registro->description) ? $registro->description : '' }}">
+				<div class="form-group">
+                    <label class="col-sm-2 control-label">Descrição</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="description" class="form-control" value="{{ isset($registro->description) ? $registro->description : '' }}">
+                    </div>  
 				</div>
 				 <div class="form-group">
-					<div class="btn">
-						<span>Atualizar imagem</span>
-						<input type="file" name="imagem">
-					</div>
+                    <label class="col-sm-2 control-label">Imagem</label>
+                    <div class="col-sm-10">
+                        <input type="file" name="imagem">
+                    </div> 
 					<div class="file-path-wrapper">
 						<input class="file-path validate" type="text">
 					</div>

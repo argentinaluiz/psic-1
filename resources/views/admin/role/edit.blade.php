@@ -12,7 +12,7 @@
 
 
 @section('content')
-	{{ Form::model($registro,['route' => ['roles.update', $registro->id ], 'method' => 'PUT' ]) }}
+	{{ Form::model($registro,['route' => ['roles.update', $registro->id ], 'method' => 'PUT', 'class' => 'form-horizontal' ]) }}
 		@include('admin.role._form')
 		<button type="submit" class="btn btn-sm btn-primary btn-block">Salvar</button>
 	{{ Form::close() }}

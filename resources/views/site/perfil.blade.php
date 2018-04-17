@@ -31,27 +31,39 @@
     </div>
 	<div class="row">
 		<div class="col-sm-12">
-			<form action="{{ route('site.perfil.update') }}" method="post">
+			<form class="form-horizontal" action="{{ route('site.perfil.update') }}" method="post">
 
 			{{csrf_field()}}
 			{{ method_field('PUT') }}
-			<div class="form-group"><label>Nome</label> 
-					<input type="text" name="name" class="form-control" value="{{ isset($user->name) && !old('name') ? $user->name : '' }}{{old('name')}}">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Nome</label> 
+				<div class="col-sm-10">
+			    	<input type="text" name="name" class="form-control" value="{{ isset($user->name) && !old('name') ? $user->name : '' }}{{old('name')}}">
+			    </div> 
 			</div>
 
-			<div class="form-group"><label>E-mail</label> 
-					<input type="email" name="email" class="form-control" value="{{ isset($user->email) && !old('email') ? $user->email : '' }}{{old('email')}}">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">E-mail</label>
+				<div class="col-sm-10">
+			    	<input type="email" name="email" class="form-control" value="{{ isset($user->email) && !old('email') ? $user->email : '' }}{{old('email')}}">
+			    </div> 
 			</div>
 
-			<div class="form-group"><label>Senha</label> 
-					<input type="password" name="password" class="form-control">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Senha</label> 
+				<div class="col-sm-10">
+			    	<input type="password" name="password" class="form-control">
+			    </div> 	
 			</div>
 
-			<div class="form-group"><label>Confirme a senha</label> 
-					<input type="password" name="password_confirmation" class="form-control">
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Confirme a senha</label> 
+				<div class="col-sm-10">
+			    	<input type="password" name="password_confirmation" class="form-control">
+			    </div> 
 			</div>
 
-			<button class="btn btn-sm btn-primary">Atualizar</button>
+			<button class="btn btn-sm btn-primary btn-block">Atualizar</button>
 
 			</form>
 		</div>

@@ -10,11 +10,12 @@ class ClassTestResultsController extends Controller
 {
     public function perSubject(Request $request) //?class_meetings=120
     {
-        $sumClassTestPoints = "(select sum(`point`) from questions where questions.class_test_id = class_tests.id)";
+        $sumClassTestPoints = "(select sum(questions.point) from questions where questions.class_test_id = class_tests.id)";
         $selects = [
             'patient_class_tests.created_at',
-            "(patient_class_tests.`point`/$sumClassTestPoints)*100 as percentage"
+            "(patient_class_tests.point/$sumClassTestPoints)*100 as percentage"
         ];
+        
        // dd($selects);
         var_dump($selects);
         die();

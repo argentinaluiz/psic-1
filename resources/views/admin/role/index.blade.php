@@ -41,7 +41,7 @@
 				<td>
 					<form action="{{route('roles.destroy',$registro->id)}}" method="post">
 						@can('role-edit')
-							<a title="Editar"  href="{{ route('roles.edit',$registro->id) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a> |
+							<a title="Editar" class="btn btn-link" href="{{ route('roles.edit',$registro->id) }}"><span class="glyphicon glyphicon-pencil"></span> Editar</a> |
 							<a title="Permissões" class="btn btn-sm btn-primary" href="{{route('roles.permission',$registro->id)}}">permissões</a>
 						@endcan
 						@can('role-delete')
