@@ -12,9 +12,7 @@ class ClassInformationForm extends Form
         $formatDate = function($value){
             return ($value && $value instanceof Carbon)?$value->format('Y-m-d'):$value;
         };
-        $formOptions = [
-            'class' => 'form-horizontal'
-        ];
+       
         $this
             ->add('date_start', 'date', [
                 'label' => 'Data Início',
