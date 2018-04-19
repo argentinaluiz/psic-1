@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuestionEssaysTable extends Migration
+class CreateClassInformationTypeChoiceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateQuestionEssaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('question_essays', function (Blueprint $table) {
+        Schema::create('class_information_type_choice', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateQuestionEssaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('question_essays');
+        Schema::dropIfExists('class_information_type_choice');
     }
 }

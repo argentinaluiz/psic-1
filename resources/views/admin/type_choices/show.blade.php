@@ -1,20 +1,20 @@
 @extends('layouts.app')
-@section('pag_title', 'Ver Subcategorias')
+@section('pag_title', 'Ver Tipos de alternativas')
 
 @section('breadcrumb')
     <h2>Perguntas</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar subcategorias' => route('subjects.index'), 'Detalhes da subcategoria' ))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar tipos de alternativas' => route('type_choices.index'), 'Detalhes do tipo de alternativa' ))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Ver subcategorias</h5>
+     <h5>Ver tipos de alternativas</h5>
 @endsection
 
 
 @section('content')
     @php
-        $linkEdit = route('subjects.edit',['subject' => $subject->id]);
-        $linkDelete = route('subjects.destroy',['subject' => $subject->id]);
+        $linkEdit = route('type_choices.edit',['type_choice' => $type_choice->id]);
+        $linkDelete = route('type_choices.destroy',['type_choice' => $type_choice->id]);
     @endphp
     {!! Button::primary(Icon::pencil().' Editar')->asLinkTo($linkEdit) !!}
     {!!
@@ -37,11 +37,11 @@
         <tbody>
         <tr>
             <th scope="row">ID</th>
-            <td>{{$subject->id}}</td>
+            <td>{{$type_choice->id}}</td>
         </tr>
         <tr>
             <th scope="row">Nome</th>
-            <td>{{$subject->name}}</td>
+            <td>{{$type_choice->name}}</td>
         </tr>
         </tbody>
     </table>
