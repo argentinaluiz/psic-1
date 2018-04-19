@@ -198,6 +198,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     
     Route::resource('subjects', 'SubjectsController');
     Route::resource('type_choices', 'TypeChoicesController');
+    Route::resource('list_choices', 'ListChoicesController');
     Route::resource('specialties', 'SpecialtiesController');
     Route::group(['prefix' => 'class_informations/{class_information}', 'as' => 'class_informations.'],
             function () {

@@ -266,6 +266,22 @@ class PermissionsTableSeeder extends Seeder
             'name' =>'typeChoices-delete',
             'description' =>'Deletar Patologia'
         ]);
+         $listChoices1 = Permission::firstOrCreate([
+            'name' =>'listChoices-view',
+            'description' =>'Acesso a lista de Patologias'
+        ]);
+        $listChoices2 = Permission::firstOrCreate([
+            'name' =>'listChoices-create',
+            'description' =>'Adicionar Patologia'
+        ]);
+        $listChoices3 = Permission::firstOrCreate([
+            'name' =>'listChoices-edit',
+            'description' =>'Editar Patologia'
+        ]);
+        $listChoices4 = Permission::firstOrCreate([
+            'name' =>'listChoices-delete',
+            'description' =>'Deletar Patologia'
+        ]);
 
     }
 }
