@@ -15,7 +15,11 @@ class CreateClassInformationTypeChoiceTable extends Migration
     {
         Schema::create('class_information_type_choice', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('type_choice_id')->unique()->unsigned();
+            $table->foreign('type_choice_id')->references('id')->on('type_choices');
+
+            $table->integer('class_information_id')->unique()->unsigned();
+            $table->foreign('class_information_id')->references('id')->on('class_informations');
         });
     }
 
@@ -26,6 +30,6 @@ class CreateClassInformationTypeChoiceTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('class_information_type_choice');
+        Schema::dropIfExists('class_information_type_choice_unique');
     }
 }
