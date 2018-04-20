@@ -22,10 +22,12 @@
         $linkShow = route('class_informations.show',['class_information' => $model->id]);
         $linkPatients = route('class_informations.patients.index',['class_information' => $model->id]);
         $linkMeetings = route('class_informations.meetings.index',['class_information' => $model->id]);
+        $linkTypeChoices = route('class_informations.type_choices.index',['class_information' => $model->id]);
         return Button::link(Icon::create('pencil').' Editar')->asLinkTo($linkEdit).'|'.
             Button::link(Icon::create('folder-open').'&nbsp;&nbsp;Ver')->asLinkTo($linkShow).'|'.
             Button::link(Icon::create('home').'&nbsp;&nbsp;Pacientes')->asLinkTo($linkPatients).'|'.
-            Button::link(Icon::create('blackboard').'&nbsp;&nbsp;Sessão')->asLinkTo($linkMeetings);
+            Button::link(Icon::create('blackboard').'&nbsp;&nbsp;Sessão')->asLinkTo($linkMeetings).'|'.
+            Button::link(Icon::create('list-alt').'&nbsp;&nbsp;Lista de alternativas')->asLinkTo($linkTypeChoices);
     })
     !!}
     <div class="cleaner_h15"></div>
