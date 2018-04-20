@@ -7,7 +7,8 @@ Vue.http.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('conte
 
 let ClassPatient = Vue.resource(`${ADMIN_CONFIG.ADMIN_URL}/class_informations/{class_information}/patients/{patient}`);
 let ClassMeeting = Vue.resource(`${ADMIN_CONFIG.ADMIN_URL}/class_informations/{class_information}/meetings/{meeting}`);
+let ClassTypeChoice = Vue.resource(`${ADMIN_CONFIG.ADMIN_URL}/class_informations/{class_information}/type_choices/{type_choice}`);
 
 export {
-    ClassPatient, ClassMeeting
+    ClassPatient, ClassMeeting, ClassTypeChoice
 };

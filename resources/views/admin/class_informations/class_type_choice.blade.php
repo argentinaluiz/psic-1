@@ -12,5 +12,5 @@
 
 @section('content')
     <!-- Componente Vue.js -->
-   
+   <class-type-choice class-information="{{$class_information->id}}"></class-type-choice>
 @endsection

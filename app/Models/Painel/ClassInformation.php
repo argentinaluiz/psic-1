@@ -26,6 +26,7 @@ class ClassInformation extends Model implements TableInterface
         return $this->belongsToMany(Patient::class);//quando estou trabalhando com uma tabela pivot, o método correto é o belongsToMany
     }
 
+
     public function typeChoices()
     {
         return $this->belongsToMany(TypeChoice::class);

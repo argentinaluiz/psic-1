@@ -197,7 +197,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::resource('permissions', 'PermissionController');
     
     Route::resource('subjects', 'SubjectsController');
-    Route::resource('type_choices', 'TypeChoicesController');
     Route::resource('list_choices', 'ListChoicesController');
     Route::resource('specialties', 'SpecialtiesController');
     Route::group(['prefix' => 'class_informations/{class_information}', 'as' => 'class_informations.'],
@@ -207,6 +206,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
                 Route::resource('type_choices', 'ClassTypeChoicesController', ['only' => ['index', 'store', 'destroy']]);
             });
     Route::resource('class_informations', 'ClassInformationsController');
+    Route::resource('type_choices', 'TypeChoicesController');
 
   });
 
@@ -220,6 +220,7 @@ Route::prefix('admin')->group(function () {
     ], function (){
         Route::name('patients.index')->get('patients','PatientsController@index');
         Route::name('subjects.index')->get('subjects', 'SubjectsController@index');
+        Route::name('type_choices.index')->get('type_choices','TypeChoicesController@index');
         Route::name('psychoanalysts.index')->get('psychoanalysts', 'PsychoanalystsController@index');
     });
 });

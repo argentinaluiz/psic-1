@@ -14,11 +14,10 @@ class CreateClassInformationTypeChoiceTable extends Migration
     public function up()
     {
         Schema::create('class_information_type_choice', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('type_choice_id')->unique()->unsigned();
             $table->foreign('type_choice_id')->references('id')->on('type_choices');
 
-            $table->integer('class_information_id')->unique()->unsigned();
+            $table->integer('class_information_id')->unsigned();
             $table->foreign('class_information_id')->references('id')->on('class_informations');
         });
     }
