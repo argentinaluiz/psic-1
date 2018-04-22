@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Gate;
 use Kris\LaravelFormBuilder\Form;
-use App\Forms\SpecialtyForm;
-use App\Models\Painel\Specialty;
+use App\Forms\SheetForm;
+use App\Models\Painel\Sheet;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class SpecialtiesController extends Controller
+class SheetsController extends Controller
 {
      /**
      * Display a listing of the resource.
@@ -18,13 +18,13 @@ class SpecialtiesController extends Controller
      */
     public function index()
     {
-        if(Gate::denies('specialties-view')){
+        if(Gate::denies('sheets-view')){
             abort(403,"Não autorizado!");
         }
 
-        $totalSpecialties = Specialty::count();
-        $specialties = Specialty::paginate(10);
-        return view('admin.specialties.index',compact('specialties', 'totalSpecialties'));
+        $totalSheets = Sheet::count();
+        $sheets = Sheet::paginate(10);
+        return view('admin.sheets.index',compact('sheets', 'totalSheets'));
     }
 
     /**
@@ -34,15 +34,15 @@ class SpecialtiesController extends Controller
      */
     public function create()
     {
-        if(Gate::denies('specialties-create')){
+        if(Gate::denies('sheets-create')){
             abort(403,"Não autorizado!");
         }
 
-        $form = \FormBuilder::create(SpecialtyForm::class, [
-            'url' => route('specialties.store'),
+        $form = \FormBuilder::create(SheetForm::class, [
+            'url' => route('sheets.store'),
             'method' => 'POST'
         ]);
-        return view('admin.specialties.create', compact('form'));
+        return view('admin.sheets.create', compact('form'));
     }
 
     /**
@@ -53,12 +53,12 @@ class SpecialtiesController extends Controller
      */
     public function store(Request $request)
     {
-        if(Gate::denies('specialties-create')){
+        if(Gate::denies('sheets-create')){
             abort(403,"Não autorizado!");
         }
 
         /** @var Form $form */
-        $form = \FormBuilder::create(SpecialtyForm::class);
+        $form = \FormBuilder::create(SheetForm::class);
 
         if (!$form->isValid()) {
             return redirect()
@@ -68,61 +68,61 @@ class SpecialtiesController extends Controller
         }
 
         $data = $form->getFieldValues();
-        Specialty::create($data);
-        $request->session()->flash('message','Especialidade criada com sucesso');
-        return redirect()->route('specialties.index');
+        Sheet::create($data);
+        $request->session()->flash('message','Ficha criada com sucesso');
+        return redirect()->route('sheets.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Painel\Specialty
+     * @param  \App\Models\Painel\Sheet
      * @return \Illuminate\Http\Response
      */
-    public function show(Specialty $specialty)
+    public function show(Sheet $sheet)
     {
-        if(Gate::denies('specialties-view')){
+        if(Gate::denies('sheets-view')){
             abort(403,"Não autorizado!");
         }
 
-        return view('admin.specialties.show', compact('specialty'));
+        return view('admin.sheets.show', compact('sheet'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Painel\Specialty
+     * @param  \App\Models\Painel\Sheet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Specialty $specialty)
+    public function edit(Sheet $sheet)
     {
-        if(Gate::denies('specialties-edit')){
+        if(Gate::denies('sheets-edit')){
             abort(403,"Não autorizado!");
         }
 
-        $form = \FormBuilder::create(SpecialtyForm::class, [
-            'url' => route('specialties.update',['specialty' => $specialty->id]),
+        $form = \FormBuilder::create(SheetForm::class, [
+            'url' => route('sheets.update',['sheet' => $sheet->id]),
             'method' => 'PUT',
-            'model' => $specialty
+            'model' => $sheet
         ]);
 
-        return view('admin.specialties.edit', compact('form'));
+        return view('admin.sheets.edit', compact('form'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Models\Painel\Specialty
+     * @param  \App\Models\Painel\Sheet
      * @return \Illuminate\Http\Response
      */
-    public function update(Specialty $specialty)
+    public function update(Sheet $sheet)
     {
-        if(Gate::denies('specialties-edit')){
+        if(Gate::denies('sheets-edit')){
             abort(403,"Não autorizado!");
         }
 
         /** @var Form $form */
-        $form = \FormBuilder::create(SpecialtyForm::class);
+        $form = \FormBuilder::create(SheetForm::class);
 
         if (!$form->isValid()) {
             return redirect()
@@ -132,25 +132,25 @@ class SpecialtiesController extends Controller
         }
 
         $data = $form->getFieldValues();
-        $specialty->update($data);
-        session()->flash('message','Especialidade editada com sucesso');
-        return redirect()->route('specialties.index');
+        $sheet->update($data);
+        session()->flash('message','Ficha editada com sucesso');
+        return redirect()->route('sheets.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Painel\Specialty
+     * @param  \App\Models\Painel\Sheet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Specialty $specialty)
+    public function destroy(Sheet $sheet)
     {
-        if(Gate::denies('specialties-delete')){
+        if(Gate::denies('sheets-delete')){
             abort(403,"Não autorizado!");
         }
 
-        $specialty->delete();
-        session()->flash('message','Especialidade excluída com sucesso');
-        return redirect()->route('specialties.index');
+        $sheet->delete();
+        session()->flash('message','Ficha excluída com sucesso');
+        return redirect()->route('sheets.index');
     }
 }

@@ -217,21 +217,21 @@ class PermissionsTableSeeder extends Seeder
             'description' =>'Deletar Documento'
         ]);
         
-        $specialties1 = Permission::firstOrCreate([
-            'name' =>'specialties-view',
-            'description' =>'Acesso a lista de Especialidades'
+        $sheets1 = Permission::firstOrCreate([
+            'name' =>'sheets-view',
+            'description' =>'Acesso a lista de Fichas'
         ]);
-        $specialties2 = Permission::firstOrCreate([
-            'name' =>'specialties-create',
-            'description' =>'Adicionar Especialidade'
+        $sheets2 = Permission::firstOrCreate([
+            'name' =>'sheets-create',
+            'description' =>'Adicionar Ficha'
         ]);
-        $specialties3 = Permission::firstOrCreate([
-            'name' =>'specialties-edit',
-            'description' =>'Editar Especialidade'
+        $sheets3 = Permission::firstOrCreate([
+            'name' =>'sheets-edit',
+            'description' =>'Editar Ficha'
         ]);
-        $specialties4 = Permission::firstOrCreate([
-            'name' =>'specialties-delete',
-            'description' =>'Deletar Especialidade'
+        $sheets4 = Permission::firstOrCreate([
+            'name' =>'sheets-delete',
+            'description' =>'Deletar Ficha'
         ]);
 
         $subjects1 = Permission::firstOrCreate([

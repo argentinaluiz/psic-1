@@ -1,12 +1,13 @@
 @extends('layouts.app')
+@section('pag_title', 'Criar Ficha')
 
 @section('breadcrumb')
-    <h2>Configurações</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar especialidades' => route('specialties.index'), 'Nova especialidade' ))!!}
+    <h2>Perguntas</h2>
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar fichas' => route('sheets.index'), 'Nova ficha' ))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Nova especialidade</h5>
+     <h5>Nova ficha</h5>
 @endsection
 
 @section('content')

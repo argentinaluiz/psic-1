@@ -1,20 +1,20 @@
 @extends('layouts.app')
-@section('pag_title', 'Ver Especialidade')
+@section('pag_title', 'Ver Ficha')
 
 @section('breadcrumb')
     <h2>Configurações</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar especialidades' => route('specialties.index'), 'Detalhes da especialidade' ))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar fichas' => route('sheets.index'), 'Detalhes da ficha' ))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Ver especialidade</h5>
+     <h5>Ver ficha</h5>
 @endsection
 
 
 @section('content')
     @php
-        $linkEdit = route('specialties.edit',['specialty' => $specialty->id]);
-        $linkDelete = route('specialties.destroy',['specialty' => $specialty->id]);
+        $linkEdit = route('sheets.edit',['sheet' => $sheet->id]);
+        $linkDelete = route('sheets.destroy',['sheet' => $sheet->id]);
     @endphp
     {!! Button::primary(Icon::pencil().' Editar')->asLinkTo($linkEdit) !!}
     {!!
@@ -37,11 +37,11 @@
         <tbody>
         <tr>
             <th scope="row">ID</th>
-            <td>{{$specialty->id}}</td>
+            <td>{{$sheet->id}}</td>
         </tr>
         <tr>
             <th scope="row">Nome</th>
-            <td>{{$specialty->name}}</td>
+            <td>{{$sheet->name}}</td>
         </tr>
         </tbody>
     </table>

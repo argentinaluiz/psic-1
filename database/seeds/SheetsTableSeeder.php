@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SpecialtiesTableSeeder extends Seeder
+class SheetsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class SpecialtiesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Painel\Specialty::class,50)->create();
+        factory(\App\Models\Painel\Sheet::class,50)->create();
     }
 }

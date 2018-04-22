@@ -5,7 +5,7 @@ namespace App\Models\Painel;
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class Specialty extends Model implements TableInterface
+class Sheet extends Model implements TableInterface
 {
     protected $fillable = [
         'name'

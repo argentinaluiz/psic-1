@@ -4,7 +4,7 @@ namespace App\Forms;
 
 use Kris\LaravelFormBuilder\Form;
 
-class SpecialtyForm extends Form
+class SheetForm extends Form
 {
     public function buildForm()
     {

@@ -197,7 +197,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::resource('permissions', 'PermissionController');
     
     Route::resource('subjects', 'SubjectsController');
-    Route::resource('specialties', 'SpecialtiesController');
+    Route::resource('sheets', 'SheetsController');
     Route::group(['prefix' => 'class_informations/{class_information}', 'as' => 'class_informations.'],
             function () {
                 Route::resource('patients', 'ClassPatientsController', ['only' => ['index', 'store', 'destroy']]);
