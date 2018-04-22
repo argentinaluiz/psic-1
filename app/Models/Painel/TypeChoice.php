@@ -17,6 +17,9 @@ class TypeChoice extends Model implements TableInterface
         return $this->belongsToMany(ClassInformation::class);
     }
 
+    public function listChoices(){
+        return $this->belongsToMany(ListChoice::class);
+    }
 
    
     public function getTableHeaders()
