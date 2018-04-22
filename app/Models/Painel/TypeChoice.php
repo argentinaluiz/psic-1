@@ -13,15 +13,7 @@ class TypeChoice extends Model implements TableInterface
     ];
 
 
-    public function classInformations(){
-        return $this->belongsToMany(ClassInformation::class);
-    }
-
-    public function listChoices(){
-        return $this->belongsToMany(ListChoice::class);
-    }
-
-   
+       
     public function getTableHeaders()
     {
         return ['ID', 'Nome'];

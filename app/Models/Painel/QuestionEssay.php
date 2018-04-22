@@ -14,15 +14,4 @@ class QuestionEssay extends Model
     public function question(){
         return $this->morphOne(\App\Models\Painel\Question::class, 'questionable');
     }
-
-
-    public function toArray()
-    {
-        $data = parent::toArray();
-        $this->question->makeHidden('questionable_type','questionable_id');
-        $data['question'] = $this->question;
-        return $data;
-    }
-
-
 }

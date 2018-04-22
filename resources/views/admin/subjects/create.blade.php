@@ -1,8 +1,7 @@
 @extends('layouts.app')
-@section('pag_title', 'Subcategoria - Criar')
 
 @section('breadcrumb')
-    <h2>Perguntas</h2>
+    <h2>Configurações</h2>
     {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar subcategorias' => route('subjects.index'), 'Nova subcategoria' ))!!}
 @endsection
 

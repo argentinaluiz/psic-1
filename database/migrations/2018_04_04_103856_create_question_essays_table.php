@@ -15,6 +15,9 @@ class CreateQuestionEssaysTable extends Migration
     {
         Schema::create('question_essays', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('text');
+            $table->integer('question_id')->unsigned();
+            $table->foreign('question_id')->references('id')->on('questions');
             $table->timestamps();
         });
     }

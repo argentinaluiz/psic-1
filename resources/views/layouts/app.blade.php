@@ -67,7 +67,6 @@
 							<li><a href="{{ route('class_informations.index') }}">Categorias</a></li>
 							<li><a href="{{ route('subjects.index') }}">Subcategorias</a></li>
 							<li><a href="{{ route('type_choices.index') }}">Tipos de Alternativas</a></li>
-							<li><a href="{{ route('list_choices.index') }}">Lista de Alternativas</a></li>
 							<li><a href="">Dados iniciais</a></li>
 							<li><a href="">Ética</a></li>
 							<li><a href="">Regra Fundamental</a></li>
@@ -187,7 +186,9 @@
 						<ul class="nav nav-second-level collapse">
 							<li><a href="{{ route('users.index') }}">Usuários</a></li>
 							<li><a href="{{ route('roles.index') }}">Papéis</a></li>
+							<li><a href="{{ route('subjects.index') }}">Subcategorias</a></li>
 							<li><a href="{{ route('specialties.index') }}">Especialidade</a></li>
+							<li><a href="{{ route('class_informations.index') }}">Categorias</a></li>
 							<li><a href="{{ route('site.perfil') }}">Perfil</a></li>
 							<li><a href="{{ route('site.orders') }}">Ordens</a></li>
 						</ul>
