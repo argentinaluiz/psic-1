@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(SubjectsTableSeeder::class);
         $this->call(SheetsTableSeeder::class);
+        $this->call(SubSheetsTableSeeder::class);
         $this->call(ClassInformationsTableSeeder::class);
         $this->call(ClassTestsTableSeeder::class);
         $this->call(PatientClassTestTableSeeder::class);

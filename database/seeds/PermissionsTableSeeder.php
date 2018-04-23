@@ -234,6 +234,23 @@ class PermissionsTableSeeder extends Seeder
             'description' =>'Deletar Ficha'
         ]);
 
+        $subSheets1 = Permission::firstOrCreate([
+            'name' =>'subSheets-view',
+            'description' =>'Acesso a lista de Fichas'
+        ]);
+        $subSheets2 = Permission::firstOrCreate([
+            'name' =>'subSheets-create',
+            'description' =>'Adicionar Ficha'
+        ]);
+        $subSheets3 = Permission::firstOrCreate([
+            'name' =>'subSheets-edit',
+            'description' =>'Editar Ficha'
+        ]);
+        $subSheets4 = Permission::firstOrCreate([
+            'name' =>'subSheets-delete',
+            'description' =>'Deletar Ficha'
+        ]);
+
         $subjects1 = Permission::firstOrCreate([
             'name' =>'subjects-view',
             'description' =>'Acesso a lista de Patologias'

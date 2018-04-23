@@ -20,8 +20,8 @@
         Table::withContents($sheets->items())
         ->striped()
         ->callback('Ações', function($field,$model){
-            $linkEdit = route('sheets.edit',['subject' => $model->id]);
-            $linkShow = route('sheets.show',['subject' => $model->id]);
+            $linkEdit = route('sheets.edit',['sheet' => $model->id]);
+            $linkShow = route('sheets.show',['sheet' => $model->id]);
             return Button::link(Icon::create('pencil').' Editar')->asLinkTo($linkEdit).'|'.
                 Button::link(Icon::create('folder-open').'&nbsp;&nbsp;Ver')->asLinkTo($linkShow);
         })
