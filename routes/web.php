@@ -220,5 +220,7 @@ Route::prefix('admin')->group(function () {
         Route::name('patients.index')->get('patients','PatientsController@index');
         Route::name('subjects.index')->get('subjects', 'SubjectsController@index');
         Route::name('psychoanalysts.index')->get('psychoanalysts', 'PsychoanalystsController@index');
+        Route::name('sheets.index')->get('sheets', 'SheetsController@index');
+        Route::name('sub_sheets.index')->get('sub_sheets', 'SubSheetsController@index');
     });
 });

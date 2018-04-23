@@ -27,12 +27,16 @@ class ClassMeetingRequest extends FormRequest
         $class_information = $this->route('class_information');
         return [
             'psychoanalyst_id' => 'required|exists:psychoanalysts,id',
-            'subject_id' => [
+            'sheet_id' => 'required|exists:sheets,id',
+            'sub_sheet_id' => 'required|exists:sub_sheets,id',
+            'subject_id'  => [
                 'required',
-                'exists:subjects,id',
-                Rule::unique('class_meetings','subject_id')
+                'exists:subjects,id',                 
+                Rule::unique('class_meetings','subject_id', 'sheet_id','sub_sheet_id' )
                     ->where('class_information_id',$class_information->id)
                     ->where('psychoanalyst_id',$this->get('psychoanalyst_id'))
+                    ->where('sheet_id',$this->get('sheet_id'))
+                    ->where('sub_sheet_id',$this->get('sub_sheet_id'))
             ]
         ];
     }

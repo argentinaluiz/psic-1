@@ -30,9 +30,9 @@ const actions = {
                 context.commit('set',response.data);
             })
     },
-    store(context, {psychoanalystId,subjectId, classInformationId}){
+    store(context, {sheetId,subSheetId, psychoanalystId,subjectId, classInformationId}){
         return ClassMeeting.save({class_information: classInformationId},
-            {psychoanalyst_id: psychoanalystId,subject_id: subjectId}
+            {sheet_id:sheetId,sub_sheet_id:subSheetId ,psychoanalyst_id: psychoanalystId,subject_id: subjectId}
             )
             .then(response => {
                 context.commit('add',response.data)

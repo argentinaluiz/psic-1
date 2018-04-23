@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('pag_title', 'Subcategoria - adicionar')
+@section('pag_title', 'Subcategoria, ficha e sub ficha - adicionar')
 
 @section('breadcrumb')
     <h2>Configurações</h2>
@@ -7,7 +7,7 @@
 @endsection
 
 @section('h5-title')
-     <h5>Adicionar subcategoria e psicanalista na categoria</h5>
+     <h5>Adicionar subcategoria, psicanalista, ficha e sub ficha na categoria</h5>
 @endsection
 
 

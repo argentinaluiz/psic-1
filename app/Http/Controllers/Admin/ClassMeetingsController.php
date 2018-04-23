@@ -30,9 +30,12 @@ class ClassMeetingsController extends Controller
     public function store(ClassMeetingRequest $request,ClassInformation $class_information)
     {
         $meeting = $class_information->meetings()->create([
+            'sheet_id' => $request->get('sheet_id'),
+            'sub_sheet_id' => $request->get('sub_sheet_id'),
             'subject_id' => $request->get('subject_id'),
             'psychoanalyst_id' => $request->get('psychoanalyst_id'),
         ]);
+        //dd($meeting);
         return $meeting;
     }
 

@@ -1,16 +1,28 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label">Selecionar psicanalista</label>
                     <select class="form-control" name="psychoanalysts"></select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label">Selecionar subcategoria</label>
                     <select class="form-control" name="subjects"></select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Selecionar ficha</label>
+                    <select class="form-control" name="sheets"></select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Selecionar subficha</label>
+                    <select class="form-control" name="sub_sheets"></select>
                 </div>
             </div>
         </div>
@@ -22,6 +34,8 @@
                 <th></th>
                 <th>Psicanalista</th>
                 <th>Subcategoria</th>
+                <th>Ficha</th>
+                <th>Subficha</th>
             </tr>
             </thead>
             <tbody>
@@ -33,6 +47,8 @@
                 </td>
                 <td>{{meeting.psychoanalyst.user.name}}</td>
                 <td>{{meeting.subject.name}}</td>
+                <td>{{meeting.sheet.name}}</td>
+                <td>{{meeting.sub_sheet.name}}</td>
             </tr>
             </tbody>
         </table>
@@ -72,6 +88,28 @@
                         return {
                             results: data.map((subject) => {
                                 return {id: subject.id, text: subject.name}
+                            })
+                        }
+                    }
+                },
+                {
+                    url: `${ADMIN_CONFIG.API_URL}/sheets`,
+                    selector:"select[name=sheets]",
+                    processResults(data){
+                        return {
+                            results: data.map((sheet) => {
+                                return {id: sheet.id, text: sheet.name}
+                            })
+                        }
+                    }
+                },
+                {
+                    url: `${ADMIN_CONFIG.API_URL}/sub_sheets`,
+                    selector:"select[name=sub_sheets]",
+                    processResults(data){
+                        return {
+                            results: data.map((sub_sheet) => {
+                                return {id: sub_sheet.id, text: sub_sheet.name}
                             })
                         }
                     }
@@ -115,6 +153,8 @@
                 store.dispatch('classMeeting/store',{
                     psychoanalystId: $("select[name=psychoanalysts]").val(),
                     subjectId: $("select[name=subjects]").val(),
+                    sheetId: $("select[name=sheets]").val(),
+                    subSheetId: $("select[name=sub_sheets]").val(),
                     classInformationId: this.classInformation
                 }).then(response => {
                     new PNotify({
