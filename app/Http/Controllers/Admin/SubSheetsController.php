@@ -34,10 +34,10 @@ class SubSheetsController extends Controller
         }
 
         $form = \FormBuilder::create(SubSheetForm::class, [
-            'url' => route('sheets.store'),
+            'url' => route('sub_sheets.store'),
             'method' => 'POST'
         ]);
-        return view('admin.sheets.create', compact('form'));
+        return view('admin.sub_sheets.create', compact('form'));
     }
 
     /**
@@ -64,7 +64,7 @@ class SubSheetsController extends Controller
 
         $data = $form->getFieldValues();
         SubSheet::create($data);
-        $request->session()->flash('message','Sub Ficha criada com sucesso');
+        $request->session()->flash('message','Subficha criada com sucesso');
         return redirect()->route('sub_sheets.index');
     }
 
@@ -128,7 +128,7 @@ class SubSheetsController extends Controller
 
         $data = $form->getFieldValues();
         $sub_sheet->update($data);
-        session()->flash('message','Sub Ficha editada com sucesso');
+        session()->flash('message','Subficha editada com sucesso');
         return redirect()->route('sub_sheets.index');
     }
 

@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('pag_title', 'Criar Sub Ficha')
+@section('pag_title', 'Criar Subficha')
 
 @section('breadcrumb')
     <h2>Perguntas</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar sub fichas' => route('sub_sheets.index'), 'Nova sub ficha' ))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar subfichas' => route('sub_sheets.index'), 'Nova subficha' ))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Nova sub ficha</h5>
+     <h5>Nova subficha</h5>
 @endsection
 
 @section('content')

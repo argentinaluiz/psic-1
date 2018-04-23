@@ -67,7 +67,7 @@
 							<li><a href="{{ route('class_informations.index') }}">Categorias</a></li>
 							<li><a href="{{ route('subjects.index') }}">Subcategorias</a></li>
 							<li><a href="{{ route('sheets.index') }}">Fichas</a></li>
-							<li><a href="{{ route('sub_sheets.index') }}">Sub Fichas</a></li>
+							<li><a href="{{ route('sub_sheets.index') }}">Subfichas</a></li>
 							<li><a href="{{ route('type_choices.index') }}">Tipos de Alternativas</a></li>
 							<li><a href="">Dados iniciais</a></li>
 							<li><a href="">Ética</a></li>

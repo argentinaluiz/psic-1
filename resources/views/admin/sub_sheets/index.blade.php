@@ -1,20 +1,20 @@
 @extends('layouts.app')
-@section('pag_title', 'Sub Fichas')
+@section('pag_title', 'Subfichas')
 
 @section('breadcrumb')
     <h2>Perguntas</h2>
-    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar sub fichas' => route('sub_sheets.index')))!!}
+    {!! Breadcrumb::withLinks(array('Home' => '/', 'Listar subfichas' => route('sub_sheets.index')))!!}
 @endsection
 
 @section('h5-title')
-     <h5>Listagem de sub fichas</h5>
+     <h5>Listagem de subfichas</h5>
 @endsection
 
 
 @section('content')
-    <span class="pull-right small text-muted">Total de sub fichas: {{ $totalSubSheets }} </span>
+    <span class="pull-right small text-muted">Total de subfichas: {{ $totalSubSheets }} </span>
     <br/>
-    {!! Button::primary(Icon::create('plus').' Nova sub ficha')->asLinkTo(route('sub_sheets.create')) !!}
+    {!! Button::primary(Icon::create('plus').' Nova subficha')->asLinkTo(route('sub_sheets.create')) !!}
     <div class="cleaner_h15"></div>
         {!!
         Table::withContents($sub_sheets->items())
