@@ -16,8 +16,9 @@ class QuestionChoice extends Model
         'true' => 'boolean'
     ];
 
-    public function question(){
-        return $this->morphOne(\App\Models\Painel\Question::class, 'questionable');
+    public function typeChoices()
+    {
+        return $this->belongsToMany(TypeChoice::class);//quando estou trabalhando com uma tabela pivot, o método correto é o belongsToMany
     }
 
 }

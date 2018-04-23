@@ -7,10 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class ClassTest extends Model
 {
+    
+    const QUESTION_TYPE = [
+        1 => 'Uma escolha',
+        2 => 'Várias escolhas',
+        3 => 'Discursiva'
+    ];
+
     protected $fillable = [
         'date_start',
         'date_end',
         'name',
+        'question_type',
         'class_meeting_id'
     ];
 

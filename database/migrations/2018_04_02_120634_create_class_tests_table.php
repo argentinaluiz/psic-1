@@ -18,6 +18,7 @@ class CreateClassTestsTable extends Migration
             $table->dateTime('date_start');
             $table->dateTime('date_end');
             $table->string('name');
+            $table->enum('question_type',array_keys(\App\Models\Painel\ClassTest::QUESTION_TYPE));
             $table->integer('class_meeting_id')->unsigned();
             $table->foreign('class_meeting_id')->references('id')->on('class_meetings');
             $table->timestamps();

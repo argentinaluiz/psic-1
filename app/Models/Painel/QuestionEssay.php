@@ -11,7 +11,5 @@ class QuestionEssay extends Model
         'question_id'
     ];
 
-    public function question(){
-        return $this->morphOne(\App\Models\Painel\Question::class, 'questionable');
-    }
+   
 }
