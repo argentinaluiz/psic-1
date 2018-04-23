@@ -32,6 +32,8 @@
 											<th>Data Fim</th>
 											<th>Categorias</th>
 											<th>Subcategorias</th>
+                                            <th>Fichas</th>
+                                            <th>Subfichas</th>
                                             <th>Ações</th>
 										</tr>
 										</thead>
@@ -41,6 +43,8 @@
 											<td>{{classMeeting.class_information.date_end | dateBr}}</td>
 											<td>{{classMeeting.class_information | classInformationAlias }}</td>
 											<td>{{classMeeting.subject.name}}</td>
+                                            <td>{{classMeeting.sheet.name}}</td>
+                                            <td>{{classMeeting.sub_sheet.name}}</td>
 											<td>
                                                 <router-link class="btn btn-link" :to="{name: 'psych.class_tests.list', params: {class_meeting: classMeeting.id} }">
                                                    <span class="glyphicon glyphicon-list-alt"></span> Questões
