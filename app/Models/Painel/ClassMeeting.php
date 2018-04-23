@@ -11,6 +11,8 @@ class ClassMeeting extends Model
     protected $fillable = [
         'subject_id',
         'class_information_id',
+        'sheet_id',
+        'sub_sheet_id',
         'psychoanalyst_id'
     ];
 
@@ -20,6 +22,14 @@ class ClassMeeting extends Model
 
     public function subject(){
         return $this->belongsTo(Subject::class);
+    }
+
+    public function sheet(){
+        return $this->belongsTo(Sheet::class);
+    }
+
+    public function subSheet(){
+        return $this->belongsTo(SubSheet::class);
     }
 
     public function classInformation(){
@@ -38,6 +48,8 @@ class ClassMeeting extends Model
         $data = parent::toArray();
         $data['psychoanalyst'] = $this->psychoanalyst;
         $data['subject'] = $this->subject;
+        $data['sheet'] = $this->sheet;
+        $data['sub_sheet'] = $this->subSheet;
         $data['class_information'] = $this->classInformation;
         return $data;
     }

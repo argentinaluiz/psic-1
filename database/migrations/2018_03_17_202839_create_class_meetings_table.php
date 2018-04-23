@@ -19,9 +19,13 @@ class CreateClassMeetingsTable extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->integer('class_information_id')->unsigned();
             $table->foreign('class_information_id')->references('id')->on('class_informations');
+            $table->integer('sheet_id')->unsigned();
+            $table->foreign('sheet_id')->references('id')->on('sheets');
+            $table->integer('sub_sheet_id')->unsigned();
+            $table->foreign('sub_sheet_id')->references('id')->on('sub_sheets');
             $table->integer('psychoanalyst_id')->unsigned();
             $table->foreign('psychoanalyst_id')->references('id')->on('psychoanalysts');
-            $table->unique(['subject_id','class_information_id','psychoanalyst_id'],'class_meeting_unique');
+            $table->unique(['subject_id','class_information_id', 'sheet_id', 'sub_sheet_id','psychoanalyst_id'],'class_meeting_unique');
         });
     }
 
