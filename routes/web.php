@@ -206,6 +206,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
             });
     Route::resource('class_informations', 'ClassInformationsController');
     Route::resource('type_choices', 'TypeChoicesController');
+    Route::resource('list_choices', 'ListChoicesController');
 
   });
 

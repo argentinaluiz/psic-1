@@ -69,6 +69,7 @@
 							<li><a href="{{ route('sheets.index') }}">Fichas</a></li>
 							<li><a href="{{ route('sub_sheets.index') }}">Subfichas</a></li>
 							<li><a href="{{ route('type_choices.index') }}">Tipos de Alternativas</a></li>
+							<li><a href="{{ route('list_choices.index') }}">Alternativas</a></li>
 							<li><a href="">Dados iniciais</a></li>
 							<li><a href="">Ética</a></li>
 							<li><a href="">Regra Fundamental</a></li>

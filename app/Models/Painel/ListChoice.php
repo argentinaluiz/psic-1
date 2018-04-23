@@ -5,17 +5,12 @@ namespace App\Models\Painel;
 use Bootstrapper\Interfaces\TableInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class TypeChoice extends Model implements TableInterface
+class ListChoice extends Model implements TableInterface
 {
-    
     protected $fillable = [
         'name'
     ];
 
-    public function questionChoices(){
-        return $this->belongsToMany(QuestionChoice::class);
-    }
-       
     public function getTableHeaders()
     {
         return ['ID', 'Nome'];
@@ -31,5 +26,6 @@ class TypeChoice extends Model implements TableInterface
                 return $this->name;
         }
     }
+
 
 }

@@ -268,22 +268,40 @@ class PermissionsTableSeeder extends Seeder
             'description' =>'Deletar Patologia'
         ]);
 
-         $typeChoices1 = Permission::firstOrCreate([
+        $typeChoices1 = Permission::firstOrCreate([
             'name' =>'typeChoices-view',
-            'description' =>'Acesso a lista de Patologias'
+            'description' =>'Acesso a lista de Tipos de Alternativas'
         ]);
         $typeChoices2 = Permission::firstOrCreate([
             'name' =>'typeChoices-create',
-            'description' =>'Adicionar Patologia'
+            'description' =>'Adicionar Tipo de Alternativa'
         ]);
         $typeChoices3 = Permission::firstOrCreate([
             'name' =>'typeChoices-edit',
-            'description' =>'Editar Patologia'
+            'description' =>'Editar Tipo de Alternativa'
         ]);
         $typeChoices4 = Permission::firstOrCreate([
             'name' =>'typeChoices-delete',
-            'description' =>'Deletar Patologia'
+            'description' =>'Deletar Tipo de Alternativa'
         ]);
+
+        $listChoices1 = Permission::firstOrCreate([
+            'name' =>'listChoices-view',
+            'description' =>'Acesso a lista de Alternativas'
+        ]);
+        $listChoices2 = Permission::firstOrCreate([
+            'name' =>'listChoices-create',
+            'description' =>'Adicionar Alternativa'
+        ]);
+        $listChoices3 = Permission::firstOrCreate([
+            'name' =>'listChoices-edit',
+            'description' =>'Editar Alternativa'
+        ]);
+        $listChoices4 = Permission::firstOrCreate([
+            'name' =>'listChoices-delete',
+            'description' =>'Deletar Alternativa'
+        ]);
+
 
     }
 }
