@@ -22,8 +22,10 @@
         ->callback('Ações', function($field,$model){
             $linkEdit = route('type_choices.edit',['type_choice' => $model->id]);
             $linkShow = route('type_choices.show',['type_choice' => $model->id]);
+            $linkChoosings = route('type_choices.choosings.index',['type_choice' => $model->id]);
             return Button::link(Icon::create('pencil').' Editar')->asLinkTo($linkEdit).'|'.
-                Button::link(Icon::create('folder-open').'&nbsp;&nbsp;Ver')->asLinkTo($linkShow);
+                Button::link(Icon::create('folder-open').'&nbsp;&nbsp;Ver')->asLinkTo($linkShow).'|'.
+                Button::link(Icon::create('list-alt').'&nbsp;&nbsp;Alternativas')->asLinkTo($linkChoosings);
         })
         !!}
     <div class="cleaner_h15"></div>

@@ -204,6 +204,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
                 Route::resource('patients', 'ClassPatientsController', ['only' => ['index', 'store', 'destroy']]);
                 Route::resource('meetings', 'ClassMeetingsController', ['only' => ['index','store','destroy']]);
             });
+    Route::group(['prefix' => 'type_choices/{type_choice}', 'as' => 'type_choices.'],
+            function () {
+                Route::resource('choosings', 'ClassChoosingsController', ['only' => ['index','store','destroy']]);
+            });
     Route::resource('class_informations', 'ClassInformationsController');
     Route::resource('type_choices', 'TypeChoicesController');
     Route::resource('list_choices', 'ListChoicesController');
@@ -223,5 +227,6 @@ Route::prefix('admin')->group(function () {
         Route::name('psychoanalysts.index')->get('psychoanalysts', 'PsychoanalystsController@index');
         Route::name('sheets.index')->get('sheets', 'SheetsController@index');
         Route::name('sub_sheets.index')->get('sub_sheets', 'SubSheetsController@index');
+        Route::name('list_choices.index')->get('list_choices', 'ListChoicesController@index');
     });
 });

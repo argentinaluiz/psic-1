@@ -16,9 +16,4 @@ class QuestionChoice extends Model
         'true' => 'boolean'
     ];
 
-    public function typeChoices()
-    {
-        return $this->belongsToMany(TypeChoice::class);//quando estou trabalhando com uma tabela pivot, o método correto é o belongsToMany
-    }
-
 }

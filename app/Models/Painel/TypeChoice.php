@@ -12,16 +12,21 @@ class TypeChoice extends Model implements TableInterface
         'name'
     ];
 
-    public function questionChoices(){
-        return $this->belongsToMany(QuestionChoice::class);
+    public function list_choices()
+    {
+    return $this->hasMany(ListChoice::class);
     }
-       
+
+    public function choosings()
+    {
+    return $this->hasMany(ClassChoosing::class);
+    }
+
     public function getTableHeaders()
     {
         return ['ID', 'Nome'];
     }
 
-  
     public function getValueForHeader($header)
     {
         switch ($header) {
