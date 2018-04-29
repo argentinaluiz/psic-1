@@ -26,7 +26,7 @@
                         </div>
                         <div  class="ibox-content">  
 							<div class="alert alert-warning">
-                                {{classTest.name}} | {{classTest.date_start}} à {{classTest.date_end}}
+                                {{classTest.name}} | {{classTest.date_start}} à {{classTest.date_end}} | {{classTest.question_type}}
                             </div>
 
                             <div class="row">
@@ -38,12 +38,31 @@
                             </div>
                             
                             <div class="row">
-                                <div class="col-md-6">
-                                    <psych-class-test-question-form></psych-class-test-question-form>
-                                </div>
-                                <div class="col-md-6">
-                                    <psych-class-test-question-list></psych-class-test-question-list>
-                                </div>
+                                <template v-if="1">
+                                    <div class="col-md-6">
+                                        <psych-class-test-question-form></psych-class-test-question-form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <psych-class-test-question-list></psych-class-test-question-list>
+                                    </div>
+                                </template>
+                                <template v-if="2">
+                                    <div class="col-md-6">
+                                        <psych-class-test-question-multiple-form></psych-class-test-question-multiple-form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <psych-class-test-question-multiple-list></psych-class-test-question-multiple-list>
+                                    </div>
+                                </template>
+                                <template v-if="3">
+                                    <div class="col-md-6">
+                                        <psych-class-test-question-discursive-form></psych-class-test-question-discursive-form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <psych-class-test-question-discursive-list></psych-class-test-question-discursive-list>
+                                    </div>
+                                </template>
+                               
                             </div>
                         </div>
                     </div>
@@ -60,7 +79,11 @@
     export default {
         components:{
             'psych-class-test-question-form' : require('./PsychClassTestQuestionForm.vue'),
-            'psych-class-test-question-list' : require('./PsychClassTestQuestionList.vue')
+            'psych-class-test-question-list' : require('./PsychClassTestQuestionList.vue'),
+            'psych-class-test-question-multiple-form' : require('./PsychClassTestQuestionMultipleForm.vue'),
+            'psych-class-test-question-multiple-list' : require('./PsychClassTestQuestionList.vue'),
+            'psych-class-test-question-discursive-form' : require('./PsychClassTestQuestionDiscursiveForm.vue'),
+            'psych-class-test-question-discursive-list' : require('./PsychClassTestQuestionList.vue')
         },
         mixins:[classInformationMixin],
         computed: {

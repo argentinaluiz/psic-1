@@ -27,6 +27,11 @@ const state = {
         name: '',
         date_start: '',
         date_end: '',
+        question_type: [
+            {value: "1", text:"Uma escolha"},
+            {value: "2", text:"Várias escolhas"},
+            {value: "3", text:"Discursiva"}
+        ],
         questions:[]
     },
     question: newQuestion(),
@@ -50,6 +55,11 @@ const mutations = {
     },
     setName(state,name){
         state.classTest.name = name;
+    },
+    getQuestionTypeText(state,text){
+        var values = this.question_type.map(function(obj) { return obj.value})
+        var index = values.indexOf(this.selected)
+        this.question_typeText = this.question_type[index].text
     },
     addQuestion(state){
         if(typeof state.question.id =="undefined"){

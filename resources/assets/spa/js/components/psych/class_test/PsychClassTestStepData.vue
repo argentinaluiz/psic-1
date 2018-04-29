@@ -41,6 +41,15 @@
 									<label for="date_end" class="col-sm-2 control-label">Fim</label>
 									<div class="col-sm-3"><input id="date_end" type="datetime-local" name="date_end" class="form-control" v-model="classTest.date_end"></div>
 								</div>
+                                <div class="form-group">
+									<label for="question_type" class="col-sm-2 control-label">Questão</label>
+									<div class="col-sm-3">
+                                        <select class="form-control" name="question_type" v-model="classTest.question_type">
+                                            <option value="" selected disabled>Selecione um tipo de questão</option>
+                                            <option v-for="classTest in classTests" v-bind:value="classTest.value">{{classTest.question_type.text}}</option>
+                                        </select>
+                                    </div>
+								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
 										<button class="btn btn-sm btn-primary btn-block">Ir para questões</button>
@@ -68,7 +77,9 @@
             classTest(){
                 return this.$deepModel('psych.classTest.classTest');
             },
-            
+            classTests() {
+                return store.state.psych.classTest.classTests;
+            },
 
         },
         mounted() {
